@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  resources :bucks
+  get 'bucks/img', to: 'bucks#img'
+  get 'bucks/new', to: 'bucks#new'
+
+  root controller: :bucks, action: :new
 end

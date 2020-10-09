@@ -1,6 +1,6 @@
 <h1>Make a Bill</h1>
 
-<%= form_with(url: new_buck_url, method: "get") do |f| %>
+<%= form_with(url: '/bucks/new', method: "get", local: true) do |f| %>
   <%= label_tag(:from, "From:") %>
   <%= text_field_tag(:from) %>
   <br>
@@ -20,8 +20,8 @@
   <br>
 
   <%= f.submit("Generate") %>
-
-  <p></p>
-
-  <%= image_pack_tag('bill.png') %>
 <% end %>
+
+<p><%= @image_params %></p>
+
+<%= image_tag("/bucks/img.png?#{@image_params.to_query}") %>
