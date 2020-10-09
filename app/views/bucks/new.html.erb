@@ -1,12 +1,12 @@
 <h1>Make a Bill</h1>
 
 <%= form_with(url: '/bucks/new', method: "get", local: true) do |f| %>
-  <%= label_tag(:from, "From:") %>
-  <%= text_field_tag(:from) %>
-  <br>
-
   <%= label_tag(:to, "To:") %>
   <%= text_field_tag(:to) %>
+  <br>
+  
+  <%= label_tag(:from, "From:") %>
+  <%= text_field_tag(:from) %>
   <br>
 
   <%= label_tag(:for, "For:") %>
