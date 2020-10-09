@@ -1,0 +1,27 @@
+<h1>Make a Bill</h1>
+
+<%= form_with(url: new_buck_url, method: "get") do |f| %>
+  <%= label_tag(:from, "From:") %>
+  <%= text_field_tag(:from) %>
+  <br>
+
+  <%= label_tag(:to, "To:") %>
+  <%= text_field_tag(:to) %>
+  <br>
+
+  <%= label_tag(:for, "For:") %>
+  <%= text_area_tag(:for, '', maxlength: 300, size: 300) %>
+  <br>
+
+  <%= radio_button_tag(:type, "bill") %>
+  <%= label_tag(:type_bill, "Bill (1)") %>
+  <%= radio_button_tag(:type, "vonette") %>
+  <%= label_tag(:type_vonette, "Vonette (5)") %>
+  <br>
+
+  <%= f.submit("Generate") %>
+
+  <p></p>
+
+  <%= image_pack_tag('bill.png') %>
+<% end %>
