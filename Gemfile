@@ -46,3 +46,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rmagick'
+gem 'pry', '~> 0.13.1'
