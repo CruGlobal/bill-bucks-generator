@@ -2,7 +2,6 @@
   "name": "bill_buck_generator",
   "private": true,
   "dependencies": {
-    "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.3.0"
   },
