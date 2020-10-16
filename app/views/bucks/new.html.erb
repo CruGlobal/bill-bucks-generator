@@ -2,24 +2,24 @@
 
 <%= form_with(url: '/bucks/new', method: "get", local: true) do |f| %>
   <%= label_tag(:to, "To:") %>
-  <%= text_field_tag(:to) %>
+  <%= text_field_tag(:to, @image_params[:to]) %>
   <br>
 
   <%= label_tag(:from, "From:") %>
-  <%= text_field_tag(:from) %>
+  <%= text_field_tag(:from, @image_params[:from]) %>
   <br>
 
   <%= label_tag(:for, "For:") %>
-  <%= text_area_tag(:for, '', maxlength: 300, size: 300) %>
+  <%= text_area_tag(:for, @image_params[:for], maxlength: 275, size: 400) %>
   <br>
 
-  <%= radio_button_tag(:type, "bill") %>
+  <%= radio_button_tag(:type, "bill", @image_params[:type] == 'bill') %>
   <%= label_tag(:type_bill, "Bill (1)") %>
-  <%= radio_button_tag(:type, "vonette") %>
+  <%= radio_button_tag(:type, "vonette", @image_params[:type] == 'vonette') %>
   <%= label_tag(:type_vonette, "Vonette (5)") %>
   <br>
 
   <%= f.submit("Generate") %>
 <% end %>
 
-<%= image_tag("/bucks/img.png?#{@image_params.to_query}") %>
+<%= image_tag("/bucks/#{@image_params[:type] || "bill"}.png?#{@image_params.to_query}") %>

@@ -19,10 +19,10 @@ class Buck
 
     to_text = text_instance
     to_text.pointsize = TO_POINT_SIZE
-    img.annotate(to_text, 0, 0, 70, 300, image_params[:to])
-    img.annotate(to_text, 0, 0, 385, 300, image_params[:from])
+    img.annotate(to_text, 0, 0, 70, 300, image_params[:to].to_s)
+    img.annotate(to_text, 0, 0, 385, 300, image_params[:from].to_s)
 
-    wrapped_for_text = fit_text(image_params[:for].presence || "Unspecified", 510)
+    wrapped_for_text = fit_text(image_params[:for], 510)
     img.annotate(text_instance, 0, 0, 85, 350, wrapped_for_text)
 
     img.format = "png"
@@ -51,6 +51,8 @@ class Buck
   end
 
   def fit_text(text, width)
+    return text.to_s if text.to_s.strip.blank?
+
     separator = " "
     line = ""
 
