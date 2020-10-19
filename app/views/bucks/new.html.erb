@@ -13,7 +13,7 @@
   <%= text_area_tag(:for, @image_params[:for], maxlength: 275, size: 400) %>
   <br>
 
-  <%= radio_button_tag(:type, "bill", @image_params[:type] == 'bill') %>
+  <%= radio_button_tag(:type, "bill", @image_params[:type].in?(['bill', '', nil])) %>
   <%= label_tag(:type_bill, "Bill (1)") %>
   <%= radio_button_tag(:type, "vonette", @image_params[:type] == 'vonette') %>
   <%= label_tag(:type_vonette, "Vonette (5)") %>
