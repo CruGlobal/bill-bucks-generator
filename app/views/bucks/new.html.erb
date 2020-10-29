@@ -1,4 +1,6 @@
-<h1>Make a Bill</h1>
+<header>
+  <h1>Make a Bill</h1>
+</header>
 
 <div class="row">
   <%= form_with(url: '/bucks/new', method: "get", local: true) do |f| %>
@@ -33,3 +35,13 @@
     <%= image_tag("/bucks/#{@image_params[:type] || "bill"}.png?#{@image_params.to_query}") %>
   </div>
 </div>
+
+<footer>
+  <span>Made with ❤ by Shelby and Spencer</span>
+  <span>
+    <a href="https://github.com/soberstadt/bill-bucks-generator/issues"
+       title="feature requests are easier to read if they are on a bill buck image">
+      Issues or Feature Requests
+    </a>
+  </span>
+</footer>
