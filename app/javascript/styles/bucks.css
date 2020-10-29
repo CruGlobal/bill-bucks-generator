@@ -51,3 +51,7 @@ footer {
   display: flex;
   justify-content: space-between;
 }
+
+.love-font {
+  font-family: 'love', 'Times New Roman', Times, serif
+}

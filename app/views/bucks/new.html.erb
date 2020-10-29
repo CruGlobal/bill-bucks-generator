@@ -37,7 +37,7 @@
 </div>
 
 <footer>
-  <span>Made with ❤ by Shelby and Spencer</span>
+  <div>Made with <span class="heart-btn">❤</span> by Shelby and Spencer</div>
   <span>
     <a href="https://github.com/soberstadt/bill-bucks-generator/issues"
        title="feature requests are easier to read if they are on a bill buck image">
@@ -45,3 +45,10 @@
     </a>
   </span>
 </footer>
+
+<script>
+var heartBtn = document.getElementsByClassName('heart-btn')[0];
+heartBtn.onclick = function () {
+  document.getElementsByTagName('body')[0].classList.add('love-font');
+};
+</script>
