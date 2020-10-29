@@ -1,25 +1,35 @@
 <h1>Make a Bill</h1>
 
-<%= form_with(url: '/bucks/new', method: "get", local: true) do |f| %>
-  <%= label_tag(:to, "To:") %>
-  <%= text_field_tag(:to, @image_params[:to]) %>
-  <br>
+<div class="row">
+  <%= form_with(url: '/bucks/new', method: "get", local: true) do |f| %>
+    <div>
+      <%= label_tag(:to, "To:") %>
+      <br>
+      <%= text_field_tag(:to, @image_params[:to]) %>
+    </div>
 
-  <%= label_tag(:from, "From:") %>
-  <%= text_field_tag(:from, @image_params[:from]) %>
-  <br>
+    <div>
+      <%= label_tag(:from, "From:") %>
+      <br>
+      <%= text_field_tag(:from, @image_params[:from]) %>
+    </div>
 
-  <%= label_tag(:for, "For:") %>
-  <%= text_area_tag(:for, @image_params[:for], maxlength: 275, size: 400) %>
-  <br>
+    <div>
+      <%= label_tag(:for, "For:") %>
+      <br>
+      <%= text_area_tag(:for, @image_params[:for], maxlength: 275, size: 400) %>
+    </div>
 
-  <%= radio_button_tag(:type, "bill", @image_params[:type].in?(['bill', '', nil])) %>
-  <%= label_tag(:type_bill, "Bill (1)") %>
-  <%= radio_button_tag(:type, "vonette", @image_params[:type] == 'vonette') %>
-  <%= label_tag(:type_vonette, "Vonette (5)") %>
-  <br>
+    <%= radio_button_tag(:type, "bill", @image_params[:type].in?(['bill', '', nil])) %>
+    <%= label_tag(:type_bill, "Bill (1)") %>
+    <%= radio_button_tag(:type, "vonette", @image_params[:type] == 'vonette') %>
+    <%= label_tag(:type_vonette, "Vonette (5)") %>
+    <br>
 
-  <%= f.submit("Generate") %>
-<% end %>
+    <%= f.submit("Generate") %>
+  <% end %>
 
-<%= image_tag("/bucks/#{@image_params[:type] || "bill"}.png?#{@image_params.to_query}") %>
+  <div class="img">
+    <%= image_tag("/bucks/#{@image_params[:type] || "bill"}.png?#{@image_params.to_query}") %>
+  </div>
+</div>
