@@ -38,12 +38,12 @@
 </div>
 
 <footer>
-  <span>
-    Made with ❤ by
+  <div>
+    Made with <span class="heart-btn">❤</span> by
     <a href="?to=Shelby+Benton&for=Your+hard+work&type=vonette">Shelby</a>
     and
     <a href="?to=Spencer+Oberstadt&for=Being+great+at+wasting+time%21+🕺🐙">Spencer</a>
-  </span>
+  </div>
   <span>
     <a href="https://github.com/soberstadt/bill-bucks-generator/issues"
        title="feature requests are easier to read if they are on a bill buck image">
@@ -51,3 +51,10 @@
     </a>
   </span>
 </footer>
+
+<script>
+var heartBtn = document.getElementsByClassName('heart-btn')[0];
+heartBtn.onclick = function () {
+  document.getElementsByTagName('body')[0].classList.add('love-font');
+};
+</script>
