@@ -42,4 +42,10 @@ group :test do
   gem 'webdrivers'
 end
 
+#Bootstrap
+gem 'bootstrap', '~> 4.3.1'
+gem 'sprockets-rails'
+gem 'jquery-rails'
+gem 'popper_js'
+
 gem 'rmagick'
