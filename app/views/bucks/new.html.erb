@@ -1,57 +1,71 @@
+<!-- Page Header -->
 <header>
-  <h1>Make a Bill</h1>
+  <div class="container">
+    <h1>Make a Bill</h1>
+  </div>
 </header>
+<!-- Page Body -->
+<div class="main-body">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <%= form_with(url: '/bucks/new', method: "get", local: true) do |f| %>
+          <div class="form-group">
+            <%= label_tag(:to, "To:") %>
+            <br>
+            <%= text_field_tag(:to, @image_params[:to], class: "form-control") %>
+          </div>
 
-<div class="row">
-  <%= form_with(url: '/bucks/new', method: "get", local: true) do |f| %>
-    <div>
-      <%= label_tag(:to, "To:") %>
-      <br>
-      <%= text_field_tag(:to, @image_params[:to]) %>
+          <div class="form-group">
+            <%= label_tag(:from, "From:") %>
+            <br>
+            <%= text_field_tag(:from, @image_params[:from], class: "form-control") %>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag(:for, "For:") %>
+            <br>
+            <%= text_area_tag(:for, @image_params[:for], maxlength: 275, size: 400, rows: 8, class: "form-control") %>
+          </div>
+
+          <%= radio_button_tag(:type, "bill", @image_params[:type].in?(['bill', '', nil])) %>
+          <%= label_tag(:type_bill, "Bill (1)") %>
+          <%= radio_button_tag(:type, "vonette", @image_params[:type] == 'vonette') %>
+          <%= label_tag(:type_vonette, "Vonette (5)") %>
+          <br>
+          <%= f.submit("Generate", :class =>"btn btn-outline-primary") %>
+          <%= link_to "Clear", "?to=", class: "btn btn-outline-danger"%>
+        <% end %>
+      </div>
+
+      <div class="col-md">
+        <div class="img">
+          <%= image_tag("/bucks/#{@image_params[:type] || "bill"}.png?#{@image_params.to_query}") %>
+        </div>
+      </div>
     </div>
-
-    <div>
-      <%= label_tag(:from, "From:") %>
-      <br>
-      <%= text_field_tag(:from, @image_params[:from]) %>
-    </div>
-
-    <div>
-      <%= label_tag(:for, "For:") %>
-      <br>
-      <%= text_area_tag(:for, @image_params[:for], maxlength: 275, size: 400) %>
-    </div>
-
-    <%= radio_button_tag(:type, "bill", @image_params[:type].in?(['bill', '', nil])) %>
-    <%= label_tag(:type_bill, "Bill (1)") %>
-    <%= radio_button_tag(:type, "vonette", @image_params[:type] == 'vonette') %>
-    <%= label_tag(:type_vonette, "Vonette (5)") %>
-    <br>
-
-    <%= f.submit("Generate") %>
-    <%= link_to "Clear", "?to="%>
-  <% end %>
-
-  <div class="img">
-    <%= image_tag("/bucks/#{@image_params[:type] || "bill"}.png?#{@image_params.to_query}") %>
   </div>
 </div>
 
-<footer>
-  <div>
-    Made with <span class="heart-btn">❤</span> by
-    <a href="?to=Shelby+Benton&for=Your+hard+work&type=vonette">Shelby</a>
-    and
-    <a href="?to=Spencer+Oberstadt&for=Being+great+at+wasting+time%21+🕺🐙">Spencer</a>
-  </div>
-  <span>
-    <a href="https://github.com/soberstadt/bill-bucks-generator/issues"
-       title="feature requests are easier to read if they are on a bill buck image">
-      Issues or Feature Requests
-    </a>
-  </span>
-</footer>
+<!-- Page Footer -->
+<footer id="bottom-footer">
+  <div class="container">
+    <div class="made-with-love">
+      Made with <span class="heart-btn">❤</span> by
+      <a href="?to=Shelby+Benton&for=Your+hard+work&type=vonette">Shelby</a>
+      and
+      <a href="?to=Spencer+Oberstadt&for=Being+great+at+wasting+time%21+🕺🐙">Spencer</a>
+    </div>
 
+    <div class="feature-request">
+      <a href="https://github.com/soberstadt/bill-bucks-generator/issues"
+        title="feature requests are easier to read if they are on a bill buck image">
+        Issues or Feature Requests
+      </a>
+    </div>
+  </div>
+</footer>
+<!-- Page Script -->
 <script>
 var heartBtn = document.getElementsByClassName('heart-btn')[0];
 heartBtn.onclick = function () {
