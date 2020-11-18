@@ -23,14 +23,14 @@
           </div>
 
           <div class="form-group">
-            <%= label_tag(:for, "For:") %>
+            <%= label_tag(:for_message, "For:") %>
             <br>
-            <%= text_area_tag(:for, @image_params[:for], maxlength: 275, size: 400, rows: 8, class: "form-control") %>
+            <%= text_area_tag(:for_message, @image_params[:for_message], maxlength: 275, size: 400, rows: 8, class: "form-control") %>
           </div>
 
-          <%= radio_button_tag(:type, "bill", @image_params[:type].in?(['bill', '', nil])) %>
+          <%= radio_button_tag(:buck_type, "bill", @image_params[:buck_type].in?(['bill', '', nil])) %>
           <%= label_tag(:type_bill, "Bill (1)") %>
-          <%= radio_button_tag(:type, "vonette", @image_params[:type] == 'vonette') %>
+          <%= radio_button_tag(:buck_type, "vonette", @image_params[:buck_type] == 'vonette') %>
           <%= label_tag(:type_vonette, "Vonette (5)") %>
           <br>
           <%= f.submit("Generate", :class =>"btn btn-outline-primary") %>
@@ -41,7 +41,7 @@
 
       <div class="col-md">
         <div class="img">
-          <%= image_tag("/bucks/#{@image_params[:type] || "bill"}.png?#{@image_params.to_query}") %>
+          <%= image_tag("/bucks/#{@image_params[:buck_type] || "bill"}.png?#{@image_params.to_query}") %>
         </div>
       </div>
     </div>
@@ -53,9 +53,9 @@
   <div class="container">
     <div class="made-with-love">
       Made with <span class="heart-btn">❤</span> by
-      <a href="?to=Shelby+Benton&for=Your+hard+work&type=vonette">Shelby</a>
+      <a href="?to=Shelby+Benton&for_message=Your+hard+work&buck_type=vonette">Shelby</a>
       and
-      <a href="?to=Spencer+Oberstadt&for=Being+great+at+wasting+time%21+🕺🐙">Spencer</a>
+      <a href="?to=Spencer+Oberstadt&for_message=Being+great+at+wasting+time%21+🕺🐙">Spencer</a>
     </div>
 
     <div class="feature-request">

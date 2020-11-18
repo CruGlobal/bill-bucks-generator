@@ -1,12 +1,12 @@
-class Buck
-  attr_reader :image_params
+class Buck < ApplicationRecord
+  # extra form inputs we don't care about
+  attr_writer :format, :commit
 
   TO_POINT_SIZE = 22
   FOR_POINT_SIZE = 25
 
-  def initialize(image_params:)
-    @image_params = image_params
-  end
+  # validate so we don't count half-filled bills on stats
+  validates :to, :from, presence: true
 
   def to_blob
     build_image.to_blob
@@ -15,14 +15,14 @@ class Buck
   private
 
   def build_image
-    img = bill_or_vonette(image_params[:type])
+    img = bill_or_vonette(buck_type)
 
     to_text = text_instance
     to_text.pointsize = TO_POINT_SIZE
-    img.annotate(to_text, 0, 0, 70, 300, image_params[:to].to_s)
-    img.annotate(to_text, 0, 0, 385, 300, image_params[:from].to_s)
+    img.annotate(to_text, 0, 0, 70, 300, to.to_s)
+    img.annotate(to_text, 0, 0, 385, 300, from.to_s)
 
-    wrapped_for_text = fit_text(image_params[:for], 510)
+    wrapped_for_text = fit_text(for_message, 510)
     img.annotate(text_instance, 0, 0, 85, 350, wrapped_for_text)
 
     img.format = "png"
