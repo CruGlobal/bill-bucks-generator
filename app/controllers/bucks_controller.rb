@@ -1,6 +1,11 @@
 class BucksController < ApplicationController
+  def generate
+    save_from_to_session
+    redirect_to bucks_new_path(params: image_params.slice(:to, :from, :for, :type))
+  end
+
   def new
-    image_params
+    @image_params = { from: session[:previous_from] }.merge(image_params.symbolize_keys)
   end
 
   def img
@@ -19,5 +24,9 @@ class BucksController < ApplicationController
 
   def image_params
     @image_params ||= params.permit(:to, :from, :for, :type, :commit, :format).to_h
+  end
+
+  def save_from_to_session
+    session[:previous_from] = image_params[:from]
   end
 end
