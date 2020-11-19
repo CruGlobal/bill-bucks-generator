@@ -29,9 +29,9 @@
           </div>
 
           <%= radio_button_tag(:buck_type, "bill", @image_params[:buck_type].in?(['bill', '', nil]), class: "radio") %>
-          <%= label_tag(:type_bill, "Bill (1)") %>
+          <%= label_tag(:buck_type_bill, "Bill (1)") %>
           <%= radio_button_tag(:buck_type, "vonette", @image_params[:buck_type] == 'vonette', class: "radio") %>
-          <%= label_tag(:type_vonette, "Vonette (5)") %>
+          <%= label_tag(:buck_type_vonette, "Vonette (5)") %>
           <br>
           <%= f.submit("Generate", :class =>"btn btn-outline-primary") %>
           <%= link_to "Clear", "?to=", class: "btn btn-outline-danger"%>
