@@ -66,10 +66,5 @@
     </div>
   </div>
 </footer>
-<!-- Page Script -->
-<script>
-var heartBtn = document.getElementsByClassName('heart-btn')[0];
-heartBtn.onclick = function () {
-  document.getElementsByTagName('body')[0].classList.add('love-font');
-};
-</script>
+
+<%= javascript_pack_tag 'generator' %>
