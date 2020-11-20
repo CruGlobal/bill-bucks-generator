@@ -17,6 +17,7 @@ jobs:
           # This is important to fetch the changes to the previous commit
           fetch-depth: 0
 
+      # until plugin support is added to this action (https://github.com/creyD/prettier_action/issues/22) we can't prettier ruby :(
       - name: Prettify code
         uses: creyD/prettier_action@v3.1
         with:
