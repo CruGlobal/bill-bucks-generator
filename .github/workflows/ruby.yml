@@ -30,11 +30,12 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Install PostgreSQL 11 client
-        run: |
-          sudo apt-get -yqq install libpq-dev
+      - name: Install PostgreSQL client
+        uses: ryankurte/action-apt@v0.2.0
+        with:
+          packages: libpq-dev
 
-      - name: Install dependencies
+      - name: Install dependencies and setup database
         env:
           PGHOST: localhost
           PGUSER: postgres
@@ -43,6 +44,7 @@ jobs:
           bundle install --jobs 4 --retry 3
           bin/rails db:setup
 
+      # node config stolen from https://boringrails.com/articles/building-a-rails-ci-pipeline-with-github-actions/
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
       - name: Find yarn cache location
@@ -55,12 +57,11 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - name: Install packages
+      - name: Install yarn packages
         run: yarn install --pure-lockfile
 
       - name: Run tests
         env:
           PGHOST: localhost
           PGUSER: postgres
-          RAILS_ENV: test
         run: bundle exec rspec
