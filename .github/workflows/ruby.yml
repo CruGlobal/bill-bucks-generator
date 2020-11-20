@@ -15,8 +15,13 @@ on:
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:11.5
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
     - uses: actions/checkout@v2
@@ -24,7 +29,22 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         bundler-cache: true
+
+    - name: Install PostgreSQL 11 client
+      run: |
+        sudo apt-get -yqq install libpq-dev
+        
     - name: Install dependencies
-      run: bundle install
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        RAILS_ENV: test
+      run: |
+        bundle install --jobs 4 --retry 3
+        bin/rails db:setup
     - name: Run tests
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        RAILS_ENV: test
       run: bundle exec rspec
