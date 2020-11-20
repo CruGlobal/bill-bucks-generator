@@ -43,4 +43,4 @@ jobs:
         run: yarn install --pure-lockfile
 
       - name: Run prettier on ruby files
-        run: ./node_modules/.bin/prettier -c **/*.rb
+        run: yarn run prettier -c **/*.rb
