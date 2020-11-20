@@ -32,11 +32,21 @@ class BucksController < ApplicationController
   end
 
   def bill_counter
-    if session[:bill_count].nil?
+    if session[:bill_count].nil? || new_quarter?
       session[:bill_count] = number
     else
       session[:bill_count] += number
     end
+    
+    session[:last_creation] = Date.today
+  end
+
+  def new_quarter?
+    return unless session[:last_creation]
+
+    previous_entry = session[:last_creation].to_date
+    current_quarter_start = Date.today.beginning_of_quarter
+    previous_entry < current_quarter_start
   end
 
   def save_from_to_session
