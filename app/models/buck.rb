@@ -1,5 +1,4 @@
-class Buck < ApplicationRecord
-  # extra form inputs we don't care about
+class Buck < ApplicationRecord # extra form inputs we don't care about
   attr_writer :format, :commit
 
   TO_POINT_SIZE = 22
@@ -25,12 +24,12 @@ class Buck < ApplicationRecord
     wrapped_for_text = fit_text(for_message, 510)
     img.annotate(text_instance, 0, 0, 85, 350, wrapped_for_text)
 
-    img.format = "png"
+    img.format = 'png'
     img
   end
 
   def bill_or_vonette(buck_type)
-    filename = buck_type == "vonette" ? "vonette" : "bill"
+    filename = buck_type == 'vonette' ? 'vonette' : 'bill'
     Magick::ImageList.new("public/#{filename}.png")
   end
 
@@ -53,26 +52,18 @@ class Buck < ApplicationRecord
   def fit_text(text, width)
     return text.to_s if text.to_s.strip.blank?
 
-    separator = " "
-    line = ""
+    separator = ' '
+    line = ''
 
     if !text_fit?(text, width) && text.include?(separator)
       i = 0
       text.split(separator).each do |word|
-        tmp_line = if i == 0
-          line + word
-        else
-          line + separator + word
-        end
+        tmp_line = i == 0 ? line + word : line + separator + word
 
         if text_fit?(tmp_line, width)
-          unless i == 0
-            line += separator
-          end
+          line += separator unless i == 0
         else
-          unless i == 0
-            line += '\n'
-          end
+          line += '\n' unless i == 0
         end
         line += word
         i += 1

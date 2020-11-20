@@ -1,2 +1,1 @@
-module BucksHelper
-end
+module BucksHelper; end
