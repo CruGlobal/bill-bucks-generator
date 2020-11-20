@@ -20,7 +20,6 @@ jobs:
     services:
       postgres:
         image: postgres:11.5
-        ports: ["5432:5432"]
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
@@ -37,6 +36,7 @@ jobs:
 
       - name: Install dependencies and setup database
         env:
+          PGHOST: localhost
           PGUSER: postgres
           RAILS_ENV: test
         run: |
@@ -61,5 +61,6 @@ jobs:
 
       - name: Run tests
         env:
+          PGHOST: localhost
           PGUSER: postgres
         run: bundle exec rspec
