@@ -2,6 +2,7 @@ class BucksController < ApplicationController
   def generate
     build_buck.save
     save_from_to_session
+    bill_counter
     redirect_to bucks_new_path(params: image_params.slice(:to, :from, :for_message, :buck_type))
   end
 
@@ -28,6 +29,14 @@ class BucksController < ApplicationController
 
   def image_params
     @image_params ||= params.permit(:to, :from, :for_message, :buck_type, :commit, :format).to_h
+  end
+
+  def bill_counter
+    if session[:bill_count].nil?
+      session[:bill_count] = number
+    else
+      session[:bill_count] += number
+    end
   end
 
   def save_from_to_session
