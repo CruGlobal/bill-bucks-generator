@@ -1,0 +1,47 @@
+name: Prettier
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          # Make sure the actual branch is checked out when running on pull requests
+          ref: ${{ github.head_ref }}
+          # This is important to fetch the changes to the previous commit
+          fetch-depth: 0
+
+      # until plugin support is added to this action (https://github.com/creyD/prettier_action/issues/22) we can't prettier ruby :(
+      - name: Prettify code
+        uses: creyD/prettier_action@v3.1
+        with:
+          # This part is also where you can pass other options, for example:
+          prettier_options: --write .
+          only_changed: True
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # node config stolen from https://boringrails.com/articles/building-a-rails-ci-pipeline-with-github-actions/
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+      - name: Find yarn cache location
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: JS package cache
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install yarn packages
+        run: yarn install --pure-lockfile
+
+      - name: Run prettier on ruby files
+        run: yarn run prettier -c $(git ls-files | grep "\.rb$" | xargs)
