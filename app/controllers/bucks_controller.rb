@@ -1,8 +1,8 @@
 class BucksController < ApplicationController
   def generate
-    build_buck.save
+    bill_counter if build_buck.save
     save_from_to_session
-    bill_counter
+
     redirect_to bucks_new_path(
                   params:
                     image_params.slice(:to, :from, :for_message, :buck_type)
