@@ -11,7 +11,7 @@ class BucksController < ApplicationController
 
   def new
     @image_params =
-      {from: session[:previous_from] }.merge(image_params.symbolize_keys)
+      { from: session[:previous_from] }.merge(image_params.symbolize_keys)
   end
 
   def img
