@@ -22,7 +22,6 @@ jobs:
         with:
           # This part is also where you can pass other options, for example:
           prettier_version: "^2.2.0 @prettier/plugin-ruby@^0.20.1"
-          prettier_options: --write .
-          only_changed: True
+          prettier_options: "--write ."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
