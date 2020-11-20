@@ -44,7 +44,7 @@ jobs:
         bin/rails db:setup
 
     - name: Setup Node
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v2.1.2
     - name: Find yarn cache location
       id: yarn-cache
       run: echo "::set-output name=dir::$(yarn cache dir)"
