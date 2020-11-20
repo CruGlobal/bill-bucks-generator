@@ -8,7 +8,8 @@ body {
   margin: 0;
 }
 
-header, footer {
+header,
+footer {
   background-color: lightgray;
   padding: 8px;
 }
@@ -28,11 +29,12 @@ h1 {
   margin: 0;
 }
 
-input, textarea {
+input,
+textarea {
   margin-bottom: 0.5rem;
 }
 
-input[type='submit'] {
+input[type="submit"] {
   margin-top: 10px;
   font-size: 2rem;
 }
@@ -71,5 +73,5 @@ footer {
 }
 
 .love-font {
-  font-family: 'love', 'Times New Roman', Times, serif
+  font-family: "love", "Times New Roman", Times, serif;
 }
