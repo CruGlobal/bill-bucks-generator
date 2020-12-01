@@ -1,5 +1,6 @@
 class Buck < ApplicationRecord # extra form inputs we don't care about
   attr_writer :format, :commit
+  attr_accessor :dept
 
   TO_POINT_SIZE = 22
   FOR_POINT_SIZE = 25
@@ -14,7 +15,7 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
   private
 
   def build_image
-    img = bill_or_vonette(buck_type)
+    img = bill_or_vonette
 
     to_text = text_instance
     to_text.pointsize = TO_POINT_SIZE
@@ -28,8 +29,12 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
     img
   end
 
-  def bill_or_vonette(buck_type)
-    filename = buck_type == 'vonette' ? 'vonette' : 'bill'
+  def bill_or_vonette
+    if dept == 'irt'
+      filename = buck_type == 'mary' ? 'mary' : 'roman'
+    else
+      filename = buck_type == 'vonette' ? 'vonette' : 'bill'
+    end
     Magick::ImageList.new("public/#{filename}.png")
   end
 

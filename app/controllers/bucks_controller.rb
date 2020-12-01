@@ -5,7 +5,13 @@ class BucksController < ApplicationController
 
     redirect_to bucks_new_path(
                   params:
-                    image_params.slice(:to, :from, :for_message, :buck_type)
+                    image_params.slice(
+                      :to,
+                      :from,
+                      :for_message,
+                      :buck_type,
+                      :dept
+                    )
                 )
   end
 
@@ -36,7 +42,15 @@ class BucksController < ApplicationController
 
   def image_params
     @image_params ||=
-      params.permit(:to, :from, :for_message, :buck_type, :commit, :format).to_h
+      params.permit(
+        :to,
+        :from,
+        :for_message,
+        :buck_type,
+        :commit,
+        :format,
+        :dept
+      ).to_h
   end
 
   def bill_counter
