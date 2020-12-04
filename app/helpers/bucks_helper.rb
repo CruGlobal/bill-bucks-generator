@@ -1,10 +1,10 @@
 module BucksHelper
   def single_note_name
-    current_dept == 'irt' ? 'roman' : 'bill'
+    current_dept == 'irt' ? 'cap' : 'bill'
   end
 
   def five_note_name
-    current_dept == 'irt' ? 'mary' : 'vonette'
+    current_dept == 'irt' ? 'mag' : 'vonette'
   end
 
   def current_dept

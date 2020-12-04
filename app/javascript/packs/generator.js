@@ -17,8 +17,8 @@ function preload() {
   bill.src = "/bill.png";
   vonette = new Image();
   vonette.src = "/vonette.png";
-  mary = new Image();
-  mary.src = "/mary.png";
-  roman = new Image();
-  roman.src = "/roman.png";
+  mag = new Image();
+  mag.src = "/mag.png";
+  cap = new Image();
+  cap.src = "/cap.png";
 }

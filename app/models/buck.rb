@@ -31,7 +31,7 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
 
   def bill_or_vonette
     if dept == 'irt'
-      filename = buck_type == 'mary' ? 'mary' : 'roman'
+      filename = buck_type == 'mag' ? 'mag' : 'cap'
     else
       filename = buck_type == 'vonette' ? 'vonette' : 'bill'
     end
