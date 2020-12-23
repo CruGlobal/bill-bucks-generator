@@ -5,6 +5,8 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
   TO_POINT_SIZE = 22
   FOR_POINT_SIZE = 25
 
+
+  
   # validate so we don't count half-filled bills on stats
   validates :to, :from, presence: true
 
