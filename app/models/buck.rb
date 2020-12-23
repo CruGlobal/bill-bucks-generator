@@ -16,7 +16,7 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
     return text.to_s if text.to_s.strip.blank?
 
     separator = ' '
-    line = ''
+    new_text = ''
 
     return text if text_fit?(text, width) || !text.include?(separator)
 
@@ -25,16 +25,19 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
     words.each_with_index do |word, i|
       # no need to add white-space before the first word
       unless i == 0
-        tmp_line = line + separator + word
+        previous_line = new_text.split("\n").last
+        tmp_line = previous_line + separator + word
+
+        # will the new word cause a wrap around
         if text_fit?(tmp_line, width)
-          line += separator
+          new_text += separator
         else
-          line += "\n"
+          new_text += "\n"
         end
       end
-      line += word
+      new_text += word
     end
-    line
+    new_text
   end
 
   private

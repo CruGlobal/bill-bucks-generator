@@ -39,5 +39,17 @@ RSpec.describe Buck, type: :model do
         expect(Buck.new.fit_text(text, 510)).to eq wrapped_text
       end
     end
+
+    context 'with one really long word' do
+      let(:text) do
+        "check this out: https://bill-buck-generator.herokuapp.com/?to=Shelby+Benton&for_message=Your+hard+work&buck_type=vonette\r\n You won't believe what happens next"
+      end
+      let(:wrapped_text) do
+        "check this out:\nhttps://bill-buck-generator.herokuapp.com/?to=Shelby+Benton&for_message=Your+hard+work&buck_type=vonette\r\n\nYou won't believe what happens next"
+      end
+      it 'returns original text' do
+        expect(Buck.new.fit_text(text, 510)).to eq wrapped_text
+      end
+    end
   end
 end
