@@ -5,8 +5,6 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
   TO_POINT_SIZE = 22
   FOR_POINT_SIZE = 25
 
-
-  
   # validate so we don't count half-filled bills on stats
   validates :to, :from, presence: true
 
@@ -20,26 +18,23 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
     separator = ' '
     line = ''
 
-    if !text_fit?(text, width) && text.include?(separator)
-      i = 0
+    return text if text_fit?(text, width) || !text.include?(separator)
 
-      # use / / to actually split on spaces, otherwise `split` will split on any whitespace
-      text
-        .split(/ /)
-        .each do |word|
-          tmp_line = i == 0 ? line + word : line + separator + word
-
-          if text_fit?(tmp_line, width)
-            line += separator unless i == 0
-          else
-            line += "\n" unless i == 0
-          end
-          line += word
-          i += 1
+    # use / / to actually split on spaces, otherwise `split` will split on any whitespace
+    words = text.split(/ /)
+    words.each_with_index do |word, i|
+      # no need to add white-space before the first word
+      unless i == 0
+        tmp_line = line + separator + word
+        if text_fit?(tmp_line, width)
+          line += separator
+        else
+          line += "\n"
         end
-      text = line
+      end
+      line += word
     end
-    text
+    line
   end
 
   private

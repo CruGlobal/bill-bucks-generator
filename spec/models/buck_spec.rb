@@ -2,6 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Buck, type: :model do
   describe '#fit_text' do
+    context 'with no spaces' do
+      let(:text) do
+        'https://bill-buck-generator.herokuapp.com/?to=Shelby+Benton&for_message=Your+hard+work&buck_type=vonette'
+      end
+      it 'returns original text' do
+        expect(Buck.new.fit_text(text, 510)).to eq text
+      end
+    end
+
     context 'with non-wrapping text' do
       let(:text) { "hello\r\nmy\r\nname \r\nis\r\n\r\nshelby" }
       it 'returns original text' do
