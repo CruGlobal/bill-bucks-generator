@@ -12,6 +12,34 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
     build_image.to_blob
   end
 
+  def fit_text(text, width)
+    return text.to_s if text.to_s.strip.blank?
+
+    separator = ' '
+    line = ''
+
+    if !text_fit?(text, width) && text.include?(separator)
+      i = 0
+
+      # use / / to actually split on spaces, otherwise `split` will split on any whitespace
+      text
+        .split(/ /)
+        .each do |word|
+          tmp_line = i == 0 ? line + word : line + separator + word
+
+          if text_fit?(tmp_line, width)
+            line += separator unless i == 0
+          else
+            line += "\n" unless i == 0
+          end
+          line += word
+          i += 1
+        end
+      text = line
+    end
+    text
+  end
+
   private
 
   def build_image
@@ -52,31 +80,5 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
     metrics = drawing.get_multiline_type_metrics(tmp_image, text)
 
     metrics.width < width
-  end
-
-  def fit_text(text, width)
-    return text.to_s if text.to_s.strip.blank?
-
-    separator = ' '
-    line = ''
-
-    if !text_fit?(text, width) && text.include?(separator)
-      i = 0
-      text
-        .split(separator)
-        .each do |word|
-          tmp_line = i == 0 ? line + word : line + separator + word
-
-          if text_fit?(tmp_line, width)
-            line += separator unless i == 0
-          else
-            line += '\n' unless i == 0
-          end
-          line += word
-          i += 1
-        end
-      text = line
-    end
-    text
   end
 end
