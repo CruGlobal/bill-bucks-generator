@@ -1,3 +1,4 @@
+# typed: false
 class Buck < ApplicationRecord # extra form inputs we don't care about
   attr_writer :format, :commit
   attr_accessor :dept

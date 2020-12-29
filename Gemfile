@@ -29,6 +29,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'sorbet'
 end
 
 group :test do
@@ -39,3 +40,4 @@ group :test do
 end
 
 gem 'rmagick'
+gem 'sorbet-runtime'

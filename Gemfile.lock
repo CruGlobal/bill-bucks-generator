@@ -183,6 +183,10 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    sorbet (0.5.6189)
+      sorbet-static (= 0.5.6189)
+    sorbet-runtime (0.5.6189)
+    sorbet-static (0.5.6189-universal-darwin-14)
     spring (2.1.1)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
@@ -234,6 +238,8 @@ DEPENDENCIES
   rmagick
   rspec-rails
   selenium-webdriver
+  sorbet
+  sorbet-runtime
   spring
   spring-commands-rspec
   standard
