@@ -850,10 +850,10 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@prettier/plugin-ruby@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@prettier/plugin-ruby/-/plugin-ruby-1.0.0.tgz#bfea3c22cd4671982377c1fc7698485b5198fe8a"
-  integrity sha512-tkNRIpOzzaOrOYlJGbNssJuWdMe8z/SuT/YC7z8xaLTYOqMyFk4izKceR6DVBovu7rvWhnt/QfauSatYGwnLlQ==
+"@prettier/plugin-ruby@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@prettier/plugin-ruby/-/plugin-ruby-1.4.0.tgz#a455f63007774910cc8372c467c0f7bb19f1c997"
+  integrity sha512-aaWHlN1yOQ4jno1cxgvmW37kKniakfoxxtC/BiH9AehYOAMUghlTEIHxFQu4p0rR0pXC4FNRfI+U8dUNANtTVA==
   dependencies:
     prettier ">=1.10"
 
