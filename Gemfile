@@ -41,3 +41,4 @@ end
 
 gem 'rmagick'
 gem 'sorbet-runtime'
+gem 'sorbet-rails'

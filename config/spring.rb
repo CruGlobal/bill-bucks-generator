@@ -1,5 +1,5 @@
 # typed: false
-Spring.watch(
+Spring.catch(
   '.ruby-version',
   '.rbenv-vars',
   'tmp/restart.txt',

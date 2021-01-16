@@ -1,4 +1,4 @@
-# typed: false
+# typed: true
 class BucksController < ApplicationController
   def generate
     bill_counter if build_buck.save

@@ -1,4 +1,4 @@
-# typed: false
+# typed: true
 module BucksHelper
   def single_note_name
     current_dept == 'irt' ? 'cap' : 'bill'

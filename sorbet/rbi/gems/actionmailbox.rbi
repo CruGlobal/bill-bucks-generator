@@ -146,6 +146,8 @@ class ActionMailbox::InboundEmail < ActiveRecord::Base
   def self.statuses; end
   def self.with_attached_raw_email(*args); end
   def source; end
+  def typed_status; end
+  def typed_status=(value); end
   extend ActionMailbox::InboundEmail::MessageId::ClassMethods
   include ActionMailbox::InboundEmail::GeneratedAssociationMethods
   include ActionMailbox::InboundEmail::GeneratedAttributeMethods
@@ -204,6 +206,8 @@ module Anonymous_Module_39
   def pending?; end
   def processing!; end
   def processing?; end
+end
+class ActionMailbox::InboundEmail::Status < T::Enum
 end
 module Rails
 end

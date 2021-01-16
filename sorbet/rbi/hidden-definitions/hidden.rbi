@@ -4794,7 +4794,6 @@ end
 
 class ActionMailbox::InboundEmail
   include ::ActionMailbox::InboundEmail::GeneratedAttributeMethods
-  include ::ActionMailbox::InboundEmail::GeneratedAssociationMethods
   include ::ActionMailbox::InboundEmail::Routable
   include ::ActionMailbox::InboundEmail::MessageId
   include ::ActionMailbox::InboundEmail::Incineratable
@@ -4807,39 +4806,65 @@ class ActionMailbox::InboundEmail
   def processed?(); end
 
   def source(); end
+
+  def typed_status(); end
+
+  def typed_status=(value); end
+end
+
+class ActionMailbox::InboundEmail::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActionMailbox::InboundEmail::GeneratedRelationMethods
+end
+
+class ActionMailbox::InboundEmail::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActionMailbox::InboundEmail::GeneratedRelationMethods
+end
+
+class ActionMailbox::InboundEmail::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActionMailbox::InboundEmail::GeneratedRelationMethods
 end
 
 module ActionMailbox::InboundEmail::GeneratedAssociationMethods
-  def build_raw_email_attachment(*args, &block); end
-
-  def create_raw_email_attachment(*args, &block); end
-
-  def create_raw_email_attachment!(*args, &block); end
-
-  def raw_email(); end
-
-  def raw_email=(attachable); end
-
-  def raw_email_attachment(); end
-
-  def raw_email_attachment=(value); end
-
-  def raw_email_blob(); end
-
-  def raw_email_blob=(value); end
-
   def reload_raw_email_attachment(); end
 
   def reload_raw_email_blob(); end
 end
 
-module ActionMailbox::InboundEmail::GeneratedAssociationMethods
-end
-
 module ActionMailbox::InboundEmail::GeneratedAttributeMethods
 end
 
 module ActionMailbox::InboundEmail::GeneratedAttributeMethods
+  extend ::Mutex_m
+end
+
+module ActionMailbox::InboundEmail::GeneratedRelationMethods
+  def bounced(*_, &_1); end
+
+  def delivered(*_, &_1); end
+
+  def failed(*_, &_1); end
+
+  def not_bounced(*_, &_1); end
+
+  def not_delivered(*_, &_1); end
+
+  def not_failed(*_, &_1); end
+
+  def not_pending(*_, &_1); end
+
+  def not_processing(*_, &_1); end
+
+  def pending(*_, &_1); end
+
+  def processing(*_, &_1); end
+
+  def with_attached_raw_email(*_, &_1); end
+end
+
+module ActionMailbox::InboundEmail::GeneratedRelationMethods
   extend ::Mutex_m
 end
 
@@ -4886,31 +4911,20 @@ module ActionMailbox::InboundEmail::Routable
   extend ::ActiveSupport::Concern
 end
 
+class ActionMailbox::InboundEmail::Status
+  Bounced = ::T.let(nil, ::T.untyped)
+  Delivered = ::T.let(nil, ::T.untyped)
+  Failed = ::T.let(nil, ::T.untyped)
+  Pending = ::T.let(nil, ::T.untyped)
+  Processing = ::T.let(nil, ::T.untyped)
+end
+
+class ActionMailbox::InboundEmail::Status
+  extend ::T::Helpers
+end
+
 class ActionMailbox::InboundEmail
   extend ::ActionMailbox::InboundEmail::MessageId::ClassMethods
-  def self.bounced(*args); end
-
-  def self.delivered(*args); end
-
-  def self.failed(*args); end
-
-  def self.not_bounced(*args); end
-
-  def self.not_delivered(*args); end
-
-  def self.not_failed(*args); end
-
-  def self.not_pending(*args); end
-
-  def self.not_processing(*args); end
-
-  def self.pending(*args); end
-
-  def self.processing(*args); end
-
-  def self.statuses(); end
-
-  def self.with_attached_raw_email(*args); end
 end
 
 class ActionMailbox::IncinerationJob
@@ -5887,9 +5901,6 @@ module ActionPack
   def self.version(); end
 end
 
-module ActionText
-end
-
 module ActionText::Attachable
   def as_json(*_); end
 
@@ -6310,7 +6321,6 @@ end
 
 class ActionText::RichText
   include ::ActionText::RichText::GeneratedAttributeMethods
-  include ::ActionText::RichText::GeneratedAssociationMethods
   def after_add_for_embeds_attachments(); end
 
   def after_add_for_embeds_attachments=(val); end
@@ -6382,6 +6392,21 @@ class ActionText::RichText
   def validate_associated_records_for_embeds_blobs(*args); end
 end
 
+class ActionText::RichText::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActionText::RichText::GeneratedRelationMethods
+end
+
+class ActionText::RichText::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActionText::RichText::GeneratedRelationMethods
+end
+
+class ActionText::RichText::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActionText::RichText::GeneratedRelationMethods
+end
+
 module ActionText::RichText::EmbedsAttachmentsAssociationExtension
   def purge(); end
 
@@ -6392,40 +6417,25 @@ module ActionText::RichText::EmbedsAttachmentsAssociationExtension
 end
 
 module ActionText::RichText::GeneratedAssociationMethods
-  def embeds(); end
-
-  def embeds=(attachables); end
-
-  def embeds_attachment_ids(); end
-
   def embeds_attachment_ids=(ids); end
 
-  def embeds_attachments(); end
-
-  def embeds_attachments=(value); end
-
-  def embeds_blob_ids(); end
-
   def embeds_blob_ids=(ids); end
-
-  def embeds_blobs(); end
-
-  def embeds_blobs=(value); end
-
-  def record(); end
-
-  def record=(value); end
 
   def reload_record(); end
 end
 
-module ActionText::RichText::GeneratedAssociationMethods
-end
-
 module ActionText::RichText::GeneratedAttributeMethods
 end
 
 module ActionText::RichText::GeneratedAttributeMethods
+  extend ::Mutex_m
+end
+
+module ActionText::RichText::GeneratedRelationMethods
+  def with_attached_embeds(*_, &_1); end
+end
+
+module ActionText::RichText::GeneratedRelationMethods
   extend ::Mutex_m
 end
 
@@ -6477,8 +6487,6 @@ class ActionText::RichText
   def self.before_remove_for_embeds_blobs=(val); end
 
   def self.before_remove_for_embeds_blobs?(); end
-
-  def self.with_attached_embeds(*args); end
 end
 
 module ActionText::Serialization
@@ -8958,6 +8966,31 @@ end
 class ActiveRecord::AdvisoryLockBase
   include ::ActiveRecord::AdvisoryLockBase::GeneratedAttributeMethods
   include ::ActiveRecord::AdvisoryLockBase::GeneratedAssociationMethods
+  RelationType = ::T.let(nil, ::T.untyped)
+end
+
+class ActiveRecord::AdvisoryLockBase::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActiveRecord::AdvisoryLockBase::GeneratedRelationMethods
+end
+
+class ActiveRecord::AdvisoryLockBase::ActiveRecord_AssociationRelation
+end
+
+class ActiveRecord::AdvisoryLockBase::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActiveRecord::AdvisoryLockBase::GeneratedRelationMethods
+end
+
+class ActiveRecord::AdvisoryLockBase::ActiveRecord_Associations_CollectionProxy
+end
+
+class ActiveRecord::AdvisoryLockBase::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActiveRecord::AdvisoryLockBase::GeneratedRelationMethods
+end
+
+class ActiveRecord::AdvisoryLockBase::ActiveRecord_Relation
 end
 
 module ActiveRecord::AdvisoryLockBase::GeneratedAssociationMethods
@@ -8970,6 +9003,13 @@ module ActiveRecord::AdvisoryLockBase::GeneratedAttributeMethods
 end
 
 module ActiveRecord::AdvisoryLockBase::GeneratedAttributeMethods
+  extend ::Mutex_m
+end
+
+module ActiveRecord::AdvisoryLockBase::GeneratedRelationMethods
+end
+
+module ActiveRecord::AdvisoryLockBase::GeneratedRelationMethods
   extend ::Mutex_m
 end
 
@@ -9001,7 +9041,276 @@ class ActiveRecord::AssociationRelation
   def proxy_association(); end
 end
 
-class ActiveRecord::AssociationRelation
+class ActiveRecord::Associations::CollectionProxy
+  def <<(*records); end
+
+  def _select!(*_, &_1); end
+
+  def annotate(*_, &_1); end
+
+  def annotate!(*_, &_1); end
+
+  def annotate_values(*_, &_1); end
+
+  def annotate_values=(arg); end
+
+  def append(*records); end
+
+  def arel(*_, &_1); end
+
+  def clear(); end
+
+  def concat(*records); end
+
+  def construct_join_dependency(*_, &_1); end
+
+  def create_with(*_, &_1); end
+
+  def create_with!(*_, &_1); end
+
+  def create_with_value(*_, &_1); end
+
+  def create_with_value=(arg); end
+
+  def delete(*records); end
+
+  def delete_all(dependent=T.unsafe(nil)); end
+
+  def destroy(*records); end
+
+  def distinct(*_, &_1); end
+
+  def distinct!(*_, &_1); end
+
+  def distinct_value(*_, &_1); end
+
+  def distinct_value=(arg); end
+
+  def eager_load(*_, &_1); end
+
+  def eager_load!(*_, &_1); end
+
+  def eager_load_values(*_, &_1); end
+
+  def eager_load_values=(arg); end
+
+  def except(*_, &_1); end
+
+  def extending(*_, &_1); end
+
+  def extending!(*_, &_1); end
+
+  def extending_values(*_, &_1); end
+
+  def extending_values=(arg); end
+
+  def extensions(*_, &_1); end
+
+  def extract_associated(*_, &_1); end
+
+  def from(*_, &_1); end
+
+  def from!(*_, &_1); end
+
+  def from_clause(*_, &_1); end
+
+  def from_clause=(arg); end
+
+  def group(*_, &_1); end
+
+  def group!(*_, &_1); end
+
+  def group_values(*_, &_1); end
+
+  def group_values=(arg); end
+
+  def having(*_, &_1); end
+
+  def having!(*_, &_1); end
+
+  def having_clause(*_, &_1); end
+
+  def having_clause=(arg); end
+
+  def include?(record); end
+
+  def includes(*_, &_1); end
+
+  def includes!(*_, &_1); end
+
+  def includes_values(*_, &_1); end
+
+  def includes_values=(arg); end
+
+  def initialize(klass, association, **_); end
+
+  def joins(*_, &_1); end
+
+  def joins!(*_, &_1); end
+
+  def joins_values(*_, &_1); end
+
+  def joins_values=(arg); end
+
+  def left_joins(*_, &_1); end
+
+  def left_outer_joins(*_, &_1); end
+
+  def left_outer_joins!(*_, &_1); end
+
+  def left_outer_joins_values(*_, &_1); end
+
+  def left_outer_joins_values=(arg); end
+
+  def limit(*_, &_1); end
+
+  def limit!(*_, &_1); end
+
+  def limit_value(*_, &_1); end
+
+  def limit_value=(arg); end
+
+  def load_target(); end
+
+  def lock(*_, &_1); end
+
+  def lock!(*_, &_1); end
+
+  def lock_value(*_, &_1); end
+
+  def lock_value=(arg); end
+
+  def merge(*_, &_1); end
+
+  def merge!(*_, &_1); end
+
+  def none(*_, &_1); end
+
+  def none!(*_, &_1); end
+
+  def offset(*_, &_1); end
+
+  def offset!(*_, &_1); end
+
+  def offset_value(*_, &_1); end
+
+  def offset_value=(arg); end
+
+  def only(*_, &_1); end
+
+  def optimizer_hints(*_, &_1); end
+
+  def optimizer_hints!(*_, &_1); end
+
+  def optimizer_hints_values(*_, &_1); end
+
+  def optimizer_hints_values=(arg); end
+
+  def or(*_, &_1); end
+
+  def or!(*_, &_1); end
+
+  def order(*_, &_1); end
+
+  def order!(*_, &_1); end
+
+  def order_values(*_, &_1); end
+
+  def order_values=(arg); end
+
+  def preload(*_, &_1); end
+
+  def preload!(*_, &_1); end
+
+  def preload_values(*_, &_1); end
+
+  def preload_values=(arg); end
+
+  def prepend(*args); end
+
+  def proxy_association(); end
+
+  def push(*records); end
+
+  def readonly(*_, &_1); end
+
+  def readonly!(*_, &_1); end
+
+  def readonly_value(*_, &_1); end
+
+  def readonly_value=(arg); end
+
+  def references(*_, &_1); end
+
+  def references!(*_, &_1); end
+
+  def references_values(*_, &_1); end
+
+  def references_values=(arg); end
+
+  def reorder(*_, &_1); end
+
+  def reorder!(*_, &_1); end
+
+  def reordering_value(*_, &_1); end
+
+  def reordering_value=(arg); end
+
+  def replace(other_array); end
+
+  def reselect(*_, &_1); end
+
+  def reselect!(*_, &_1); end
+
+  def reset_scope(); end
+
+  def reverse_order(*_, &_1); end
+
+  def reverse_order!(*_, &_1); end
+
+  def reverse_order_value(*_, &_1); end
+
+  def reverse_order_value=(arg); end
+
+  def rewhere(*_, &_1); end
+
+  def scope(); end
+
+  def scoping(*_, &_1); end
+
+  def select_values(*_, &_1); end
+
+  def select_values=(arg); end
+
+  def skip_preloading!(*_, &_1); end
+
+  def skip_query_cache!(*_, &_1); end
+
+  def skip_query_cache_value(*_, &_1); end
+
+  def skip_query_cache_value=(arg); end
+
+  def spawn(*_, &_1); end
+
+  def target(); end
+
+  def unscope(*_, &_1); end
+
+  def unscope!(*_, &_1); end
+
+  def unscope_values(*_, &_1); end
+
+  def unscope_values=(arg); end
+
+  def values(*_, &_1); end
+
+  def where(*_, &_1); end
+
+  def where!(*_, &_1); end
+
+  def where_clause(*_, &_1); end
+
+  def where_clause=(arg); end
 end
 
 module ActiveRecord::Associations
@@ -9255,6 +9564,7 @@ class ActiveRecord::Base
   extend ::ActiveModel::Translation
   extend ::ActiveRecord::Aggregations::ClassMethods
   extend ::ActiveModel::Validations::HelperMethods
+  extend ::SorbetRails::CustomFinderMethods
   def self.__callbacks(); end
 
   def self.__callbacks=(val); end
@@ -9471,6 +9781,8 @@ class ActiveRecord::Base
 
   def self.index_nested_attribute_errors=(obj); end
 
+  def self.inherited(child); end
+
   def self.internal_metadata_table_name(); end
 
   def self.internal_metadata_table_name=(val); end
@@ -9595,21 +9907,6 @@ module ActiveRecord::Batches
 
   def in_batches(of: T.unsafe(nil), start: T.unsafe(nil), finish: T.unsafe(nil), load: T.unsafe(nil), error_on_ignore: T.unsafe(nil)); end
   ORDER_IGNORE_MESSAGE = ::T.let(nil, ::T.untyped)
-end
-
-class ActiveRecord::Batches::BatchEnumerator
-  include ::Enumerable
-  def delete_all(*args, &block); end
-
-  def destroy_all(*args, &block); end
-
-  def each(&blk); end
-
-  def each_record(); end
-
-  def initialize(relation:, of: T.unsafe(nil), start: T.unsafe(nil), finish: T.unsafe(nil)); end
-
-  def update_all(*args, &block); end
 end
 
 module ActiveRecord::Calculations
@@ -11789,6 +12086,40 @@ class ActiveRecord::EagerLoadPolymorphicError
   def initialize(reflection=T.unsafe(nil)); end
 end
 
+module ActiveRecord::Enum
+  include ::Kernel
+  def _define_enum(*args, &blk); end
+
+  def _define_typed_enum(*args, &blk); end
+
+  def extract_enum_values(*args, &blk); end
+
+  def gen_typed_enum_values(*args, &blk); end
+
+  def old_enum(definitions); end
+
+  def typed_enum_reflections(*args, &blk); end
+  SR_ENUM_KEYWORDS = ::T.let(nil, ::T.untyped)
+end
+
+class ActiveRecord::Enum::ConflictTypedEnumNameError
+end
+
+class ActiveRecord::Enum::ConflictTypedEnumNameError
+end
+
+class ActiveRecord::Enum::MultipleEnumsDefinedError
+end
+
+class ActiveRecord::Enum::MultipleEnumsDefinedError
+end
+
+module ActiveRecord::Enum
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
 class ActiveRecord::EnvironmentMismatchError
   def initialize(current: T.unsafe(nil), stored: T.unsafe(nil)); end
 end
@@ -12000,10 +12331,24 @@ module ActiveRecord::Integration
 end
 
 class ActiveRecord::InternalMetadata
-  include ::ActiveRecord::InternalMetadata::GeneratedAttributeMethods
   include ::ActiveRecord::InternalMetadata::GeneratedAssociationMethods
 end
 
+class ActiveRecord::InternalMetadata::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActiveRecord::InternalMetadata::GeneratedRelationMethods
+end
+
+class ActiveRecord::InternalMetadata::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActiveRecord::InternalMetadata::GeneratedRelationMethods
+end
+
+class ActiveRecord::InternalMetadata::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActiveRecord::InternalMetadata::GeneratedRelationMethods
+end
+
 module ActiveRecord::InternalMetadata::GeneratedAssociationMethods
 end
 
@@ -12011,9 +12356,13 @@ module ActiveRecord::InternalMetadata::GeneratedAssociationMethods
 end
 
 module ActiveRecord::InternalMetadata::GeneratedAttributeMethods
+  extend ::Mutex_m
 end
 
-module ActiveRecord::InternalMetadata::GeneratedAttributeMethods
+module ActiveRecord::InternalMetadata::GeneratedRelationMethods
+end
+
+module ActiveRecord::InternalMetadata::GeneratedRelationMethods
   extend ::Mutex_m
 end
 
@@ -12989,16 +13338,6 @@ module ActiveRecord::QueryMethods
   VALID_UNSCOPING_VALUES = ::T.let(nil, ::T.untyped)
 end
 
-class ActiveRecord::QueryMethods::WhereChain
-  include ::ActiveModel::ForbiddenAttributesProtection
-  def initialize(scope); end
-
-  def not(opts, *rest); end
-end
-
-class ActiveRecord::QueryMethods::WhereChain
-end
-
 module ActiveRecord::QueryMethods
   extend ::ActiveSupport::Concern
 end
@@ -13342,7 +13681,6 @@ module ActiveRecord::Reflection
 end
 
 class ActiveRecord::Relation
-  include ::Enumerable
   include ::ActiveRecord::Delegation
   include ::ActiveRecord::Explain
   include ::ActiveRecord::Batches
@@ -13351,6 +13689,7 @@ class ActiveRecord::Relation
   include ::ActiveRecord::SpawnMethods
   include ::ActiveRecord::Calculations
   include ::ActiveRecord::FinderMethods
+  include ::SorbetRails::CustomFinderMethods
   def ==(other); end
 
   def _deprecated_scope_source(); end
@@ -13365,17 +13704,11 @@ class ActiveRecord::Relation
 
   def bind_attribute(name, value); end
 
-  def build(attributes=T.unsafe(nil), &block); end
-
   def cache_key(timestamp_column=T.unsafe(nil)); end
 
   def cache_key_with_version(); end
 
   def cache_version(timestamp_column=T.unsafe(nil)); end
-
-  def create(attributes=T.unsafe(nil), &block); end
-
-  def create!(attributes=T.unsafe(nil), &block); end
 
   def create_or_find_by(attributes, &block); end
 
@@ -13394,18 +13727,6 @@ class ActiveRecord::Relation
   def encode_with(coder); end
 
   def explain(); end
-
-  def find_or_create_by(attributes, &block); end
-
-  def find_or_create_by!(attributes, &block); end
-
-  def find_or_initialize_by(attributes, &block); end
-
-  def first_or_create(attributes=T.unsafe(nil), &block); end
-
-  def first_or_create!(attributes=T.unsafe(nil), &block); end
-
-  def first_or_initialize(attributes=T.unsafe(nil), &block); end
 
   def has_limit_or_offset?(); end
 
@@ -13426,8 +13747,6 @@ class ActiveRecord::Relation
   def locked?(); end
 
   def model(); end
-
-  def new(attributes=T.unsafe(nil), &block); end
 
   def null_relation?(); end
 
@@ -13451,8 +13770,6 @@ class ActiveRecord::Relation
 
   def table(); end
 
-  def to_a(); end
-
   def to_ary(); end
 
   def to_sql(); end
@@ -13473,114 +13790,6 @@ class ActiveRecord::Relation
   MULTI_VALUE_METHODS = ::T.let(nil, ::T.untyped)
   SINGLE_VALUE_METHODS = ::T.let(nil, ::T.untyped)
   VALUE_METHODS = ::T.let(nil, ::T.untyped)
-end
-
-class ActiveRecord::Relation::FromClause
-  def ==(other); end
-
-  def empty?(); end
-
-  def initialize(value, name); end
-
-  def merge(other); end
-
-  def name(); end
-
-  def value(); end
-end
-
-class ActiveRecord::Relation::FromClause
-  def self.empty(); end
-end
-
-class ActiveRecord::Relation::HashMerger
-  def initialize(relation, hash); end
-
-  def merge(); end
-
-  def other(); end
-
-  def relation(); end
-end
-
-class ActiveRecord::Relation::HashMerger
-end
-
-class ActiveRecord::Relation::Merger
-  def initialize(relation, other); end
-
-  def merge(); end
-
-  def normal_values(); end
-
-  def other(); end
-
-  def relation(); end
-
-  def values(); end
-  NORMAL_VALUES = ::T.let(nil, ::T.untyped)
-end
-
-class ActiveRecord::Relation::Merger
-end
-
-class ActiveRecord::Relation::QueryAttribute
-  def infinite?(); end
-
-  def type_cast(value); end
-
-  def unboundable?(); end
-end
-
-class ActiveRecord::Relation::QueryAttribute
-end
-
-class ActiveRecord::Relation::WhereClause
-  def +(other); end
-
-  def -(other); end
-
-  def ==(other); end
-
-  def any?(*_, &_1); end
-
-  def ast(); end
-
-  def empty?(*_, &_1); end
-
-  def except(*columns); end
-
-  def initialize(predicates); end
-
-  def invert(as=T.unsafe(nil)); end
-
-  def merge(other); end
-
-  def or(other); end
-
-  def predicates(); end
-
-  def referenced_columns(); end
-
-  def to_h(table_name=T.unsafe(nil)); end
-  ARRAY_WITH_EMPTY_STRING = ::T.let(nil, ::T.untyped)
-end
-
-class ActiveRecord::Relation::WhereClause
-  def self.empty(); end
-end
-
-class ActiveRecord::Relation::WhereClauseFactory
-  def build(opts, other); end
-
-  def initialize(klass, predicate_builder); end
-end
-
-class ActiveRecord::Relation::WhereClauseFactory
-end
-
-class ActiveRecord::Relation
-  extend ::ActiveRecord::Delegation::ClassMethods
 end
 
 class ActiveRecord::RuntimeRegistry
@@ -13639,11 +13848,25 @@ class ActiveRecord::SchemaDumper
 end
 
 class ActiveRecord::SchemaMigration
-  include ::ActiveRecord::SchemaMigration::GeneratedAttributeMethods
   include ::ActiveRecord::SchemaMigration::GeneratedAssociationMethods
   def version(); end
 end
 
+class ActiveRecord::SchemaMigration::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActiveRecord::SchemaMigration::GeneratedRelationMethods
+end
+
+class ActiveRecord::SchemaMigration::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActiveRecord::SchemaMigration::GeneratedRelationMethods
+end
+
+class ActiveRecord::SchemaMigration::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActiveRecord::SchemaMigration::GeneratedRelationMethods
+end
+
 module ActiveRecord::SchemaMigration::GeneratedAssociationMethods
 end
 
@@ -13651,9 +13874,13 @@ module ActiveRecord::SchemaMigration::GeneratedAssociationMethods
 end
 
 module ActiveRecord::SchemaMigration::GeneratedAttributeMethods
+  extend ::Mutex_m
 end
 
-module ActiveRecord::SchemaMigration::GeneratedAttributeMethods
+module ActiveRecord::SchemaMigration::GeneratedRelationMethods
+end
+
+module ActiveRecord::SchemaMigration::GeneratedRelationMethods
   extend ::Mutex_m
 end
 
@@ -14221,6 +14448,19 @@ module ActiveRecord
   def self.version(); end
 end
 
+class ActiveRecordOverrides
+  include ::Singleton
+  def enum_calls(); end
+
+  def get_enum_call(klass, enum_sym); end
+
+  def store_enum_call(klass, kwargs); end
+end
+
+class ActiveRecordOverrides
+  extend ::Singleton::SingletonClassMethods
+end
+
 module ActiveStorage
   def analyzers(); end
 
@@ -14435,7 +14675,6 @@ end
 
 class ActiveStorage::Attachment
   include ::ActiveStorage::Attachment::GeneratedAttributeMethods
-  include ::ActiveStorage::Attachment::GeneratedAssociationMethods
   def autosave_associated_records_for_blob(*args); end
 
   def autosave_associated_records_for_record(*args); end
@@ -14445,33 +14684,38 @@ class ActiveStorage::Attachment
   def purge_later(); end
 end
 
+class ActiveStorage::Attachment::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActiveStorage::Attachment::GeneratedRelationMethods
+end
+
+class ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActiveStorage::Attachment::GeneratedRelationMethods
+end
+
+class ActiveStorage::Attachment::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActiveStorage::Attachment::GeneratedRelationMethods
+end
+
 module ActiveStorage::Attachment::GeneratedAssociationMethods
-  def blob(); end
-
-  def blob=(value); end
-
-  def build_blob(*args, &block); end
-
-  def create_blob(*args, &block); end
-
-  def create_blob!(*args, &block); end
-
-  def record(); end
-
-  def record=(value); end
-
   def reload_blob(); end
 
   def reload_record(); end
 end
 
-module ActiveStorage::Attachment::GeneratedAssociationMethods
-end
-
 module ActiveStorage::Attachment::GeneratedAttributeMethods
 end
 
 module ActiveStorage::Attachment::GeneratedAttributeMethods
+  extend ::Mutex_m
+end
+
+module ActiveStorage::Attachment::GeneratedRelationMethods
+end
+
+module ActiveStorage::Attachment::GeneratedRelationMethods
   extend ::Mutex_m
 end
 
@@ -14490,7 +14734,6 @@ end
 
 class ActiveStorage::Blob
   include ::ActiveStorage::Blob::GeneratedAttributeMethods
-  include ::ActiveStorage::Blob::GeneratedAssociationMethods
   include ::ActiveStorage::Blob::Analyzable
   include ::ActiveStorage::Blob::Identifiable
   include ::ActionText::Attachable
@@ -14571,6 +14814,21 @@ class ActiveStorage::Blob
   def video?(); end
 end
 
+class ActiveStorage::Blob::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActiveStorage::Blob::GeneratedRelationMethods
+end
+
+class ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActiveStorage::Blob::GeneratedRelationMethods
+end
+
+class ActiveStorage::Blob::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ActiveStorage::Blob::GeneratedRelationMethods
+end
+
 module ActiveStorage::Blob::Analyzable
   def analyze(); end
 
@@ -14583,44 +14841,27 @@ module ActiveStorage::Blob::Analyzable
 end
 
 module ActiveStorage::Blob::GeneratedAssociationMethods
-  def attachment_ids(); end
-
   def attachment_ids=(ids); end
-
-  def attachments(); end
-
-  def attachments=(value); end
-
-  def build_preview_image_attachment(*args, &block); end
-
-  def create_preview_image_attachment(*args, &block); end
-
-  def create_preview_image_attachment!(*args, &block); end
-
-  def preview_image(); end
-
-  def preview_image=(attachable); end
-
-  def preview_image_attachment(); end
-
-  def preview_image_attachment=(value); end
-
-  def preview_image_blob(); end
-
-  def preview_image_blob=(value); end
 
   def reload_preview_image_attachment(); end
 
   def reload_preview_image_blob(); end
 end
 
-module ActiveStorage::Blob::GeneratedAssociationMethods
-end
-
 module ActiveStorage::Blob::GeneratedAttributeMethods
 end
 
 module ActiveStorage::Blob::GeneratedAttributeMethods
+  extend ::Mutex_m
+end
+
+module ActiveStorage::Blob::GeneratedRelationMethods
+  def unattached(*_, &_1); end
+
+  def with_attached_preview_image(*_, &_1); end
+end
+
+module ActiveStorage::Blob::GeneratedRelationMethods
   extend ::Mutex_m
 end
 
@@ -14694,10 +14935,6 @@ class ActiveStorage::Blob
   def self.service=(val); end
 
   def self.service?(); end
-
-  def self.unattached(*args); end
-
-  def self.with_attached_preview_image(*args); end
 end
 
 class ActiveStorage::BlobsController
@@ -16994,6 +17231,31 @@ end
 class ApplicationRecord
   include ::ApplicationRecord::GeneratedAttributeMethods
   include ::ApplicationRecord::GeneratedAssociationMethods
+  RelationType = ::T.let(nil, ::T.untyped)
+end
+
+class ApplicationRecord::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ApplicationRecord::GeneratedRelationMethods
+end
+
+class ApplicationRecord::ActiveRecord_AssociationRelation
+end
+
+class ApplicationRecord::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ApplicationRecord::GeneratedRelationMethods
+end
+
+class ApplicationRecord::ActiveRecord_Associations_CollectionProxy
+end
+
+class ApplicationRecord::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::ApplicationRecord::GeneratedRelationMethods
+end
+
+class ApplicationRecord::ActiveRecord_Relation
 end
 
 module ApplicationRecord::GeneratedAssociationMethods
@@ -17006,6 +17268,13 @@ module ApplicationRecord::GeneratedAttributeMethods
 end
 
 module ApplicationRecord::GeneratedAttributeMethods
+  extend ::Mutex_m
+end
+
+module ApplicationRecord::GeneratedRelationMethods
+end
+
+module ApplicationRecord::GeneratedRelationMethods
   extend ::Mutex_m
 end
 
@@ -18843,10 +19112,24 @@ module Bootsnap::LoadPathCache::PathScanner
 end
 
 class Buck
-  include ::Buck::GeneratedAttributeMethods
   include ::Buck::GeneratedAssociationMethods
 end
 
+class Buck::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Buck::GeneratedRelationMethods
+end
+
+class Buck::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Buck::GeneratedRelationMethods
+end
+
+class Buck::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Buck::GeneratedRelationMethods
+end
+
 module Buck::GeneratedAssociationMethods
 end
 
@@ -18854,9 +19137,13 @@ module Buck::GeneratedAssociationMethods
 end
 
 module Buck::GeneratedAttributeMethods
+  extend ::Mutex_m
 end
 
-module Buck::GeneratedAttributeMethods
+module Buck::GeneratedRelationMethods
+end
+
+module Buck::GeneratedRelationMethods
   extend ::Mutex_m
 end
 
@@ -25275,6 +25562,7 @@ end
 
 class FalseClass
   include ::JSON::Ext::Generator::GeneratorMethods::FalseClass
+  include ::SafeType::BooleanMixin
 end
 
 class Fiber
@@ -25929,6 +26217,45 @@ end
 Gem::UnsatisfiableDepedencyError = Gem::UnsatisfiableDependencyError
 
 Gem::Version::Requirement = Gem::Requirement
+
+module GeneratedUrlHelpers
+  def _routes(); end
+
+  def rails_info_path(*args); end
+
+  def rails_info_properties_path(*args); end
+
+  def rails_info_properties_url(*args); end
+
+  def rails_info_routes_path(*args); end
+
+  def rails_info_routes_url(*args); end
+
+  def rails_info_url(*args); end
+
+  def rails_mailers_path(*args); end
+
+  def rails_mailers_url(*args); end
+end
+
+module GeneratedUrlHelpers
+  extend ::ActiveSupport::Concern
+  def self._routes(); end
+
+  def self.full_url_for(options); end
+
+  def self.optimize_routes_generation?(); end
+
+  def self.polymorphic_path(record_or_hash_or_array, options=T.unsafe(nil)); end
+
+  def self.polymorphic_url(record_or_hash_or_array, options=T.unsafe(nil)); end
+
+  def self.route_for(name, *args); end
+
+  def self.url_for(options); end
+
+  def self.url_options(); end
+end
 
 class GlobalID
   def ==(other); end
@@ -26969,6 +27296,17 @@ module IRB
   def self.run_config(); end
 
   def self.setup(ap_path, argv: T.unsafe(nil)); end
+end
+
+module ITypeAssert
+  def get_type(); end
+end
+
+module ITypeAssert
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 class Integer
@@ -29247,8 +29585,271 @@ end
 class NoMatchingPatternError
 end
 
+module Nokogiri
+  LIBXML_ICONV_ENABLED = ::T.let(nil, ::T.untyped)
+  LIBXML_PARSER_VERSION = ::T.let(nil, ::T.untyped)
+  LIBXML_VERSION = ::T.let(nil, ::T.untyped)
+  NOKOGIRI_LIBXML2_PATCHES = ::T.let(nil, ::T.untyped)
+  NOKOGIRI_LIBXML2_PATH = ::T.let(nil, ::T.untyped)
+  NOKOGIRI_LIBXSLT_PATCHES = ::T.let(nil, ::T.untyped)
+  NOKOGIRI_LIBXSLT_PATH = ::T.let(nil, ::T.untyped)
+  NOKOGIRI_USE_PACKAGED_LIBRARIES = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
+  VERSION_INFO = ::T.let(nil, ::T.untyped)
+end
+
+class Nokogiri::CSS::Node
+  ALLOW_COMBINATOR_ON_SELF = ::T.let(nil, ::T.untyped)
+end
+
 class Nokogiri::CSS::Parser
+  Racc_arg = ::T.let(nil, ::T.untyped)
   Racc_debug_parser = ::T.let(nil, ::T.untyped)
+  Racc_token_to_s_table = ::T.let(nil, ::T.untyped)
+end
+
+module Nokogiri::Decorators::Slop
+  XPATH_PREFIX = ::T.let(nil, ::T.untyped)
+end
+
+module Nokogiri::HTML
+  NamedCharacters = ::T.let(nil, ::T.untyped)
+end
+
+class Nokogiri::HTML::ElementDescription
+  ACTION_ATTR = ::T.let(nil, ::T.untyped)
+  ALIGN_ATTR = ::T.let(nil, ::T.untyped)
+  ALT_ATTR = ::T.let(nil, ::T.untyped)
+  APPLET_ATTRS = ::T.let(nil, ::T.untyped)
+  AREA_ATTRS = ::T.let(nil, ::T.untyped)
+  ATTRS = ::T.let(nil, ::T.untyped)
+  A_ATTRS = ::T.let(nil, ::T.untyped)
+  BASEFONT_ATTRS = ::T.let(nil, ::T.untyped)
+  BGCOLOR_ATTR = ::T.let(nil, ::T.untyped)
+  BLOCK = ::T.let(nil, ::T.untyped)
+  BLOCKLI_ELT = ::T.let(nil, ::T.untyped)
+  BODY_ATTRS = ::T.let(nil, ::T.untyped)
+  BODY_CONTENTS = ::T.let(nil, ::T.untyped)
+  BODY_DEPR = ::T.let(nil, ::T.untyped)
+  BUTTON_ATTRS = ::T.let(nil, ::T.untyped)
+  CELLHALIGN = ::T.let(nil, ::T.untyped)
+  CELLVALIGN = ::T.let(nil, ::T.untyped)
+  CLEAR_ATTRS = ::T.let(nil, ::T.untyped)
+  COL_ATTRS = ::T.let(nil, ::T.untyped)
+  COL_ELT = ::T.let(nil, ::T.untyped)
+  COMPACT_ATTR = ::T.let(nil, ::T.untyped)
+  COMPACT_ATTRS = ::T.let(nil, ::T.untyped)
+  CONTENT_ATTR = ::T.let(nil, ::T.untyped)
+  COREATTRS = ::T.let(nil, ::T.untyped)
+  CORE_ATTRS = ::T.let(nil, ::T.untyped)
+  CORE_I18N_ATTRS = ::T.let(nil, ::T.untyped)
+  DIR_ATTR = ::T.let(nil, ::T.untyped)
+  DL_CONTENTS = ::T.let(nil, ::T.untyped)
+  DefaultDescriptions = ::T.let(nil, ::T.untyped)
+  EDIT_ATTRS = ::T.let(nil, ::T.untyped)
+  EMBED_ATTRS = ::T.let(nil, ::T.untyped)
+  EMPTY = ::T.let(nil, ::T.untyped)
+  EVENTS = ::T.let(nil, ::T.untyped)
+  FIELDSET_CONTENTS = ::T.let(nil, ::T.untyped)
+  FLOW = ::T.let(nil, ::T.untyped)
+  FLOW_PARAM = ::T.let(nil, ::T.untyped)
+  FONTSTYLE = ::T.let(nil, ::T.untyped)
+  FONT_ATTRS = ::T.let(nil, ::T.untyped)
+  FORMCTRL = ::T.let(nil, ::T.untyped)
+  FORM_ATTRS = ::T.let(nil, ::T.untyped)
+  FORM_CONTENTS = ::T.let(nil, ::T.untyped)
+  FRAMESET_ATTRS = ::T.let(nil, ::T.untyped)
+  FRAMESET_CONTENTS = ::T.let(nil, ::T.untyped)
+  FRAME_ATTRS = ::T.let(nil, ::T.untyped)
+  HEADING = ::T.let(nil, ::T.untyped)
+  HEAD_ATTRS = ::T.let(nil, ::T.untyped)
+  HEAD_CONTENTS = ::T.let(nil, ::T.untyped)
+  HREF_ATTRS = ::T.let(nil, ::T.untyped)
+  HR_DEPR = ::T.let(nil, ::T.untyped)
+  HTML_ATTRS = ::T.let(nil, ::T.untyped)
+  HTML_CDATA = ::T.let(nil, ::T.untyped)
+  HTML_CONTENT = ::T.let(nil, ::T.untyped)
+  HTML_FLOW = ::T.let(nil, ::T.untyped)
+  HTML_INLINE = ::T.let(nil, ::T.untyped)
+  HTML_PCDATA = ::T.let(nil, ::T.untyped)
+  I18N = ::T.let(nil, ::T.untyped)
+  I18N_ATTRS = ::T.let(nil, ::T.untyped)
+  IFRAME_ATTRS = ::T.let(nil, ::T.untyped)
+  IMG_ATTRS = ::T.let(nil, ::T.untyped)
+  INLINE = ::T.let(nil, ::T.untyped)
+  INLINE_P = ::T.let(nil, ::T.untyped)
+  INPUT_ATTRS = ::T.let(nil, ::T.untyped)
+  LABEL_ATTR = ::T.let(nil, ::T.untyped)
+  LABEL_ATTRS = ::T.let(nil, ::T.untyped)
+  LANGUAGE_ATTR = ::T.let(nil, ::T.untyped)
+  LEGEND_ATTRS = ::T.let(nil, ::T.untyped)
+  LINK_ATTRS = ::T.let(nil, ::T.untyped)
+  LIST = ::T.let(nil, ::T.untyped)
+  LI_ELT = ::T.let(nil, ::T.untyped)
+  MAP_CONTENTS = ::T.let(nil, ::T.untyped)
+  META_ATTRS = ::T.let(nil, ::T.untyped)
+  MODIFIER = ::T.let(nil, ::T.untyped)
+  NAME_ATTR = ::T.let(nil, ::T.untyped)
+  NOFRAMES_CONTENT = ::T.let(nil, ::T.untyped)
+  OBJECT_ATTRS = ::T.let(nil, ::T.untyped)
+  OBJECT_CONTENTS = ::T.let(nil, ::T.untyped)
+  OBJECT_DEPR = ::T.let(nil, ::T.untyped)
+  OL_ATTRS = ::T.let(nil, ::T.untyped)
+  OPTGROUP_ATTRS = ::T.let(nil, ::T.untyped)
+  OPTION_ATTRS = ::T.let(nil, ::T.untyped)
+  OPTION_ELT = ::T.let(nil, ::T.untyped)
+  PARAM_ATTRS = ::T.let(nil, ::T.untyped)
+  PCDATA = ::T.let(nil, ::T.untyped)
+  PHRASE = ::T.let(nil, ::T.untyped)
+  PRE_CONTENT = ::T.let(nil, ::T.untyped)
+  PROMPT_ATTRS = ::T.let(nil, ::T.untyped)
+  QUOTE_ATTRS = ::T.let(nil, ::T.untyped)
+  ROWS_COLS_ATTR = ::T.let(nil, ::T.untyped)
+  SCRIPT_ATTRS = ::T.let(nil, ::T.untyped)
+  SELECT_ATTRS = ::T.let(nil, ::T.untyped)
+  SELECT_CONTENT = ::T.let(nil, ::T.untyped)
+  SPECIAL = ::T.let(nil, ::T.untyped)
+  SRC_ALT_ATTRS = ::T.let(nil, ::T.untyped)
+  STYLE_ATTRS = ::T.let(nil, ::T.untyped)
+  TABLE_ATTRS = ::T.let(nil, ::T.untyped)
+  TABLE_CONTENTS = ::T.let(nil, ::T.untyped)
+  TABLE_DEPR = ::T.let(nil, ::T.untyped)
+  TALIGN_ATTRS = ::T.let(nil, ::T.untyped)
+  TARGET_ATTR = ::T.let(nil, ::T.untyped)
+  TEXTAREA_ATTRS = ::T.let(nil, ::T.untyped)
+  TH_TD_ATTR = ::T.let(nil, ::T.untyped)
+  TH_TD_DEPR = ::T.let(nil, ::T.untyped)
+  TR_CONTENTS = ::T.let(nil, ::T.untyped)
+  TR_ELT = ::T.let(nil, ::T.untyped)
+  TYPE_ATTR = ::T.let(nil, ::T.untyped)
+  UL_DEPR = ::T.let(nil, ::T.untyped)
+  VERSION_ATTR = ::T.let(nil, ::T.untyped)
+  WIDTH_ATTR = ::T.let(nil, ::T.untyped)
+end
+
+Nokogiri::HTML::ElementDescription::Desc = Struct::HTMLElementDescription
+
+module Nokogiri::XML
+  XML_C14N_1_0 = ::T.let(nil, ::T.untyped)
+  XML_C14N_1_1 = ::T.let(nil, ::T.untyped)
+  XML_C14N_EXCLUSIVE_1_0 = ::T.let(nil, ::T.untyped)
+end
+
+class Nokogiri::XML::Document
+  IMPLIED_XPATH_CONTEXTS = ::T.let(nil, ::T.untyped)
+  NCNAME_CHAR = ::T.let(nil, ::T.untyped)
+  NCNAME_RE = ::T.let(nil, ::T.untyped)
+  NCNAME_START_CHAR = ::T.let(nil, ::T.untyped)
+end
+
+class Nokogiri::XML::Element
+end
+
+class Nokogiri::XML::Element
+end
+
+class Nokogiri::XML::ElementContent
+  ELEMENT = ::T.let(nil, ::T.untyped)
+  MULT = ::T.let(nil, ::T.untyped)
+  ONCE = ::T.let(nil, ::T.untyped)
+  OPT = ::T.let(nil, ::T.untyped)
+  OR = ::T.let(nil, ::T.untyped)
+  PCDATA = ::T.let(nil, ::T.untyped)
+  PLUS = ::T.let(nil, ::T.untyped)
+  SEQ = ::T.let(nil, ::T.untyped)
+end
+
+class Nokogiri::XML::EntityDecl
+  EXTERNAL_GENERAL_PARSED = ::T.let(nil, ::T.untyped)
+  EXTERNAL_GENERAL_UNPARSED = ::T.let(nil, ::T.untyped)
+  EXTERNAL_PARAMETER = ::T.let(nil, ::T.untyped)
+  INTERNAL_GENERAL = ::T.let(nil, ::T.untyped)
+  INTERNAL_PARAMETER = ::T.let(nil, ::T.untyped)
+  INTERNAL_PREDEFINED = ::T.let(nil, ::T.untyped)
+end
+
+class Nokogiri::XML::Node
+  ATTRIBUTE_DECL = ::T.let(nil, ::T.untyped)
+  ATTRIBUTE_NODE = ::T.let(nil, ::T.untyped)
+  CDATA_SECTION_NODE = ::T.let(nil, ::T.untyped)
+  COMMENT_NODE = ::T.let(nil, ::T.untyped)
+  DOCB_DOCUMENT_NODE = ::T.let(nil, ::T.untyped)
+  DOCUMENT_FRAG_NODE = ::T.let(nil, ::T.untyped)
+  DOCUMENT_NODE = ::T.let(nil, ::T.untyped)
+  DOCUMENT_TYPE_NODE = ::T.let(nil, ::T.untyped)
+  DTD_NODE = ::T.let(nil, ::T.untyped)
+  ELEMENT_DECL = ::T.let(nil, ::T.untyped)
+  ELEMENT_NODE = ::T.let(nil, ::T.untyped)
+  ENTITY_DECL = ::T.let(nil, ::T.untyped)
+  ENTITY_NODE = ::T.let(nil, ::T.untyped)
+  ENTITY_REF_NODE = ::T.let(nil, ::T.untyped)
+  HTML_DOCUMENT_NODE = ::T.let(nil, ::T.untyped)
+  IMPLIED_XPATH_CONTEXTS = ::T.let(nil, ::T.untyped)
+  NAMESPACE_DECL = ::T.let(nil, ::T.untyped)
+  NOTATION_NODE = ::T.let(nil, ::T.untyped)
+  PI_NODE = ::T.let(nil, ::T.untyped)
+  TEXT_NODE = ::T.let(nil, ::T.untyped)
+  XINCLUDE_END = ::T.let(nil, ::T.untyped)
+  XINCLUDE_START = ::T.let(nil, ::T.untyped)
+end
+
+class Nokogiri::XML::NodeSet
+  IMPLIED_XPATH_CONTEXTS = ::T.let(nil, ::T.untyped)
+end
+
+class Nokogiri::XML::ParseOptions
+  COMPACT = ::T.let(nil, ::T.untyped)
+  DEFAULT_HTML = ::T.let(nil, ::T.untyped)
+  DEFAULT_XML = ::T.let(nil, ::T.untyped)
+  DTDATTR = ::T.let(nil, ::T.untyped)
+  DTDLOAD = ::T.let(nil, ::T.untyped)
+  DTDVALID = ::T.let(nil, ::T.untyped)
+  HUGE = ::T.let(nil, ::T.untyped)
+  NOBASEFIX = ::T.let(nil, ::T.untyped)
+  NOBLANKS = ::T.let(nil, ::T.untyped)
+  NOCDATA = ::T.let(nil, ::T.untyped)
+  NODICT = ::T.let(nil, ::T.untyped)
+  NOENT = ::T.let(nil, ::T.untyped)
+  NOERROR = ::T.let(nil, ::T.untyped)
+  NONET = ::T.let(nil, ::T.untyped)
+  NOWARNING = ::T.let(nil, ::T.untyped)
+  NOXINCNODE = ::T.let(nil, ::T.untyped)
+  NSCLEAN = ::T.let(nil, ::T.untyped)
+  OLD10 = ::T.let(nil, ::T.untyped)
+  PEDANTIC = ::T.let(nil, ::T.untyped)
+  RECOVER = ::T.let(nil, ::T.untyped)
+  SAX1 = ::T.let(nil, ::T.untyped)
+  STRICT = ::T.let(nil, ::T.untyped)
+  XINCLUDE = ::T.let(nil, ::T.untyped)
+end
+
+class Nokogiri::XML::Reader
+  TYPE_ATTRIBUTE = ::T.let(nil, ::T.untyped)
+  TYPE_CDATA = ::T.let(nil, ::T.untyped)
+  TYPE_COMMENT = ::T.let(nil, ::T.untyped)
+  TYPE_DOCUMENT = ::T.let(nil, ::T.untyped)
+  TYPE_DOCUMENT_FRAGMENT = ::T.let(nil, ::T.untyped)
+  TYPE_DOCUMENT_TYPE = ::T.let(nil, ::T.untyped)
+  TYPE_ELEMENT = ::T.let(nil, ::T.untyped)
+  TYPE_END_ELEMENT = ::T.let(nil, ::T.untyped)
+  TYPE_END_ENTITY = ::T.let(nil, ::T.untyped)
+  TYPE_ENTITY = ::T.let(nil, ::T.untyped)
+  TYPE_ENTITY_REFERENCE = ::T.let(nil, ::T.untyped)
+  TYPE_NONE = ::T.let(nil, ::T.untyped)
+  TYPE_NOTATION = ::T.let(nil, ::T.untyped)
+  TYPE_PROCESSING_INSTRUCTION = ::T.let(nil, ::T.untyped)
+  TYPE_SIGNIFICANT_WHITESPACE = ::T.let(nil, ::T.untyped)
+  TYPE_TEXT = ::T.let(nil, ::T.untyped)
+  TYPE_WHITESPACE = ::T.let(nil, ::T.untyped)
+  TYPE_XML_DECLARATION = ::T.let(nil, ::T.untyped)
+end
+
+class Nokogiri::XML::SAX::Parser
+  ENCODINGS = ::T.let(nil, ::T.untyped)
+end
+
+module Nokogiri::XML::Searchable
+  LOOKS_LIKE_XPATH = ::T.let(nil, ::T.untyped)
 end
 
 class Object
@@ -31324,12 +31925,148 @@ class Parallel::UserInterruptHandler
   INTERRUPT_SIGNAL = ::T.let(nil, ::T.untyped)
 end
 
+class Parlour::ConflictResolver
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::Conversion::Converter
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+module Parlour::Debugging::Tree
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+module Parlour::Debugging
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::DetachedRbiGenerator
+  def detached!(*args, &blk); end
+end
+
+class Parlour::DetachedRbiGenerator
+end
+
+class Parlour::Generator
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::Options
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::ParseError
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::Plugin
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::RbiGenerator::Namespace
+  def create_attr(*args, &blk); end
+
+  def type_aliases(*args, &blk); end
+end
+
+class Parlour::RbiGenerator::Parameter
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::RbiGenerator::StructProp
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::RbsGenerator::Block
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::RbsGenerator::MethodSignature
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::RbsGenerator::Namespace
+  def create_attr(*args, &blk); end
+
+  def type_aliases(*args, &blk); end
+end
+
+class Parlour::RbsGenerator::Parameter
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+module Parlour::TypeLoader
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::TypeParser::IntermediateSig
+  def self.inherited(s); end
+end
+
+class Parlour::TypeParser::NodePath
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::TypeParser
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::TypedObject
+  def add_comments(*args, &blk); end
+end
+
+class Parlour::TypedObject
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::Types::Proc::Parameter
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class Parlour::Types::Type
+  def initialize(*args, &blk); end
+end
+
+class Parlour::Types::Type
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
 ParseError = Racc::ParseError
 
 module Parser
   MESSAGES = ::T.let(nil, ::T.untyped)
   VERSION = ::T.let(nil, ::T.untyped)
 end
+
+Parser::CurrentRuby = Parser::Ruby27
 
 class Parser::Diagnostic
   LEVELS = ::T.let(nil, ::T.untyped)
@@ -31362,6 +32099,1936 @@ class Parser::Rewriter
   DEPRECATION_WARNING = ::T.let(nil, ::T.untyped)
 end
 
+class Parser::Ruby24
+  def _reduce_10(val, _values, result); end
+
+  def _reduce_100(val, _values, result); end
+
+  def _reduce_101(val, _values, result); end
+
+  def _reduce_102(val, _values, result); end
+
+  def _reduce_103(val, _values, result); end
+
+  def _reduce_104(val, _values, result); end
+
+  def _reduce_105(val, _values, result); end
+
+  def _reduce_106(val, _values, result); end
+
+  def _reduce_107(val, _values, result); end
+
+  def _reduce_108(val, _values, result); end
+
+  def _reduce_11(val, _values, result); end
+
+  def _reduce_110(val, _values, result); end
+
+  def _reduce_111(val, _values, result); end
+
+  def _reduce_112(val, _values, result); end
+
+  def _reduce_118(val, _values, result); end
+
+  def _reduce_12(val, _values, result); end
+
+  def _reduce_122(val, _values, result); end
+
+  def _reduce_123(val, _values, result); end
+
+  def _reduce_124(val, _values, result); end
+
+  def _reduce_13(val, _values, result); end
+
+  def _reduce_14(val, _values, result); end
+
+  def _reduce_16(val, _values, result); end
+
+  def _reduce_17(val, _values, result); end
+
+  def _reduce_18(val, _values, result); end
+
+  def _reduce_19(val, _values, result); end
+
+  def _reduce_196(val, _values, result); end
+
+  def _reduce_197(val, _values, result); end
+
+  def _reduce_198(val, _values, result); end
+
+  def _reduce_199(val, _values, result); end
+
+  def _reduce_2(val, _values, result); end
+
+  def _reduce_20(val, _values, result); end
+
+  def _reduce_200(val, _values, result); end
+
+  def _reduce_201(val, _values, result); end
+
+  def _reduce_202(val, _values, result); end
+
+  def _reduce_203(val, _values, result); end
+
+  def _reduce_204(val, _values, result); end
+
+  def _reduce_205(val, _values, result); end
+
+  def _reduce_206(val, _values, result); end
+
+  def _reduce_207(val, _values, result); end
+
+  def _reduce_208(val, _values, result); end
+
+  def _reduce_209(val, _values, result); end
+
+  def _reduce_21(val, _values, result); end
+
+  def _reduce_210(val, _values, result); end
+
+  def _reduce_211(val, _values, result); end
+
+  def _reduce_212(val, _values, result); end
+
+  def _reduce_213(val, _values, result); end
+
+  def _reduce_214(val, _values, result); end
+
+  def _reduce_215(val, _values, result); end
+
+  def _reduce_216(val, _values, result); end
+
+  def _reduce_217(val, _values, result); end
+
+  def _reduce_218(val, _values, result); end
+
+  def _reduce_219(val, _values, result); end
+
+  def _reduce_22(val, _values, result); end
+
+  def _reduce_220(val, _values, result); end
+
+  def _reduce_221(val, _values, result); end
+
+  def _reduce_222(val, _values, result); end
+
+  def _reduce_223(val, _values, result); end
+
+  def _reduce_224(val, _values, result); end
+
+  def _reduce_225(val, _values, result); end
+
+  def _reduce_226(val, _values, result); end
+
+  def _reduce_227(val, _values, result); end
+
+  def _reduce_228(val, _values, result); end
+
+  def _reduce_229(val, _values, result); end
+
+  def _reduce_23(val, _values, result); end
+
+  def _reduce_230(val, _values, result); end
+
+  def _reduce_231(val, _values, result); end
+
+  def _reduce_232(val, _values, result); end
+
+  def _reduce_233(val, _values, result); end
+
+  def _reduce_234(val, _values, result); end
+
+  def _reduce_235(val, _values, result); end
+
+  def _reduce_236(val, _values, result); end
+
+  def _reduce_24(val, _values, result); end
+
+  def _reduce_241(val, _values, result); end
+
+  def _reduce_242(val, _values, result); end
+
+  def _reduce_244(val, _values, result); end
+
+  def _reduce_245(val, _values, result); end
+
+  def _reduce_246(val, _values, result); end
+
+  def _reduce_248(val, _values, result); end
+
+  def _reduce_25(val, _values, result); end
+
+  def _reduce_251(val, _values, result); end
+
+  def _reduce_252(val, _values, result); end
+
+  def _reduce_253(val, _values, result); end
+
+  def _reduce_254(val, _values, result); end
+
+  def _reduce_255(val, _values, result); end
+
+  def _reduce_256(val, _values, result); end
+
+  def _reduce_257(val, _values, result); end
+
+  def _reduce_258(val, _values, result); end
+
+  def _reduce_259(val, _values, result); end
+
+  def _reduce_26(val, _values, result); end
+
+  def _reduce_260(val, _values, result); end
+
+  def _reduce_261(val, _values, result); end
+
+  def _reduce_262(val, _values, result); end
+
+  def _reduce_263(val, _values, result); end
+
+  def _reduce_264(val, _values, result); end
+
+  def _reduce_265(val, _values, result); end
+
+  def _reduce_266(val, _values, result); end
+
+  def _reduce_267(val, _values, result); end
+
+  def _reduce_269(val, _values, result); end
+
+  def _reduce_27(val, _values, result); end
+
+  def _reduce_270(val, _values, result); end
+
+  def _reduce_271(val, _values, result); end
+
+  def _reduce_28(val, _values, result); end
+
+  def _reduce_282(val, _values, result); end
+
+  def _reduce_283(val, _values, result); end
+
+  def _reduce_284(val, _values, result); end
+
+  def _reduce_285(val, _values, result); end
+
+  def _reduce_286(val, _values, result); end
+
+  def _reduce_287(val, _values, result); end
+
+  def _reduce_288(val, _values, result); end
+
+  def _reduce_289(val, _values, result); end
+
+  def _reduce_290(val, _values, result); end
+
+  def _reduce_291(val, _values, result); end
+
+  def _reduce_292(val, _values, result); end
+
+  def _reduce_293(val, _values, result); end
+
+  def _reduce_294(val, _values, result); end
+
+  def _reduce_295(val, _values, result); end
+
+  def _reduce_296(val, _values, result); end
+
+  def _reduce_297(val, _values, result); end
+
+  def _reduce_298(val, _values, result); end
+
+  def _reduce_299(val, _values, result); end
+
+  def _reduce_3(val, _values, result); end
+
+  def _reduce_30(val, _values, result); end
+
+  def _reduce_300(val, _values, result); end
+
+  def _reduce_301(val, _values, result); end
+
+  def _reduce_303(val, _values, result); end
+
+  def _reduce_304(val, _values, result); end
+
+  def _reduce_305(val, _values, result); end
+
+  def _reduce_306(val, _values, result); end
+
+  def _reduce_307(val, _values, result); end
+
+  def _reduce_308(val, _values, result); end
+
+  def _reduce_309(val, _values, result); end
+
+  def _reduce_31(val, _values, result); end
+
+  def _reduce_310(val, _values, result); end
+
+  def _reduce_311(val, _values, result); end
+
+  def _reduce_312(val, _values, result); end
+
+  def _reduce_313(val, _values, result); end
+
+  def _reduce_314(val, _values, result); end
+
+  def _reduce_315(val, _values, result); end
+
+  def _reduce_316(val, _values, result); end
+
+  def _reduce_317(val, _values, result); end
+
+  def _reduce_318(val, _values, result); end
+
+  def _reduce_319(val, _values, result); end
+
+  def _reduce_32(val, _values, result); end
+
+  def _reduce_320(val, _values, result); end
+
+  def _reduce_321(val, _values, result); end
+
+  def _reduce_322(val, _values, result); end
+
+  def _reduce_323(val, _values, result); end
+
+  def _reduce_324(val, _values, result); end
+
+  def _reduce_325(val, _values, result); end
+
+  def _reduce_326(val, _values, result); end
+
+  def _reduce_327(val, _values, result); end
+
+  def _reduce_328(val, _values, result); end
+
+  def _reduce_329(val, _values, result); end
+
+  def _reduce_330(val, _values, result); end
+
+  def _reduce_331(val, _values, result); end
+
+  def _reduce_332(val, _values, result); end
+
+  def _reduce_333(val, _values, result); end
+
+  def _reduce_337(val, _values, result); end
+
+  def _reduce_34(val, _values, result); end
+
+  def _reduce_341(val, _values, result); end
+
+  def _reduce_343(val, _values, result); end
+
+  def _reduce_346(val, _values, result); end
+
+  def _reduce_347(val, _values, result); end
+
+  def _reduce_348(val, _values, result); end
+
+  def _reduce_349(val, _values, result); end
+
+  def _reduce_35(val, _values, result); end
+
+  def _reduce_351(val, _values, result); end
+
+  def _reduce_352(val, _values, result); end
+
+  def _reduce_353(val, _values, result); end
+
+  def _reduce_354(val, _values, result); end
+
+  def _reduce_355(val, _values, result); end
+
+  def _reduce_356(val, _values, result); end
+
+  def _reduce_357(val, _values, result); end
+
+  def _reduce_358(val, _values, result); end
+
+  def _reduce_359(val, _values, result); end
+
+  def _reduce_36(val, _values, result); end
+
+  def _reduce_360(val, _values, result); end
+
+  def _reduce_361(val, _values, result); end
+
+  def _reduce_362(val, _values, result); end
+
+  def _reduce_363(val, _values, result); end
+
+  def _reduce_364(val, _values, result); end
+
+  def _reduce_365(val, _values, result); end
+
+  def _reduce_366(val, _values, result); end
+
+  def _reduce_367(val, _values, result); end
+
+  def _reduce_368(val, _values, result); end
+
+  def _reduce_369(val, _values, result); end
+
+  def _reduce_37(val, _values, result); end
+
+  def _reduce_371(val, _values, result); end
+
+  def _reduce_372(val, _values, result); end
+
+  def _reduce_373(val, _values, result); end
+
+  def _reduce_374(val, _values, result); end
+
+  def _reduce_375(val, _values, result); end
+
+  def _reduce_376(val, _values, result); end
+
+  def _reduce_377(val, _values, result); end
+
+  def _reduce_378(val, _values, result); end
+
+  def _reduce_38(val, _values, result); end
+
+  def _reduce_380(val, _values, result); end
+
+  def _reduce_381(val, _values, result); end
+
+  def _reduce_382(val, _values, result); end
+
+  def _reduce_383(val, _values, result); end
+
+  def _reduce_384(val, _values, result); end
+
+  def _reduce_385(val, _values, result); end
+
+  def _reduce_386(val, _values, result); end
+
+  def _reduce_387(val, _values, result); end
+
+  def _reduce_388(val, _values, result); end
+
+  def _reduce_389(val, _values, result); end
+
+  def _reduce_39(val, _values, result); end
+
+  def _reduce_391(val, _values, result); end
+
+  def _reduce_392(val, _values, result); end
+
+  def _reduce_393(val, _values, result); end
+
+  def _reduce_394(val, _values, result); end
+
+  def _reduce_395(val, _values, result); end
+
+  def _reduce_396(val, _values, result); end
+
+  def _reduce_397(val, _values, result); end
+
+  def _reduce_398(val, _values, result); end
+
+  def _reduce_399(val, _values, result); end
+
+  def _reduce_4(val, _values, result); end
+
+  def _reduce_40(val, _values, result); end
+
+  def _reduce_400(val, _values, result); end
+
+  def _reduce_401(val, _values, result); end
+
+  def _reduce_402(val, _values, result); end
+
+  def _reduce_403(val, _values, result); end
+
+  def _reduce_404(val, _values, result); end
+
+  def _reduce_405(val, _values, result); end
+
+  def _reduce_406(val, _values, result); end
+
+  def _reduce_407(val, _values, result); end
+
+  def _reduce_408(val, _values, result); end
+
+  def _reduce_409(val, _values, result); end
+
+  def _reduce_41(val, _values, result); end
+
+  def _reduce_410(val, _values, result); end
+
+  def _reduce_411(val, _values, result); end
+
+  def _reduce_412(val, _values, result); end
+
+  def _reduce_413(val, _values, result); end
+
+  def _reduce_414(val, _values, result); end
+
+  def _reduce_415(val, _values, result); end
+
+  def _reduce_416(val, _values, result); end
+
+  def _reduce_417(val, _values, result); end
+
+  def _reduce_418(val, _values, result); end
+
+  def _reduce_419(val, _values, result); end
+
+  def _reduce_420(val, _values, result); end
+
+  def _reduce_421(val, _values, result); end
+
+  def _reduce_422(val, _values, result); end
+
+  def _reduce_423(val, _values, result); end
+
+  def _reduce_424(val, _values, result); end
+
+  def _reduce_425(val, _values, result); end
+
+  def _reduce_427(val, _values, result); end
+
+  def _reduce_428(val, _values, result); end
+
+  def _reduce_429(val, _values, result); end
+
+  def _reduce_43(val, _values, result); end
+
+  def _reduce_432(val, _values, result); end
+
+  def _reduce_434(val, _values, result); end
+
+  def _reduce_439(val, _values, result); end
+
+  def _reduce_440(val, _values, result); end
+
+  def _reduce_441(val, _values, result); end
+
+  def _reduce_442(val, _values, result); end
+
+  def _reduce_443(val, _values, result); end
+
+  def _reduce_444(val, _values, result); end
+
+  def _reduce_445(val, _values, result); end
+
+  def _reduce_446(val, _values, result); end
+
+  def _reduce_447(val, _values, result); end
+
+  def _reduce_448(val, _values, result); end
+
+  def _reduce_449(val, _values, result); end
+
+  def _reduce_450(val, _values, result); end
+
+  def _reduce_451(val, _values, result); end
+
+  def _reduce_452(val, _values, result); end
+
+  def _reduce_453(val, _values, result); end
+
+  def _reduce_454(val, _values, result); end
+
+  def _reduce_455(val, _values, result); end
+
+  def _reduce_456(val, _values, result); end
+
+  def _reduce_457(val, _values, result); end
+
+  def _reduce_458(val, _values, result); end
+
+  def _reduce_459(val, _values, result); end
+
+  def _reduce_46(val, _values, result); end
+
+  def _reduce_460(val, _values, result); end
+
+  def _reduce_461(val, _values, result); end
+
+  def _reduce_462(val, _values, result); end
+
+  def _reduce_463(val, _values, result); end
+
+  def _reduce_464(val, _values, result); end
+
+  def _reduce_465(val, _values, result); end
+
+  def _reduce_466(val, _values, result); end
+
+  def _reduce_467(val, _values, result); end
+
+  def _reduce_468(val, _values, result); end
+
+  def _reduce_469(val, _values, result); end
+
+  def _reduce_47(val, _values, result); end
+
+  def _reduce_470(val, _values, result); end
+
+  def _reduce_471(val, _values, result); end
+
+  def _reduce_472(val, _values, result); end
+
+  def _reduce_473(val, _values, result); end
+
+  def _reduce_475(val, _values, result); end
+
+  def _reduce_476(val, _values, result); end
+
+  def _reduce_477(val, _values, result); end
+
+  def _reduce_478(val, _values, result); end
+
+  def _reduce_479(val, _values, result); end
+
+  def _reduce_48(val, _values, result); end
+
+  def _reduce_480(val, _values, result); end
+
+  def _reduce_481(val, _values, result); end
+
+  def _reduce_482(val, _values, result); end
+
+  def _reduce_483(val, _values, result); end
+
+  def _reduce_484(val, _values, result); end
+
+  def _reduce_485(val, _values, result); end
+
+  def _reduce_486(val, _values, result); end
+
+  def _reduce_487(val, _values, result); end
+
+  def _reduce_488(val, _values, result); end
+
+  def _reduce_489(val, _values, result); end
+
+  def _reduce_49(val, _values, result); end
+
+  def _reduce_490(val, _values, result); end
+
+  def _reduce_491(val, _values, result); end
+
+  def _reduce_492(val, _values, result); end
+
+  def _reduce_493(val, _values, result); end
+
+  def _reduce_494(val, _values, result); end
+
+  def _reduce_495(val, _values, result); end
+
+  def _reduce_496(val, _values, result); end
+
+  def _reduce_497(val, _values, result); end
+
+  def _reduce_498(val, _values, result); end
+
+  def _reduce_499(val, _values, result); end
+
+  def _reduce_5(val, _values, result); end
+
+  def _reduce_500(val, _values, result); end
+
+  def _reduce_501(val, _values, result); end
+
+  def _reduce_502(val, _values, result); end
+
+  def _reduce_503(val, _values, result); end
+
+  def _reduce_504(val, _values, result); end
+
+  def _reduce_505(val, _values, result); end
+
+  def _reduce_506(val, _values, result); end
+
+  def _reduce_507(val, _values, result); end
+
+  def _reduce_508(val, _values, result); end
+
+  def _reduce_509(val, _values, result); end
+
+  def _reduce_510(val, _values, result); end
+
+  def _reduce_511(val, _values, result); end
+
+  def _reduce_512(val, _values, result); end
+
+  def _reduce_513(val, _values, result); end
+
+  def _reduce_514(val, _values, result); end
+
+  def _reduce_515(val, _values, result); end
+
+  def _reduce_516(val, _values, result); end
+
+  def _reduce_517(val, _values, result); end
+
+  def _reduce_518(val, _values, result); end
+
+  def _reduce_519(val, _values, result); end
+
+  def _reduce_520(val, _values, result); end
+
+  def _reduce_521(val, _values, result); end
+
+  def _reduce_522(val, _values, result); end
+
+  def _reduce_523(val, _values, result); end
+
+  def _reduce_524(val, _values, result); end
+
+  def _reduce_525(val, _values, result); end
+
+  def _reduce_526(val, _values, result); end
+
+  def _reduce_527(val, _values, result); end
+
+  def _reduce_528(val, _values, result); end
+
+  def _reduce_529(val, _values, result); end
+
+  def _reduce_530(val, _values, result); end
+
+  def _reduce_531(val, _values, result); end
+
+  def _reduce_533(val, _values, result); end
+
+  def _reduce_534(val, _values, result); end
+
+  def _reduce_535(val, _values, result); end
+
+  def _reduce_536(val, _values, result); end
+
+  def _reduce_537(val, _values, result); end
+
+  def _reduce_538(val, _values, result); end
+
+  def _reduce_539(val, _values, result); end
+
+  def _reduce_540(val, _values, result); end
+
+  def _reduce_541(val, _values, result); end
+
+  def _reduce_542(val, _values, result); end
+
+  def _reduce_543(val, _values, result); end
+
+  def _reduce_544(val, _values, result); end
+
+  def _reduce_545(val, _values, result); end
+
+  def _reduce_546(val, _values, result); end
+
+  def _reduce_547(val, _values, result); end
+
+  def _reduce_55(val, _values, result); end
+
+  def _reduce_550(val, _values, result); end
+
+  def _reduce_551(val, _values, result); end
+
+  def _reduce_552(val, _values, result); end
+
+  def _reduce_553(val, _values, result); end
+
+  def _reduce_554(val, _values, result); end
+
+  def _reduce_555(val, _values, result); end
+
+  def _reduce_556(val, _values, result); end
+
+  def _reduce_557(val, _values, result); end
+
+  def _reduce_56(val, _values, result); end
+
+  def _reduce_560(val, _values, result); end
+
+  def _reduce_561(val, _values, result); end
+
+  def _reduce_564(val, _values, result); end
+
+  def _reduce_565(val, _values, result); end
+
+  def _reduce_566(val, _values, result); end
+
+  def _reduce_568(val, _values, result); end
+
+  def _reduce_569(val, _values, result); end
+
+  def _reduce_57(val, _values, result); end
+
+  def _reduce_571(val, _values, result); end
+
+  def _reduce_572(val, _values, result); end
+
+  def _reduce_573(val, _values, result); end
+
+  def _reduce_574(val, _values, result); end
+
+  def _reduce_575(val, _values, result); end
+
+  def _reduce_576(val, _values, result); end
+
+  def _reduce_589(val, _values, result); end
+
+  def _reduce_59(val, _values, result); end
+
+  def _reduce_590(val, _values, result); end
+
+  def _reduce_595(val, _values, result); end
+
+  def _reduce_596(val, _values, result); end
+
+  def _reduce_6(val, _values, result); end
+
+  def _reduce_60(val, _values, result); end
+
+  def _reduce_600(val, _values, result); end
+
+  def _reduce_604(val, _values, result); end
+
+  def _reduce_61(val, _values, result); end
+
+  def _reduce_62(val, _values, result); end
+
+  def _reduce_63(val, _values, result); end
+
+  def _reduce_64(val, _values, result); end
+
+  def _reduce_65(val, _values, result); end
+
+  def _reduce_66(val, _values, result); end
+
+  def _reduce_67(val, _values, result); end
+
+  def _reduce_68(val, _values, result); end
+
+  def _reduce_69(val, _values, result); end
+
+  def _reduce_70(val, _values, result); end
+
+  def _reduce_71(val, _values, result); end
+
+  def _reduce_72(val, _values, result); end
+
+  def _reduce_73(val, _values, result); end
+
+  def _reduce_75(val, _values, result); end
+
+  def _reduce_76(val, _values, result); end
+
+  def _reduce_77(val, _values, result); end
+
+  def _reduce_78(val, _values, result); end
+
+  def _reduce_79(val, _values, result); end
+
+  def _reduce_8(val, _values, result); end
+
+  def _reduce_80(val, _values, result); end
+
+  def _reduce_81(val, _values, result); end
+
+  def _reduce_82(val, _values, result); end
+
+  def _reduce_83(val, _values, result); end
+
+  def _reduce_85(val, _values, result); end
+
+  def _reduce_86(val, _values, result); end
+
+  def _reduce_87(val, _values, result); end
+
+  def _reduce_88(val, _values, result); end
+
+  def _reduce_89(val, _values, result); end
+
+  def _reduce_9(val, _values, result); end
+
+  def _reduce_90(val, _values, result); end
+
+  def _reduce_91(val, _values, result); end
+
+  def _reduce_92(val, _values, result); end
+
+  def _reduce_93(val, _values, result); end
+
+  def _reduce_94(val, _values, result); end
+
+  def _reduce_95(val, _values, result); end
+
+  def _reduce_96(val, _values, result); end
+
+  def _reduce_97(val, _values, result); end
+
+  def _reduce_98(val, _values, result); end
+
+  def _reduce_99(val, _values, result); end
+
+  def _reduce_none(val, _values, result); end
+
+  def default_encoding(); end
+
+  def version(); end
+  Racc_arg = ::T.let(nil, ::T.untyped)
+  Racc_debug_parser = ::T.let(nil, ::T.untyped)
+  Racc_token_to_s_table = ::T.let(nil, ::T.untyped)
+end
+
+class Parser::Ruby24
+end
+
+class Parser::Ruby27
+  def _reduce_10(val, _values, result); end
+
+  def _reduce_100(val, _values, result); end
+
+  def _reduce_101(val, _values, result); end
+
+  def _reduce_102(val, _values, result); end
+
+  def _reduce_103(val, _values, result); end
+
+  def _reduce_104(val, _values, result); end
+
+  def _reduce_105(val, _values, result); end
+
+  def _reduce_106(val, _values, result); end
+
+  def _reduce_107(val, _values, result); end
+
+  def _reduce_108(val, _values, result); end
+
+  def _reduce_109(val, _values, result); end
+
+  def _reduce_11(val, _values, result); end
+
+  def _reduce_110(val, _values, result); end
+
+  def _reduce_111(val, _values, result); end
+
+  def _reduce_112(val, _values, result); end
+
+  def _reduce_113(val, _values, result); end
+
+  def _reduce_114(val, _values, result); end
+
+  def _reduce_116(val, _values, result); end
+
+  def _reduce_117(val, _values, result); end
+
+  def _reduce_118(val, _values, result); end
+
+  def _reduce_12(val, _values, result); end
+
+  def _reduce_124(val, _values, result); end
+
+  def _reduce_126(val, _values, result); end
+
+  def _reduce_127(val, _values, result); end
+
+  def _reduce_128(val, _values, result); end
+
+  def _reduce_13(val, _values, result); end
+
+  def _reduce_14(val, _values, result); end
+
+  def _reduce_15(val, _values, result); end
+
+  def _reduce_17(val, _values, result); end
+
+  def _reduce_18(val, _values, result); end
+
+  def _reduce_19(val, _values, result); end
+
+  def _reduce_2(val, _values, result); end
+
+  def _reduce_20(val, _values, result); end
+
+  def _reduce_200(val, _values, result); end
+
+  def _reduce_201(val, _values, result); end
+
+  def _reduce_202(val, _values, result); end
+
+  def _reduce_203(val, _values, result); end
+
+  def _reduce_204(val, _values, result); end
+
+  def _reduce_205(val, _values, result); end
+
+  def _reduce_206(val, _values, result); end
+
+  def _reduce_207(val, _values, result); end
+
+  def _reduce_208(val, _values, result); end
+
+  def _reduce_209(val, _values, result); end
+
+  def _reduce_21(val, _values, result); end
+
+  def _reduce_210(val, _values, result); end
+
+  def _reduce_211(val, _values, result); end
+
+  def _reduce_212(val, _values, result); end
+
+  def _reduce_213(val, _values, result); end
+
+  def _reduce_214(val, _values, result); end
+
+  def _reduce_215(val, _values, result); end
+
+  def _reduce_216(val, _values, result); end
+
+  def _reduce_217(val, _values, result); end
+
+  def _reduce_218(val, _values, result); end
+
+  def _reduce_219(val, _values, result); end
+
+  def _reduce_22(val, _values, result); end
+
+  def _reduce_220(val, _values, result); end
+
+  def _reduce_221(val, _values, result); end
+
+  def _reduce_222(val, _values, result); end
+
+  def _reduce_223(val, _values, result); end
+
+  def _reduce_224(val, _values, result); end
+
+  def _reduce_225(val, _values, result); end
+
+  def _reduce_226(val, _values, result); end
+
+  def _reduce_227(val, _values, result); end
+
+  def _reduce_229(val, _values, result); end
+
+  def _reduce_23(val, _values, result); end
+
+  def _reduce_230(val, _values, result); end
+
+  def _reduce_231(val, _values, result); end
+
+  def _reduce_232(val, _values, result); end
+
+  def _reduce_233(val, _values, result); end
+
+  def _reduce_234(val, _values, result); end
+
+  def _reduce_235(val, _values, result); end
+
+  def _reduce_236(val, _values, result); end
+
+  def _reduce_237(val, _values, result); end
+
+  def _reduce_238(val, _values, result); end
+
+  def _reduce_239(val, _values, result); end
+
+  def _reduce_24(val, _values, result); end
+
+  def _reduce_240(val, _values, result); end
+
+  def _reduce_241(val, _values, result); end
+
+  def _reduce_247(val, _values, result); end
+
+  def _reduce_248(val, _values, result); end
+
+  def _reduce_25(val, _values, result); end
+
+  def _reduce_252(val, _values, result); end
+
+  def _reduce_253(val, _values, result); end
+
+  def _reduce_255(val, _values, result); end
+
+  def _reduce_256(val, _values, result); end
+
+  def _reduce_257(val, _values, result); end
+
+  def _reduce_258(val, _values, result); end
+
+  def _reduce_26(val, _values, result); end
+
+  def _reduce_260(val, _values, result); end
+
+  def _reduce_263(val, _values, result); end
+
+  def _reduce_264(val, _values, result); end
+
+  def _reduce_265(val, _values, result); end
+
+  def _reduce_266(val, _values, result); end
+
+  def _reduce_267(val, _values, result); end
+
+  def _reduce_268(val, _values, result); end
+
+  def _reduce_269(val, _values, result); end
+
+  def _reduce_27(val, _values, result); end
+
+  def _reduce_270(val, _values, result); end
+
+  def _reduce_271(val, _values, result); end
+
+  def _reduce_272(val, _values, result); end
+
+  def _reduce_273(val, _values, result); end
+
+  def _reduce_274(val, _values, result); end
+
+  def _reduce_275(val, _values, result); end
+
+  def _reduce_276(val, _values, result); end
+
+  def _reduce_277(val, _values, result); end
+
+  def _reduce_278(val, _values, result); end
+
+  def _reduce_279(val, _values, result); end
+
+  def _reduce_28(val, _values, result); end
+
+  def _reduce_281(val, _values, result); end
+
+  def _reduce_282(val, _values, result); end
+
+  def _reduce_283(val, _values, result); end
+
+  def _reduce_29(val, _values, result); end
+
+  def _reduce_294(val, _values, result); end
+
+  def _reduce_295(val, _values, result); end
+
+  def _reduce_296(val, _values, result); end
+
+  def _reduce_297(val, _values, result); end
+
+  def _reduce_298(val, _values, result); end
+
+  def _reduce_299(val, _values, result); end
+
+  def _reduce_3(val, _values, result); end
+
+  def _reduce_300(val, _values, result); end
+
+  def _reduce_301(val, _values, result); end
+
+  def _reduce_302(val, _values, result); end
+
+  def _reduce_303(val, _values, result); end
+
+  def _reduce_304(val, _values, result); end
+
+  def _reduce_305(val, _values, result); end
+
+  def _reduce_306(val, _values, result); end
+
+  def _reduce_307(val, _values, result); end
+
+  def _reduce_308(val, _values, result); end
+
+  def _reduce_309(val, _values, result); end
+
+  def _reduce_31(val, _values, result); end
+
+  def _reduce_310(val, _values, result); end
+
+  def _reduce_311(val, _values, result); end
+
+  def _reduce_312(val, _values, result); end
+
+  def _reduce_313(val, _values, result); end
+
+  def _reduce_315(val, _values, result); end
+
+  def _reduce_316(val, _values, result); end
+
+  def _reduce_317(val, _values, result); end
+
+  def _reduce_318(val, _values, result); end
+
+  def _reduce_319(val, _values, result); end
+
+  def _reduce_32(val, _values, result); end
+
+  def _reduce_320(val, _values, result); end
+
+  def _reduce_321(val, _values, result); end
+
+  def _reduce_322(val, _values, result); end
+
+  def _reduce_323(val, _values, result); end
+
+  def _reduce_324(val, _values, result); end
+
+  def _reduce_325(val, _values, result); end
+
+  def _reduce_326(val, _values, result); end
+
+  def _reduce_327(val, _values, result); end
+
+  def _reduce_328(val, _values, result); end
+
+  def _reduce_329(val, _values, result); end
+
+  def _reduce_33(val, _values, result); end
+
+  def _reduce_330(val, _values, result); end
+
+  def _reduce_331(val, _values, result); end
+
+  def _reduce_332(val, _values, result); end
+
+  def _reduce_333(val, _values, result); end
+
+  def _reduce_334(val, _values, result); end
+
+  def _reduce_335(val, _values, result); end
+
+  def _reduce_336(val, _values, result); end
+
+  def _reduce_337(val, _values, result); end
+
+  def _reduce_338(val, _values, result); end
+
+  def _reduce_339(val, _values, result); end
+
+  def _reduce_34(val, _values, result); end
+
+  def _reduce_340(val, _values, result); end
+
+  def _reduce_342(val, _values, result); end
+
+  def _reduce_345(val, _values, result); end
+
+  def _reduce_349(val, _values, result); end
+
+  def _reduce_351(val, _values, result); end
+
+  def _reduce_354(val, _values, result); end
+
+  def _reduce_355(val, _values, result); end
+
+  def _reduce_356(val, _values, result); end
+
+  def _reduce_357(val, _values, result); end
+
+  def _reduce_359(val, _values, result); end
+
+  def _reduce_36(val, _values, result); end
+
+  def _reduce_360(val, _values, result); end
+
+  def _reduce_361(val, _values, result); end
+
+  def _reduce_362(val, _values, result); end
+
+  def _reduce_363(val, _values, result); end
+
+  def _reduce_364(val, _values, result); end
+
+  def _reduce_365(val, _values, result); end
+
+  def _reduce_366(val, _values, result); end
+
+  def _reduce_367(val, _values, result); end
+
+  def _reduce_368(val, _values, result); end
+
+  def _reduce_369(val, _values, result); end
+
+  def _reduce_37(val, _values, result); end
+
+  def _reduce_370(val, _values, result); end
+
+  def _reduce_371(val, _values, result); end
+
+  def _reduce_372(val, _values, result); end
+
+  def _reduce_373(val, _values, result); end
+
+  def _reduce_374(val, _values, result); end
+
+  def _reduce_375(val, _values, result); end
+
+  def _reduce_376(val, _values, result); end
+
+  def _reduce_378(val, _values, result); end
+
+  def _reduce_379(val, _values, result); end
+
+  def _reduce_38(val, _values, result); end
+
+  def _reduce_380(val, _values, result); end
+
+  def _reduce_381(val, _values, result); end
+
+  def _reduce_382(val, _values, result); end
+
+  def _reduce_383(val, _values, result); end
+
+  def _reduce_384(val, _values, result); end
+
+  def _reduce_385(val, _values, result); end
+
+  def _reduce_387(val, _values, result); end
+
+  def _reduce_388(val, _values, result); end
+
+  def _reduce_389(val, _values, result); end
+
+  def _reduce_39(val, _values, result); end
+
+  def _reduce_390(val, _values, result); end
+
+  def _reduce_391(val, _values, result); end
+
+  def _reduce_392(val, _values, result); end
+
+  def _reduce_393(val, _values, result); end
+
+  def _reduce_394(val, _values, result); end
+
+  def _reduce_395(val, _values, result); end
+
+  def _reduce_397(val, _values, result); end
+
+  def _reduce_398(val, _values, result); end
+
+  def _reduce_399(val, _values, result); end
+
+  def _reduce_4(val, _values, result); end
+
+  def _reduce_40(val, _values, result); end
+
+  def _reduce_400(val, _values, result); end
+
+  def _reduce_401(val, _values, result); end
+
+  def _reduce_402(val, _values, result); end
+
+  def _reduce_403(val, _values, result); end
+
+  def _reduce_404(val, _values, result); end
+
+  def _reduce_405(val, _values, result); end
+
+  def _reduce_406(val, _values, result); end
+
+  def _reduce_407(val, _values, result); end
+
+  def _reduce_408(val, _values, result); end
+
+  def _reduce_409(val, _values, result); end
+
+  def _reduce_41(val, _values, result); end
+
+  def _reduce_410(val, _values, result); end
+
+  def _reduce_411(val, _values, result); end
+
+  def _reduce_412(val, _values, result); end
+
+  def _reduce_413(val, _values, result); end
+
+  def _reduce_414(val, _values, result); end
+
+  def _reduce_415(val, _values, result); end
+
+  def _reduce_416(val, _values, result); end
+
+  def _reduce_417(val, _values, result); end
+
+  def _reduce_418(val, _values, result); end
+
+  def _reduce_419(val, _values, result); end
+
+  def _reduce_42(val, _values, result); end
+
+  def _reduce_420(val, _values, result); end
+
+  def _reduce_421(val, _values, result); end
+
+  def _reduce_422(val, _values, result); end
+
+  def _reduce_423(val, _values, result); end
+
+  def _reduce_424(val, _values, result); end
+
+  def _reduce_425(val, _values, result); end
+
+  def _reduce_426(val, _values, result); end
+
+  def _reduce_427(val, _values, result); end
+
+  def _reduce_428(val, _values, result); end
+
+  def _reduce_429(val, _values, result); end
+
+  def _reduce_43(val, _values, result); end
+
+  def _reduce_430(val, _values, result); end
+
+  def _reduce_431(val, _values, result); end
+
+  def _reduce_433(val, _values, result); end
+
+  def _reduce_434(val, _values, result); end
+
+  def _reduce_435(val, _values, result); end
+
+  def _reduce_436(val, _values, result); end
+
+  def _reduce_438(val, _values, result); end
+
+  def _reduce_439(val, _values, result); end
+
+  def _reduce_440(val, _values, result); end
+
+  def _reduce_442(val, _values, result); end
+
+  def _reduce_443(val, _values, result); end
+
+  def _reduce_444(val, _values, result); end
+
+  def _reduce_445(val, _values, result); end
+
+  def _reduce_447(val, _values, result); end
+
+  def _reduce_449(val, _values, result); end
+
+  def _reduce_45(val, _values, result); end
+
+  def _reduce_451(val, _values, result); end
+
+  def _reduce_452(val, _values, result); end
+
+  def _reduce_454(val, _values, result); end
+
+  def _reduce_455(val, _values, result); end
+
+  def _reduce_456(val, _values, result); end
+
+  def _reduce_457(val, _values, result); end
+
+  def _reduce_458(val, _values, result); end
+
+  def _reduce_459(val, _values, result); end
+
+  def _reduce_460(val, _values, result); end
+
+  def _reduce_461(val, _values, result); end
+
+  def _reduce_462(val, _values, result); end
+
+  def _reduce_463(val, _values, result); end
+
+  def _reduce_464(val, _values, result); end
+
+  def _reduce_465(val, _values, result); end
+
+  def _reduce_466(val, _values, result); end
+
+  def _reduce_467(val, _values, result); end
+
+  def _reduce_468(val, _values, result); end
+
+  def _reduce_469(val, _values, result); end
+
+  def _reduce_470(val, _values, result); end
+
+  def _reduce_471(val, _values, result); end
+
+  def _reduce_472(val, _values, result); end
+
+  def _reduce_473(val, _values, result); end
+
+  def _reduce_474(val, _values, result); end
+
+  def _reduce_476(val, _values, result); end
+
+  def _reduce_477(val, _values, result); end
+
+  def _reduce_478(val, _values, result); end
+
+  def _reduce_479(val, _values, result); end
+
+  def _reduce_48(val, _values, result); end
+
+  def _reduce_480(val, _values, result); end
+
+  def _reduce_481(val, _values, result); end
+
+  def _reduce_482(val, _values, result); end
+
+  def _reduce_483(val, _values, result); end
+
+  def _reduce_485(val, _values, result); end
+
+  def _reduce_486(val, _values, result); end
+
+  def _reduce_487(val, _values, result); end
+
+  def _reduce_488(val, _values, result); end
+
+  def _reduce_489(val, _values, result); end
+
+  def _reduce_49(val, _values, result); end
+
+  def _reduce_490(val, _values, result); end
+
+  def _reduce_491(val, _values, result); end
+
+  def _reduce_492(val, _values, result); end
+
+  def _reduce_493(val, _values, result); end
+
+  def _reduce_494(val, _values, result); end
+
+  def _reduce_495(val, _values, result); end
+
+  def _reduce_496(val, _values, result); end
+
+  def _reduce_497(val, _values, result); end
+
+  def _reduce_498(val, _values, result); end
+
+  def _reduce_499(val, _values, result); end
+
+  def _reduce_5(val, _values, result); end
+
+  def _reduce_50(val, _values, result); end
+
+  def _reduce_501(val, _values, result); end
+
+  def _reduce_502(val, _values, result); end
+
+  def _reduce_503(val, _values, result); end
+
+  def _reduce_504(val, _values, result); end
+
+  def _reduce_508(val, _values, result); end
+
+  def _reduce_509(val, _values, result); end
+
+  def _reduce_51(val, _values, result); end
+
+  def _reduce_518(val, _values, result); end
+
+  def _reduce_519(val, _values, result); end
+
+  def _reduce_52(val, _values, result); end
+
+  def _reduce_520(val, _values, result); end
+
+  def _reduce_521(val, _values, result); end
+
+  def _reduce_522(val, _values, result); end
+
+  def _reduce_523(val, _values, result); end
+
+  def _reduce_524(val, _values, result); end
+
+  def _reduce_525(val, _values, result); end
+
+  def _reduce_526(val, _values, result); end
+
+  def _reduce_527(val, _values, result); end
+
+  def _reduce_528(val, _values, result); end
+
+  def _reduce_53(val, _values, result); end
+
+  def _reduce_531(val, _values, result); end
+
+  def _reduce_533(val, _values, result); end
+
+  def _reduce_537(val, _values, result); end
+
+  def _reduce_538(val, _values, result); end
+
+  def _reduce_539(val, _values, result); end
+
+  def _reduce_540(val, _values, result); end
+
+  def _reduce_541(val, _values, result); end
+
+  def _reduce_542(val, _values, result); end
+
+  def _reduce_543(val, _values, result); end
+
+  def _reduce_544(val, _values, result); end
+
+  def _reduce_545(val, _values, result); end
+
+  def _reduce_546(val, _values, result); end
+
+  def _reduce_547(val, _values, result); end
+
+  def _reduce_548(val, _values, result); end
+
+  def _reduce_549(val, _values, result); end
+
+  def _reduce_550(val, _values, result); end
+
+  def _reduce_551(val, _values, result); end
+
+  def _reduce_552(val, _values, result); end
+
+  def _reduce_553(val, _values, result); end
+
+  def _reduce_554(val, _values, result); end
+
+  def _reduce_555(val, _values, result); end
+
+  def _reduce_556(val, _values, result); end
+
+  def _reduce_557(val, _values, result); end
+
+  def _reduce_558(val, _values, result); end
+
+  def _reduce_559(val, _values, result); end
+
+  def _reduce_56(val, _values, result); end
+
+  def _reduce_560(val, _values, result); end
+
+  def _reduce_561(val, _values, result); end
+
+  def _reduce_562(val, _values, result); end
+
+  def _reduce_563(val, _values, result); end
+
+  def _reduce_564(val, _values, result); end
+
+  def _reduce_565(val, _values, result); end
+
+  def _reduce_566(val, _values, result); end
+
+  def _reduce_567(val, _values, result); end
+
+  def _reduce_568(val, _values, result); end
+
+  def _reduce_569(val, _values, result); end
+
+  def _reduce_57(val, _values, result); end
+
+  def _reduce_570(val, _values, result); end
+
+  def _reduce_571(val, _values, result); end
+
+  def _reduce_575(val, _values, result); end
+
+  def _reduce_576(val, _values, result); end
+
+  def _reduce_577(val, _values, result); end
+
+  def _reduce_578(val, _values, result); end
+
+  def _reduce_579(val, _values, result); end
+
+  def _reduce_580(val, _values, result); end
+
+  def _reduce_581(val, _values, result); end
+
+  def _reduce_582(val, _values, result); end
+
+  def _reduce_583(val, _values, result); end
+
+  def _reduce_584(val, _values, result); end
+
+  def _reduce_585(val, _values, result); end
+
+  def _reduce_586(val, _values, result); end
+
+  def _reduce_587(val, _values, result); end
+
+  def _reduce_588(val, _values, result); end
+
+  def _reduce_589(val, _values, result); end
+
+  def _reduce_590(val, _values, result); end
+
+  def _reduce_591(val, _values, result); end
+
+  def _reduce_592(val, _values, result); end
+
+  def _reduce_593(val, _values, result); end
+
+  def _reduce_594(val, _values, result); end
+
+  def _reduce_595(val, _values, result); end
+
+  def _reduce_596(val, _values, result); end
+
+  def _reduce_597(val, _values, result); end
+
+  def _reduce_598(val, _values, result); end
+
+  def _reduce_599(val, _values, result); end
+
+  def _reduce_6(val, _values, result); end
+
+  def _reduce_600(val, _values, result); end
+
+  def _reduce_601(val, _values, result); end
+
+  def _reduce_602(val, _values, result); end
+
+  def _reduce_603(val, _values, result); end
+
+  def _reduce_604(val, _values, result); end
+
+  def _reduce_605(val, _values, result); end
+
+  def _reduce_606(val, _values, result); end
+
+  def _reduce_607(val, _values, result); end
+
+  def _reduce_608(val, _values, result); end
+
+  def _reduce_609(val, _values, result); end
+
+  def _reduce_61(val, _values, result); end
+
+  def _reduce_610(val, _values, result); end
+
+  def _reduce_611(val, _values, result); end
+
+  def _reduce_612(val, _values, result); end
+
+  def _reduce_613(val, _values, result); end
+
+  def _reduce_614(val, _values, result); end
+
+  def _reduce_615(val, _values, result); end
+
+  def _reduce_616(val, _values, result); end
+
+  def _reduce_617(val, _values, result); end
+
+  def _reduce_618(val, _values, result); end
+
+  def _reduce_619(val, _values, result); end
+
+  def _reduce_62(val, _values, result); end
+
+  def _reduce_620(val, _values, result); end
+
+  def _reduce_621(val, _values, result); end
+
+  def _reduce_622(val, _values, result); end
+
+  def _reduce_623(val, _values, result); end
+
+  def _reduce_624(val, _values, result); end
+
+  def _reduce_625(val, _values, result); end
+
+  def _reduce_626(val, _values, result); end
+
+  def _reduce_627(val, _values, result); end
+
+  def _reduce_628(val, _values, result); end
+
+  def _reduce_629(val, _values, result); end
+
+  def _reduce_63(val, _values, result); end
+
+  def _reduce_630(val, _values, result); end
+
+  def _reduce_631(val, _values, result); end
+
+  def _reduce_632(val, _values, result); end
+
+  def _reduce_633(val, _values, result); end
+
+  def _reduce_634(val, _values, result); end
+
+  def _reduce_636(val, _values, result); end
+
+  def _reduce_637(val, _values, result); end
+
+  def _reduce_638(val, _values, result); end
+
+  def _reduce_639(val, _values, result); end
+
+  def _reduce_640(val, _values, result); end
+
+  def _reduce_641(val, _values, result); end
+
+  def _reduce_642(val, _values, result); end
+
+  def _reduce_643(val, _values, result); end
+
+  def _reduce_644(val, _values, result); end
+
+  def _reduce_645(val, _values, result); end
+
+  def _reduce_646(val, _values, result); end
+
+  def _reduce_647(val, _values, result); end
+
+  def _reduce_648(val, _values, result); end
+
+  def _reduce_649(val, _values, result); end
+
+  def _reduce_65(val, _values, result); end
+
+  def _reduce_650(val, _values, result); end
+
+  def _reduce_653(val, _values, result); end
+
+  def _reduce_654(val, _values, result); end
+
+  def _reduce_655(val, _values, result); end
+
+  def _reduce_656(val, _values, result); end
+
+  def _reduce_657(val, _values, result); end
+
+  def _reduce_658(val, _values, result); end
+
+  def _reduce_659(val, _values, result); end
+
+  def _reduce_66(val, _values, result); end
+
+  def _reduce_660(val, _values, result); end
+
+  def _reduce_661(val, _values, result); end
+
+  def _reduce_664(val, _values, result); end
+
+  def _reduce_665(val, _values, result); end
+
+  def _reduce_668(val, _values, result); end
+
+  def _reduce_669(val, _values, result); end
+
+  def _reduce_67(val, _values, result); end
+
+  def _reduce_670(val, _values, result); end
+
+  def _reduce_672(val, _values, result); end
+
+  def _reduce_673(val, _values, result); end
+
+  def _reduce_675(val, _values, result); end
+
+  def _reduce_676(val, _values, result); end
+
+  def _reduce_677(val, _values, result); end
+
+  def _reduce_678(val, _values, result); end
+
+  def _reduce_679(val, _values, result); end
+
+  def _reduce_68(val, _values, result); end
+
+  def _reduce_680(val, _values, result); end
+
+  def _reduce_69(val, _values, result); end
+
+  def _reduce_693(val, _values, result); end
+
+  def _reduce_694(val, _values, result); end
+
+  def _reduce_699(val, _values, result); end
+
+  def _reduce_70(val, _values, result); end
+
+  def _reduce_700(val, _values, result); end
+
+  def _reduce_701(val, _values, result); end
+
+  def _reduce_705(val, _values, result); end
+
+  def _reduce_709(val, _values, result); end
+
+  def _reduce_71(val, _values, result); end
+
+  def _reduce_72(val, _values, result); end
+
+  def _reduce_73(val, _values, result); end
+
+  def _reduce_74(val, _values, result); end
+
+  def _reduce_75(val, _values, result); end
+
+  def _reduce_76(val, _values, result); end
+
+  def _reduce_77(val, _values, result); end
+
+  def _reduce_78(val, _values, result); end
+
+  def _reduce_79(val, _values, result); end
+
+  def _reduce_8(val, _values, result); end
+
+  def _reduce_81(val, _values, result); end
+
+  def _reduce_82(val, _values, result); end
+
+  def _reduce_83(val, _values, result); end
+
+  def _reduce_84(val, _values, result); end
+
+  def _reduce_85(val, _values, result); end
+
+  def _reduce_86(val, _values, result); end
+
+  def _reduce_87(val, _values, result); end
+
+  def _reduce_88(val, _values, result); end
+
+  def _reduce_89(val, _values, result); end
+
+  def _reduce_9(val, _values, result); end
+
+  def _reduce_91(val, _values, result); end
+
+  def _reduce_92(val, _values, result); end
+
+  def _reduce_93(val, _values, result); end
+
+  def _reduce_94(val, _values, result); end
+
+  def _reduce_95(val, _values, result); end
+
+  def _reduce_96(val, _values, result); end
+
+  def _reduce_97(val, _values, result); end
+
+  def _reduce_98(val, _values, result); end
+
+  def _reduce_99(val, _values, result); end
+
+  def _reduce_none(val, _values, result); end
+
+  def default_encoding(); end
+
+  def version(); end
+  Racc_arg = ::T.let(nil, ::T.untyped)
+  Racc_debug_parser = ::T.let(nil, ::T.untyped)
+  Racc_token_to_s_table = ::T.let(nil, ::T.untyped)
+end
+
+class Parser::Ruby27
+end
+
 class Parser::Source::Buffer
   ENCODING_RE = ::T.let(nil, ::T.untyped)
 end
@@ -31391,6 +34058,725 @@ class Pathname
   def glob(*_); end
 
   def make_symlink(_); end
+end
+
+module Polyfill
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+module Polyfill::InternalUtils
+end
+
+module Polyfill::InternalUtils
+  def self.create_module(*args); end
+
+  def self.current_ruby_version(); end
+
+  def self.ignore_warnings(); end
+
+  def self.keep_only_these_methods!(mod, whitelist); end
+
+  def self.methods_to_keep(modules, methods, lead_symbol, module_name); end
+
+  def self.modules_to_use(module_name, versions); end
+
+  def self.namify_arguments(*args); end
+
+  def self.polyfill_versions_to_use(desired_version=T.unsafe(nil)); end
+
+  def self.to_f(obj); end
+
+  def self.to_hash(obj); end
+
+  def self.to_int(obj); end
+
+  def self.to_str(obj); end
+end
+
+module Polyfill::Module
+end
+
+module Polyfill::Module::MezpFbnVtZXJhYmxlPT5bIiNjaHVua193aGlsZSJdLCA6dmVyc2lvbj0_1IjIuNCJ9
+end
+
+module Polyfill::Module::MezpFbnVtZXJhYmxlPT5bIiNjaHVua193aGlsZSJdLCA6dmVyc2lvbj0_1IjIuNCJ9
+end
+
+module Polyfill::Module::MezpIYXNoPT5bIiNzbGljZSJdfQ__
+end
+
+module Polyfill::Module::MezpIYXNoPT5bIiNzbGljZSJdfQ__
+end
+
+module Polyfill::Module::MezpJbnRlZ2VyPT5bIiNjZWlsIiwgIiNmbG9vciIsICIjcm91bmQiLCAiI3RydW5jYXRlIl0sIDp2ZXJzaW9uPT4iMi40In0_
+end
+
+module Polyfill::Module::MezpJbnRlZ2VyPT5bIiNjZWlsIiwgIiNmbG9vciIsICIjcm91bmQiLCAiI3RydW5jYXRlIl0sIDp2ZXJzaW9uPT4iMi40In0_
+end
+
+module Polyfill::Module::MezpLZXJuZWw9PlsiI3lpZWxkX3NlbGYiXSwgOnZlcnNpb249PiIyLjUifQ__
+end
+
+module Polyfill::Module::MezpLZXJuZWw9PlsiI3lpZWxkX3NlbGYiXSwgOnZlcnNpb249PiIyLjUifQ__
+end
+
+module Polyfill::Module::MezpOdW1lcmljPT5bIiNkdXAiXSwgOnZlcnNpb249PiIyLjQifQ__
+end
+
+module Polyfill::Module::MezpOdW1lcmljPT5bIiNkdXAiXSwgOnZlcnNpb249PiIyLjQifQ__
+end
+
+module Polyfill::Module
+end
+
+module Polyfill::V2_2
+end
+
+module Polyfill::V2_2::Enumerable
+  def max(n=T.unsafe(nil)); end
+
+  def max_by(n=T.unsafe(nil)); end
+
+  def min(n=T.unsafe(nil)); end
+
+  def min_by(n=T.unsafe(nil)); end
+
+  def slice_after(pattern=T.unsafe(nil)); end
+
+  def slice_when(); end
+end
+
+module Polyfill::V2_2::Enumerable
+end
+
+module Polyfill::V2_2::Kernel
+  def itself(); end
+end
+
+module Polyfill::V2_2::Kernel
+end
+
+module Polyfill::V2_2::Math
+end
+
+module Polyfill::V2_2::Math::ClassMethods
+  def log(*args); end
+end
+
+module Polyfill::V2_2::Math::ClassMethods
+end
+
+module Polyfill::V2_2::Math
+end
+
+module Polyfill::V2_2::Prime
+end
+
+module Polyfill::V2_2::Prime::ClassMethods
+  def prime?(*args); end
+end
+
+module Polyfill::V2_2::Prime::ClassMethods
+end
+
+module Polyfill::V2_2::Prime
+end
+
+module Polyfill::V2_2::Vector
+  def +@(); end
+end
+
+module Polyfill::V2_2::Vector
+end
+
+module Polyfill::V2_2
+end
+
+module Polyfill::V2_3
+end
+
+module Polyfill::V2_3::Array
+  def bsearch_index(); end
+
+  def dig(head, *rest); end
+end
+
+module Polyfill::V2_3::Array
+end
+
+module Polyfill::V2_3::Enumerable
+  def chunk_while(); end
+
+  def grep_v(pattern); end
+
+  def slice_before(*args); end
+end
+
+module Polyfill::V2_3::Enumerable
+end
+
+module Polyfill::V2_3::Enumerator
+end
+
+module Polyfill::V2_3::Enumerator::Lazy
+  def grep_v(pattern); end
+end
+
+module Polyfill::V2_3::Enumerator::Lazy
+end
+
+module Polyfill::V2_3::Enumerator
+end
+
+module Polyfill::V2_3::Hash
+  def <(other); end
+
+  def <=(other); end
+
+  def >(other); end
+
+  def >=(other); end
+
+  def dig(head, *rest); end
+
+  def fetch_values(*keys); end
+
+  def to_proc(); end
+end
+
+module Polyfill::V2_3::Hash
+end
+
+module Polyfill::V2_3::Kernel
+  def loop(); end
+end
+
+module Polyfill::V2_3::Kernel
+end
+
+module Polyfill::V2_3::Numeric
+  def negative?(); end
+
+  def positive?(); end
+end
+
+module Polyfill::V2_3::Numeric
+end
+
+module Polyfill::V2_3::Prime
+end
+
+module Polyfill::V2_3::Prime::ClassMethods
+  def prime?(*args); end
+end
+
+module Polyfill::V2_3::Prime::ClassMethods
+end
+
+module Polyfill::V2_3::Prime
+end
+
+module Polyfill::V2_3::String
+  def +@(); end
+
+  def -@(); end
+end
+
+module Polyfill::V2_3::String::ClassMethods
+  def new(*args); end
+end
+
+module Polyfill::V2_3::String::ClassMethods
+end
+
+module Polyfill::V2_3::String
+end
+
+module Polyfill::V2_3::Struct
+  def dig(head, *rest); end
+end
+
+module Polyfill::V2_3::Struct
+end
+
+module Polyfill::V2_3
+end
+
+module Polyfill::V2_4
+end
+
+module Polyfill::V2_4::Array
+  def concat(*others); end
+
+  def sum(init=T.unsafe(nil)); end
+end
+
+module Polyfill::V2_4::Array
+end
+
+module Polyfill::V2_4::Comparable
+  def clamp(min, max); end
+end
+
+module Polyfill::V2_4::Comparable
+end
+
+module Polyfill::V2_4::Dir
+end
+
+module Polyfill::V2_4::Dir::ClassMethods
+  def empty?(path_name); end
+end
+
+module Polyfill::V2_4::Dir::ClassMethods
+end
+
+module Polyfill::V2_4::Dir
+end
+
+module Polyfill::V2_4::Enumerable
+  def chunk(*_); end
+
+  def sum(init=T.unsafe(nil)); end
+
+  def uniq(); end
+end
+
+module Polyfill::V2_4::Enumerable
+end
+
+module Polyfill::V2_4::Enumerator
+end
+
+module Polyfill::V2_4::Enumerator::Lazy
+  def chunk_while(); end
+
+  def uniq(); end
+end
+
+module Polyfill::V2_4::Enumerator::Lazy
+end
+
+module Polyfill::V2_4::Enumerator
+end
+
+module Polyfill::V2_4::File
+end
+
+module Polyfill::V2_4::File::ClassMethods
+  def empty?(file_name); end
+end
+
+module Polyfill::V2_4::File::ClassMethods
+end
+
+module Polyfill::V2_4::File
+end
+
+module Polyfill::V2_4::Float
+  def ceil(ndigits=T.unsafe(nil)); end
+
+  def floor(ndigits=T.unsafe(nil)); end
+
+  def truncate(ndigits=T.unsafe(nil)); end
+end
+
+module Polyfill::V2_4::Float
+end
+
+module Polyfill::V2_4::Hash
+  def compact(); end
+
+  def compact!(); end
+
+  def transform_values(); end
+
+  def transform_values!(); end
+end
+
+module Polyfill::V2_4::Hash
+end
+
+module Polyfill::V2_4::IO
+  def each_line(*args); end
+
+  def gets(*args); end
+
+  def lines(*args); end
+
+  def readline(*args); end
+
+  def readlines(*args); end
+end
+
+module Polyfill::V2_4::IO::ClassMethods
+  def foreach(name, *args); end
+
+  def readlines(file_name, *args); end
+end
+
+module Polyfill::V2_4::IO::ClassMethods
+end
+
+module Polyfill::V2_4::IO
+end
+
+module Polyfill::V2_4::IPAddr
+  def ==(*_); end
+end
+
+module Polyfill::V2_4::IPAddr
+end
+
+module Polyfill::V2_4::Integer
+  def ceil(ndigits=T.unsafe(nil)); end
+
+  def digits(base=T.unsafe(nil)); end
+
+  def floor(ndigits=T.unsafe(nil)); end
+
+  def round(ndigits=T.unsafe(nil), half: T.unsafe(nil)); end
+
+  def truncate(ndigits=T.unsafe(nil)); end
+end
+
+module Polyfill::V2_4::Integer
+end
+
+module Polyfill::V2_4::MatchData
+  def named_captures(); end
+
+  def values_at(*indexes); end
+end
+
+module Polyfill::V2_4::MatchData
+end
+
+module Polyfill::V2_4::Numeric
+  def clone(freeze: T.unsafe(nil)); end
+
+  def dup(); end
+
+  def finite?(); end
+
+  def infinite?(); end
+end
+
+module Polyfill::V2_4::Numeric
+end
+
+module Polyfill::V2_4::Object
+  def clone(freeze: T.unsafe(nil)); end
+end
+
+module Polyfill::V2_4::Object
+end
+
+module Polyfill::V2_4::Pathname
+  def empty?(); end
+end
+
+module Polyfill::V2_4::Pathname
+end
+
+module Polyfill::V2_4::Regexp
+  def match?(string, position=T.unsafe(nil)); end
+end
+
+module Polyfill::V2_4::Regexp
+end
+
+module Polyfill::V2_4::String
+  def casecmp?(other); end
+
+  def concat(*others); end
+
+  def each_line(*args); end
+
+  def lines(*args); end
+
+  def match?(pattern, position=T.unsafe(nil)); end
+
+  def prepend(*others); end
+
+  def unpack1(*args); end
+end
+
+module Polyfill::V2_4::String::ClassMethods
+  def new(*args); end
+end
+
+module Polyfill::V2_4::String::ClassMethods
+end
+
+module Polyfill::V2_4::String
+end
+
+module Polyfill::V2_4::StringIO
+  def each_line(*args); end
+
+  def gets(*args); end
+
+  def lines(*args); end
+
+  def readline(*args); end
+
+  def readlines(*args); end
+end
+
+module Polyfill::V2_4::StringIO::ClassMethods
+  def foreach(name, *args); end
+
+  def readlines(file_name, *args); end
+end
+
+module Polyfill::V2_4::StringIO::ClassMethods
+end
+
+module Polyfill::V2_4::StringIO
+end
+
+module Polyfill::V2_4::Symbol
+  def casecmp?(other); end
+
+  def match(*args); end
+
+  def match?(pattern, position=T.unsafe(nil)); end
+end
+
+module Polyfill::V2_4::Symbol
+end
+
+module Polyfill::V2_4
+end
+
+module Polyfill::V2_5
+end
+
+module Polyfill::V2_5::Array
+  def append(*args); end
+
+  def prepend(*args); end
+end
+
+module Polyfill::V2_5::Array
+end
+
+module Polyfill::V2_5::BigDecimal
+  def clone(); end
+
+  def dup(); end
+end
+
+module Polyfill::V2_5::BigDecimal
+end
+
+module Polyfill::V2_5::Dir
+end
+
+module Polyfill::V2_5::Dir::ClassMethods
+  def children(dirname, encoding: T.unsafe(nil)); end
+
+  def each_child(dirname, encoding: T.unsafe(nil)); end
+end
+
+module Polyfill::V2_5::Dir::ClassMethods
+end
+
+module Polyfill::V2_5::Dir
+end
+
+module Polyfill::V2_5::Enumerable
+  def all?(*pattern); end
+
+  def any?(*pattern); end
+
+  def none?(*pattern); end
+
+  def one?(*pattern); end
+end
+
+module Polyfill::V2_5::Enumerable
+end
+
+module Polyfill::V2_5::Hash
+  def slice(*keys); end
+
+  def transform_keys(); end
+end
+
+module Polyfill::V2_5::Hash
+end
+
+module Polyfill::V2_5::Integer
+  def allbits?(mask); end
+
+  def anybits?(mask); end
+
+  def ceil(*_); end
+
+  def floor(*_); end
+
+  def nobits?(mask); end
+
+  def round(*_); end
+
+  def truncate(*_); end
+end
+
+module Polyfill::V2_5::Integer::ClassMethods
+  def sqrt(n); end
+end
+
+module Polyfill::V2_5::Integer::ClassMethods
+end
+
+module Polyfill::V2_5::Integer
+end
+
+module Polyfill::V2_5::Kernel
+  def yield_self(); end
+end
+
+module Polyfill::V2_5::Kernel
+end
+
+module Polyfill::V2_5::Set
+  def ===(other); end
+
+  def to_s(); end
+end
+
+module Polyfill::V2_5::Set
+end
+
+module Polyfill::V2_5::String
+  def casecmp(other_str); end
+
+  def casecmp?(other_str); end
+
+  def delete_prefix(prefix); end
+
+  def delete_prefix!(prefix); end
+
+  def delete_suffix(suffix); end
+
+  def delete_suffix!(suffix); end
+
+  def each_grapheme_cluster(); end
+
+  def grapheme_clusters(); end
+
+  def start_with?(*prefixes); end
+end
+
+module Polyfill::V2_5::String
+end
+
+module Polyfill::V2_5::Struct
+end
+
+module Polyfill::V2_5::Struct::ClassMethods
+  def new(*args, keyword_init: T.unsafe(nil)); end
+end
+
+module Polyfill::V2_5::Struct::ClassMethods
+end
+
+module Polyfill::V2_5::Struct
+end
+
+module Polyfill::V2_5::Time
+end
+
+module Polyfill::V2_5::Time::ClassMethods
+  def at(*args); end
+end
+
+module Polyfill::V2_5::Time::ClassMethods
+end
+
+module Polyfill::V2_5::Time
+end
+
+module Polyfill::V2_5
+end
+
+module Polyfill::V2_6
+end
+
+module Polyfill::V2_6::Array
+  def difference(*arrays); end
+
+  def to_h(); end
+
+  def union(*arrays); end
+end
+
+module Polyfill::V2_6::Array
+end
+
+module Polyfill::V2_6::Enumerable
+  def to_h(); end
+end
+
+module Polyfill::V2_6::Enumerable
+end
+
+module Polyfill::V2_6::Hash
+  def merge(*args); end
+
+  def merge!(*args); end
+
+  def to_h(); end
+
+  def update(*args); end
+end
+
+module Polyfill::V2_6::Hash
+end
+
+module Polyfill::V2_6::Kernel
+  def Complex(*args, exception: T.unsafe(nil)); end
+
+  def Float(arg, exception: T.unsafe(nil)); end
+
+  def Integer(arg, exception: T.unsafe(nil)); end
+
+  def Rational(*args, exception: T.unsafe(nil)); end
+
+  def then(); end
+end
+
+module Polyfill::V2_6::Kernel
+end
+
+module Polyfill::V2_6::OpenStruct
+  def to_h(); end
+end
+
+module Polyfill::V2_6::OpenStruct
+end
+
+module Polyfill::V2_6::String
+  def split(*_); end
+end
+
+module Polyfill::V2_6::String
+end
+
+module Polyfill::V2_6::Struct
+  def to_h(); end
+end
+
+module Polyfill::V2_6::Struct
+end
+
+module Polyfill::V2_6
+end
+
+module Polyfill
+  def self.get(module_name, methods, options=T.unsafe(nil)); end
 end
 
 class Proc
@@ -37044,6 +40430,186 @@ module RubyVM::MJIT
   def self.resume(); end
 end
 
+module SafeType
+end
+
+class SafeType::Boolean
+  def initialize(type: T.unsafe(nil), **args); end
+end
+
+class SafeType::Boolean
+  def self.default(value=T.unsafe(nil)); end
+end
+
+module SafeType::BooleanMixin
+end
+
+module SafeType::BooleanMixin
+end
+
+class SafeType::CoercionError
+  def desired_type(); end
+
+  def initialize(value, desired_type, key=T.unsafe(nil)); end
+
+  def key(); end
+
+  def value(); end
+end
+
+class SafeType::CoercionError
+end
+
+class SafeType::Converter
+end
+
+class SafeType::Converter
+  def self.to_bool(input); end
+
+  def self.to_date(input); end
+
+  def self.to_date_time(input); end
+
+  def self.to_false(input); end
+
+  def self.to_float(input); end
+
+  def self.to_int(input); end
+
+  def self.to_time(input); end
+
+  def self.to_true(input); end
+
+  def self.to_type(input, type); end
+end
+
+class SafeType::Date
+  def initialize(type: T.unsafe(nil), from: T.unsafe(nil), to: T.unsafe(nil), **args); end
+end
+
+class SafeType::Date
+  def self.default(value=T.unsafe(nil), from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+  def self.strict(from: T.unsafe(nil), to: T.unsafe(nil)); end
+end
+
+class SafeType::DateTime
+  def initialize(type: T.unsafe(nil), from: T.unsafe(nil), to: T.unsafe(nil), **args); end
+end
+
+class SafeType::DateTime
+  def self.default(value=T.unsafe(nil), from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+  def self.strict(from: T.unsafe(nil), to: T.unsafe(nil)); end
+end
+
+class SafeType::EmptyValueError
+  def desired_type(); end
+
+  def initialize(desired_type, key=T.unsafe(nil)); end
+
+  def key(); end
+end
+
+class SafeType::EmptyValueError
+end
+
+class SafeType::Float
+  def initialize(type: T.unsafe(nil), min: T.unsafe(nil), max: T.unsafe(nil), **args); end
+end
+
+class SafeType::Float
+  def self.default(value=T.unsafe(nil), min: T.unsafe(nil), max: T.unsafe(nil)); end
+
+  def self.strict(min: T.unsafe(nil), max: T.unsafe(nil)); end
+end
+
+class SafeType::Integer
+  def initialize(type: T.unsafe(nil), min: T.unsafe(nil), max: T.unsafe(nil), **args); end
+end
+
+class SafeType::Integer
+  def self.default(value=T.unsafe(nil), min: T.unsafe(nil), max: T.unsafe(nil)); end
+
+  def self.strict(min: T.unsafe(nil), max: T.unsafe(nil)); end
+end
+
+class SafeType::InvalidRuleError
+  def initialize(); end
+end
+
+class SafeType::InvalidRuleError
+end
+
+class SafeType::Rule
+  def after(input); end
+
+  def before(input); end
+
+  def coerce(input, key=T.unsafe(nil)); end
+
+  def initialize(type:, default: T.unsafe(nil), required: T.unsafe(nil), **args); end
+
+  def is_valid?(input); end
+end
+
+class SafeType::Rule
+  def self.coerce(input); end
+
+  def self.default(); end
+
+  def self.strict(); end
+end
+
+class SafeType::String
+  def initialize(type: T.unsafe(nil), min_length: T.unsafe(nil), max_length: T.unsafe(nil), **args); end
+end
+
+class SafeType::String
+  def self.default(value=T.unsafe(nil), min_length: T.unsafe(nil), max_length: T.unsafe(nil)); end
+
+  def self.strict(min_length: T.unsafe(nil), max_length: T.unsafe(nil)); end
+end
+
+class SafeType::Symbol
+  def initialize(type: T.unsafe(nil), min_length: T.unsafe(nil), max_length: T.unsafe(nil), **args); end
+end
+
+class SafeType::Symbol
+  def self.default(value=T.unsafe(nil), min_length: T.unsafe(nil), max_length: T.unsafe(nil)); end
+
+  def self.strict(min_length: T.unsafe(nil), max_length: T.unsafe(nil)); end
+end
+
+class SafeType::Time
+  def initialize(type: T.unsafe(nil), from: T.unsafe(nil), to: T.unsafe(nil), **args); end
+end
+
+class SafeType::Time
+  def self.default(value=T.unsafe(nil), from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+  def self.strict(from: T.unsafe(nil), to: T.unsafe(nil)); end
+end
+
+class SafeType::ValidationError
+  def desired_type(); end
+
+  def initialize(value, desired_type, key=T.unsafe(nil)); end
+
+  def key(); end
+
+  def value(); end
+end
+
+class SafeType::ValidationError
+end
+
+module SafeType
+  def self.coerce(input, rule, coerce_key=T.unsafe(nil)); end
+
+  def self.coerce!(input, rule); end
+end
+
 ScanError = StringScanner::Error
 
 module SecureRandom
@@ -37526,6 +41092,392 @@ module Socket::Constants
   TCP_NOPUSH = ::T.let(nil, ::T.untyped)
 end
 
+class SorbetRails::Config
+  def enabled_gem_plugins(*args, &blk); end
+
+  def enabled_gem_plugins=(enabled_gem_plugins); end
+
+  def enabled_model_plugins(*args, &blk); end
+
+  def enabled_model_plugins=(enabled_model_plugins); end
+
+  def enabled_plugins(*args, &blk); end
+
+  def extra_helper_includes(*args, &blk); end
+
+  def extra_helper_includes=(extra_helper_includes); end
+
+  def initialize(&blk); end
+
+  def job_generator_class(*args, &blk); end
+
+  def job_generator_class=(job_generator_class); end
+
+  def mailer_generator_class(*args, &blk); end
+
+  def mailer_generator_class=(mailer_generator_class); end
+end
+
+class SorbetRails::Config
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+module SorbetRails::CustomFinderMethods
+  def find_by_id(id); end
+
+  def find_by_id!(id); end
+
+  def find_n(*ids); end
+
+  def first_n(n); end
+
+  def last_n(n); end
+end
+
+module SorbetRails::CustomFinderMethods
+end
+
+class SorbetRails::JobRbiFormatter
+  def generate_rbi(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def job_class(*args, &blk); end
+
+  def populate_rbi(*args, &blk); end
+
+  def rbi_generator(*args, &blk); end
+end
+
+SorbetRails::JobRbiFormatter::Parameter = Parlour::RbiGenerator::Parameter
+
+class SorbetRails::JobRbiFormatter
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class SorbetRails::MailerRbiFormatter
+  def generate_rbi(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def mailer_class(*args, &blk); end
+
+  def populate_rbi(*args, &blk); end
+
+  def rbi_generator(*args, &blk); end
+end
+
+SorbetRails::MailerRbiFormatter::Parameter = Parlour::RbiGenerator::Parameter
+
+class SorbetRails::MailerRbiFormatter
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+module SorbetRails::ModelColumnUtils
+  def active_record_type_to_sorbet_type(*args, &blk); end
+
+  def attribute_has_unconditional_presence_validation?(*args, &blk); end
+
+  def model_class(*args, &blk); end
+
+  def nilable_column?(*args, &blk); end
+
+  def time_zone_aware_column?(*args, &blk); end
+
+  def type_for_column_def(*args, &blk); end
+end
+
+class SorbetRails::ModelColumnUtils::ColumnType
+  def array_type(); end
+
+  def base_type(); end
+
+  def initialize(hash=T.unsafe(nil)); end
+
+  def nilable(); end
+
+  def to_s(*args, &blk); end
+end
+
+class SorbetRails::ModelColumnUtils::ColumnType
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.inherited(s); end
+end
+
+module SorbetRails::ModelColumnUtils
+  extend ::T::Sig
+  extend ::T::Helpers
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+module SorbetRails::ModelPlugins
+  include ::Kernel
+  def get_plugin_by_name(*args, &blk); end
+
+  def get_plugins(*args, &blk); end
+
+  def register_plugin(*args, &blk); end
+
+  def register_plugin_by_name(arg0, &blk); end
+
+  def set_plugins(*args, &blk); end
+end
+
+class SorbetRails::ModelPlugins::ActiveRecordAssoc
+  def assoc_should_be_untyped?(*args, &blk); end
+
+  def polymorphic_assoc?(*args, &blk); end
+
+  def populate_collection_assoc_getter_setter(*args, &blk); end
+
+  def populate_single_assoc_getter_setter(*args, &blk); end
+
+  def relation_should_be_untyped?(*args, &blk); end
+end
+
+class SorbetRails::ModelPlugins::ActiveRecordAssoc
+end
+
+class SorbetRails::ModelPlugins::ActiveRecordAttribute
+  def generate_enum_methods(*args, &blk); end
+
+  def value_type_for_attr_writer(*args, &blk); end
+end
+
+class SorbetRails::ModelPlugins::ActiveRecordAttribute
+end
+
+class SorbetRails::ModelPlugins::ActiveRecordEnum
+end
+
+class SorbetRails::ModelPlugins::ActiveRecordEnum
+end
+
+class SorbetRails::ModelPlugins::ActiveRecordNamedScope
+end
+
+class SorbetRails::ModelPlugins::ActiveRecordNamedScope
+end
+
+class SorbetRails::ModelPlugins::ActiveRecordQuerying
+end
+
+class SorbetRails::ModelPlugins::ActiveRecordQuerying
+end
+
+class SorbetRails::ModelPlugins::ActiveRelationWhereNot
+end
+
+class SorbetRails::ModelPlugins::ActiveRelationWhereNot
+end
+
+class SorbetRails::ModelPlugins::ActiveStorageMethods
+  def create_has_many_methods(*args, &blk); end
+
+  def create_has_one_methods(*args, &blk); end
+end
+
+class SorbetRails::ModelPlugins::ActiveStorageMethods
+end
+
+class SorbetRails::ModelPlugins::Base
+  include ::SorbetRails::ModelUtils
+  include ::SorbetRails::ModelColumnUtils
+  def available_classes(*args, &blk); end
+end
+
+SorbetRails::ModelPlugins::Base::Parameter = Parlour::RbiGenerator::Parameter
+
+class SorbetRails::ModelPlugins::Base
+end
+
+class SorbetRails::ModelPlugins::CustomFinderMethods
+end
+
+class SorbetRails::ModelPlugins::CustomFinderMethods
+end
+
+class SorbetRails::ModelPlugins::EnumerableCollections
+end
+
+class SorbetRails::ModelPlugins::EnumerableCollections
+end
+
+class SorbetRails::ModelPlugins::UnrecognizedPluginName
+end
+
+class SorbetRails::ModelPlugins::UnrecognizedPluginName
+end
+
+module SorbetRails::ModelPlugins
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class SorbetRails::ModelRbiFormatter
+  include ::SorbetRails::ModelUtils
+  include ::SorbetRails::ModelColumnUtils
+  def available_classes(*args, &blk); end
+
+  def generate_base_rbi(*args, &blk); end
+
+  def generate_rbi(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def run_plugins(*args, &blk); end
+end
+
+class SorbetRails::ModelRbiFormatter
+  extend ::T::Sig
+  extend ::SorbetRails::ModelPlugins
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+module SorbetRails::ModelUtils
+  include ::SorbetRails::ModelColumnUtils
+  def add_relation_query_method(*args, &blk); end
+
+  def exists_class_method?(*args, &blk); end
+
+  def exists_instance_method?(*args, &blk); end
+
+  def habtm_class?(*args, &blk); end
+
+  def model_assoc_proxy_class_name(*args, &blk); end
+
+  def model_assoc_relation_class_name(*args, &blk); end
+
+  def model_class_name(*args, &blk); end
+
+  def model_module_name(*args, &blk); end
+
+  def model_query_methods_returning_assoc_relation_module_name(*args, &blk); end
+
+  def model_query_methods_returning_relation_module_name(*args, &blk); end
+
+  def model_relation_class_name(*args, &blk); end
+
+  def model_relation_type_alias(*args, &blk); end
+
+  def model_relation_type_class_name(*args, &blk); end
+end
+
+module SorbetRails::ModelUtils
+  extend ::T::Sig
+  extend ::T::Helpers
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+module SorbetRails::PluckToTStruct
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class SorbetRails::Railtie
+end
+
+class SorbetRails::Railtie
+end
+
+module SorbetRails::SorbetUtils
+  include ::Kernel
+end
+
+class SorbetRails::SorbetUtils::ParsedParamDef
+  def default(); end
+
+  def default=(val); end
+
+  def initialize(hash=T.unsafe(nil)); end
+
+  def kind(); end
+
+  def name(); end
+
+  def prefix(); end
+
+  def prefix=(val); end
+
+  def suffix(); end
+
+  def suffix=(val); end
+
+  def type_str(); end
+end
+
+class SorbetRails::SorbetUtils::ParsedParamDef
+  def self.inherited(s); end
+end
+
+class SorbetRails::SorbetUtils::UnexpectedParam
+end
+
+class SorbetRails::SorbetUtils::UnexpectedParam
+end
+
+module SorbetRails::SorbetUtils
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.extract_default_value_for_params!(*args, &blk); end
+
+  def self.get_ordered_parameters_with_type(*args, &blk); end
+
+  def self.node_to_s(*args, &blk); end
+
+  def self.parameters_from_method_def(*args, &blk); end
+end
+
+class SorbetRails::TypedEnumConfig
+  def class_name(); end
+
+  def initialize(hash=T.unsafe(nil)); end
+
+  def strict_mode(); end
+end
+
+class SorbetRails::TypedEnumConfig
+  def self.inherited(s); end
+end
+
+module SorbetRails::Utils
+end
+
+module SorbetRails::Utils
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.rails_eager_load_all!(*args, &blk); end
+
+  def self.valid_method_name?(*args, &blk); end
+end
+
+module SorbetRails
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.config(&blk); end
+
+  def self.configure(*args, &blk); end
+
+  def self.register_configured_plugins(&blk); end
+end
+
 class SortedSet
   def initialize(*args, &block); end
 end
@@ -37654,6 +41606,11 @@ Struct::Tms = Process::Tms
 
 class SynchronizedDelegator
   RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
+end
+
+class TA
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 class Tempfile
@@ -38043,6 +42000,48 @@ end
 
 class TrueClass
   include ::JSON::Ext::Generator::GeneratorMethods::TrueClass
+  include ::SafeType::BooleanMixin
+end
+
+module TypeCoerce
+end
+
+class TypeCoerce::CoercionError
+end
+
+class TypeCoerce::CoercionError
+end
+
+module TypeCoerce::Configuration
+end
+
+module TypeCoerce::Configuration
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.raise_coercion_error(*args, &blk); end
+
+  def self.raise_coercion_error=(raise_coercion_error); end
+end
+
+class TypeCoerce::Converter
+  def from(args, raise_coercion_error: T.unsafe(nil)); end
+
+  def initialize(type); end
+
+  def new(); end
+  PRIMITIVE_TYPES = ::T.let(nil, ::T.untyped)
+end
+
+class TypeCoerce::Converter
+end
+
+class TypeCoerce::ShapeError
+end
+
+class TypeCoerce::ShapeError
+end
+
+module TypeCoerce
+  def self.[](type); end
 end
 
 module URI
