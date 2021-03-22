@@ -24,6 +24,9 @@ default: &default
 development:
   <<: *default
   database: bill_buck_generator_development
+  host: <%= ENV.fetch('BILL_BUCK_GENERATOR_DATABASE_HOST', 'localhost') %>
+  username: <%= ENV.fetch('BILL_BUCK_GENERATOR_DATABASE_USER', 'bill_buck_generator') %>
+  password: <%= ENV['BILL_BUCK_GENERATOR_DATABASE_PASSWORD'] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -81,5 +84,3 @@ test:
 production:
   <<: *default
   database: bill_buck_generator_production
-  username: bill_buck_generator
-  password: <%= ENV['BILL_BUCK_GENERATOR_DATABASE_PASSWORD'] %>
