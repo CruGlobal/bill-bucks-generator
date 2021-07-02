@@ -37,7 +37,7 @@ class LoginController < ApplicationController
 
   def setup_session
     okta_token = OktaOauth.exchange_code(params[:code].to_s)
-    session[:okta_access_token] = okta_token.access_token
+    session[:okta_id_token] = okta_token.id_token
     session[:okta_expires_at] = okta_token.expires_at.to_i
   end
 end

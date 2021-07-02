@@ -1,5 +1,6 @@
 module ApplicationHelper
   def current_user
-    session[:okta_access_token]
+    id_token = session[:okta_id_token]
+    User.build(id_token) unless id_token.nil?
   end
 end
