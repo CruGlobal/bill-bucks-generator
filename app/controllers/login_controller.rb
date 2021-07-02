@@ -19,7 +19,7 @@ class LoginController < ApplicationController
 
   def clear
     session.clear
-    render plain: 'OK'
+    redirect_to bucks_new_url
   end
 
   private

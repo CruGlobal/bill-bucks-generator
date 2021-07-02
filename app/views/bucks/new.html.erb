@@ -2,6 +2,11 @@
 <header>
   <div class="container">
     <h1>Make a Bill</h1>
+    <% if current_user %>
+      <%= link_to 'Logout', logout_path%>
+    <% else %>
+      <%= link_to "Login", login_path %>
+    <% end %>
   </div>
 </header>
 <!-- Page Body -->
