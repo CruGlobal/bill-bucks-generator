@@ -2,7 +2,7 @@
 class Buck < ApplicationRecord # extra form inputs we don't care about
   extend T::Sig
 
-  sig {returns(T.nilable(String))}
+  sig { returns(T.nilable(String)) }
   attr_accessor :dept
 
   TO_POINT_SIZE = 22
@@ -11,12 +11,12 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
   # validate so we don't count half-filled bills on stats
   validates :to, :from, presence: true
 
-  sig {returns(String)}
+  sig { returns(String) }
   def to_blob
     build_image.to_blob
   end
 
-  sig {params(text: T.nilable(String), width: Integer).returns(String)}
+  sig { params(text: T.nilable(String), width: Integer).returns(String) }
   def fit_text(text, width)
     text = text.to_s
     return text if text.strip.blank?
@@ -48,7 +48,7 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
 
   private
 
-  sig {returns(Magick::ImageList)}
+  sig { returns(Magick::ImageList) }
   def build_image
     img = T.unsafe(bill_or_vonette)
 
@@ -64,7 +64,7 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
     img
   end
 
-  sig {returns(Magick::ImageList)}
+  sig { returns(Magick::ImageList) }
   def bill_or_vonette
     if dept == 'irt'
       filename = buck_type == 'mag' ? 'mag' : 'cap'
@@ -74,7 +74,7 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
     Magick::ImageList.new("public/#{filename}.png")
   end
 
-  sig {returns(Magick::Draw)}
+  sig { returns(Magick::Draw) }
   def text_instance
     txt = Magick::Draw.new
     txt.pointsize = FOR_POINT_SIZE
@@ -82,7 +82,7 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
     txt
   end
 
-  sig {params(text: String, width: Integer).returns(T::Boolean)}
+  sig { params(text: String, width: Integer).returns(T::Boolean) }
   def text_fit?(text, width)
     tmp_image = Magick::Image.new(width, 500)
     drawing = text_instance

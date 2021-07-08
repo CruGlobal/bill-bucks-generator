@@ -1,2 +1,3 @@
 # typed: strict
-module ApplicationHelper; end
+module ApplicationHelper
+end
