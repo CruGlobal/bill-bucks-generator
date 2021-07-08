@@ -24,7 +24,7 @@ module ActiveStorage::Blob::CustomFinderMethods
   def find_by_id!(id); end
 end
 
-class ActiveStorage::Blob < ActiveRecord::Base
+class ActiveStorage::Blob < ActiveStorage::Record
   include ActiveStorage::Blob::GeneratedAssociationMethods
   extend ActiveStorage::Blob::CustomFinderMethods
   extend ActiveStorage::Blob::QueryMethodsReturningRelation
@@ -358,6 +358,15 @@ module ActiveStorage::Blob::GeneratedAssociationMethods
 
   sig { returns(T.nilable(::ActiveStorage::Blob)) }
   def reload_preview_image_blob; end
+
+  sig { returns(::ActiveStorage::VariantRecord::ActiveRecord_Associations_CollectionProxy) }
+  def variant_records; end
+
+  sig { returns(T::Array[T.untyped]) }
+  def variant_record_ids; end
+
+  sig { params(value: T::Enumerable[::ActiveStorage::VariantRecord]).void }
+  def variant_records=(value); end
 
   sig { returns(T.nilable(ActiveStorage::Attached::One)) }
   def preview_image; end
