@@ -13,7 +13,7 @@ namespace :sorbet do
 
         # We don't want to include the RBI files for these gems since they're not useful.
         puts 'Removing unwanted gem definitions from sorbet-typed...'
-        %w[rspec-core rake rubocop].each do |gem|
+        %w[rspec-core rake].each do |gem|
           FileUtils.remove_dir(
             Rails.root.join("sorbet/rbi/sorbet-typed/lib/#{gem}")
           )

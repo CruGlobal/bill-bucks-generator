@@ -104,7 +104,6 @@ GEM
       racc (~> 1.4)
     nokogiri (1.11.2-x86_64-linux)
       racc (~> 1.4)
-    parallel (1.19.2)
     parlour (6.0.1)
       commander (~> 4.5)
       parser
@@ -158,7 +157,6 @@ GEM
     rainbow (3.0.0)
     rake (13.0.3)
     regexp_parser (1.8.1)
-    rexml (3.2.4)
     rmagick (4.2.2)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
@@ -177,21 +175,6 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
-    rubocop (0.92.0)
-      parallel (~> 1.10)
-      parser (>= 2.7.1.5)
-      rainbow (>= 2.2.2, < 4.0)
-      regexp_parser (>= 1.7)
-      rexml
-      rubocop-ast (>= 0.5.0)
-      ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (0.8.0)
-      parser (>= 2.7.1.5)
-    rubocop-performance (1.8.1)
-      rubocop (>= 0.87.0)
-      rubocop-ast (>= 0.4.0)
-    ruby-progressbar (1.10.1)
     rubyzip (2.3.0)
     safe_type (1.1.1)
     selenium-webdriver (3.142.7)
@@ -233,9 +216,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    standard (0.7)
-      rubocop (= 0.92)
-      rubocop-performance (= 1.8.1)
     tapioca (0.4.23)
       bundler (>= 1.17.3)
       parlour (>= 2.1.0)
@@ -248,7 +228,6 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.9)
       thread_safe (~> 0.1)
-    unicode-display_width (1.7.0)
     web-console (4.0.4)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -289,14 +268,13 @@ DEPENDENCIES
   sorbet-runtime
   spring
   spring-commands-rspec
-  standard
   tapioca
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
 
 RUBY VERSION
-   ruby 2.7.4p191
+   ruby 3.0.2p107
 
 BUNDLED WITH
    2.2.22
