@@ -15,7 +15,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
       - uses: actions/checkout@v2
@@ -28,4 +28,4 @@ jobs:
         run: bundle install --jobs 4 --retry 3
 
       - name: Run sorbet
-        run: bundle exec srb tc
+        run: bin/bundle exec srb tc
