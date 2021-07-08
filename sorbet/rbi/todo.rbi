@@ -4,5 +4,6 @@
 
 # typed: strict
 
+module ::RuboCop::AST::Ext::Range; end
 module ::Spring; end
 module T::Private::Methods::Signature; end
