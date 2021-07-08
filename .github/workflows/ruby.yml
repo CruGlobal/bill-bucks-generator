@@ -15,7 +15,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04 # use 18 because version 20 didn't have helvetica font
 
     services:
       postgres:
@@ -29,6 +29,9 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+
+      - name: Install ghostscript
+        run: sudo apt-get install ghostscript
 
       - name: Install PostgreSQL client
         uses: ryankurte/action-apt@v0.2.0
