@@ -30,6 +30,8 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'sorbet'
+  gem 'tapioca'
+  gem 'dalli'
 end
 
 group :test do

@@ -5,7 +5,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/edit/master/lib/activerecord/~>6.0.0/activerecord.rbi
 #
-# typed: strong
+# typed: false
 
 class ActiveRecord::Migration::Compatibility::V5_1 < ActiveRecord::Migration::Compatibility::V5_2; end
 
@@ -155,7 +155,8 @@ class ActiveRecord::Migration::Current < ActiveRecord::Migration
       null: T::Boolean,
       precision: Integer,
       scale: Integer,
-      comment: String
+      comment: String,
+      array: T::Boolean
     ).void
   end
   def add_column(
@@ -167,7 +168,8 @@ class ActiveRecord::Migration::Current < ActiveRecord::Migration
     null: nil,
     precision: nil,
     scale: nil,
-    comment: nil
+    comment: nil,
+    array: nil
   ); end
 
   sig do
