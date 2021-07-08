@@ -30,8 +30,8 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Install xmllint
-        run: apt-get install ghostscript
+      - name: Install ghostscript
+        run: sudo apt-get install ghostscript
 
       - name: Install PostgreSQL client
         uses: ryankurte/action-apt@v0.2.0
