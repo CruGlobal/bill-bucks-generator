@@ -102,6 +102,8 @@ GEM
     nokogiri (1.11.2)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    nokogiri (1.11.2-x86_64-linux)
+      racc (~> 1.4)
     parallel (1.19.2)
     parlour (6.0.1)
       commander (~> 4.5)
@@ -209,7 +211,13 @@ GEM
       sorbet-runtime (>= 0.5)
     sorbet-runtime (0.5.6485)
     sorbet-static (0.5.6485-universal-darwin-14)
+    sorbet-static (0.5.6485-universal-darwin-15)
+    sorbet-static (0.5.6485-universal-darwin-16)
+    sorbet-static (0.5.6485-universal-darwin-17)
+    sorbet-static (0.5.6485-universal-darwin-18)
+    sorbet-static (0.5.6485-universal-darwin-19)
     sorbet-static (0.5.6485-universal-darwin-20)
+    sorbet-static (0.5.6485-x86_64-linux)
     spoom (1.0.9)
       colorize
       sorbet (~> 0.5.5)
@@ -263,6 +271,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap (>= 1.4.2)
