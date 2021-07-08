@@ -473,6 +473,9 @@ module ActionMailbox::InboundEmail::GeneratedAssociationMethods
   sig { params(value: T.nilable(::ActiveStorage::Attachment)).void }
   def raw_email_attachment=(value); end
 
+  sig { returns(T.nilable(::ActiveStorage::Attachment)) }
+  def reload_raw_email_attachment; end
+
   sig { returns(T.nilable(::ActiveStorage::Blob)) }
   def raw_email_blob; end
 
@@ -487,6 +490,9 @@ module ActionMailbox::InboundEmail::GeneratedAssociationMethods
 
   sig { params(value: T.nilable(::ActiveStorage::Blob)).void }
   def raw_email_blob=(value); end
+
+  sig { returns(T.nilable(::ActiveStorage::Blob)) }
+  def reload_raw_email_blob; end
 
   sig { returns(T.nilable(ActiveStorage::Attached::One)) }
   def raw_email; end

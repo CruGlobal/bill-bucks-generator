@@ -23,9 +23,7 @@ namespace :sorbet do
         system('bundle exec tapioca sync')
 
         # Generate Sorbet Rails RBIs.
-        system('bundle exec rake rails_rbi:routes')
-        system('bundle exec rake rails_rbi:helpers')
-        system('bundle exec rake rails_rbi:custom')
+        system('bundle exec rake rails_rbi:all')
 
         # Generate a TODO RBI for constants Tapioca doesn't understand.
         system('bundle exec tapioca todo')

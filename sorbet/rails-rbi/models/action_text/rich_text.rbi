@@ -335,6 +335,9 @@ module ActionText::RichText::GeneratedAssociationMethods
   sig { params(value: T.untyped).void }
   def record=(value); end
 
+  sig { returns(T.untyped) }
+  def reload_record; end
+
   sig { returns(T.nilable(ActiveStorage::Attached::Many)) }
   def embeds; end
 
