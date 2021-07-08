@@ -1,0 +1,10 @@
+# See https://gizt-scm.com/docs/gitattributes for more about git attribute files.
+
+# Mark the yarn lockfile as having been generated.
+yarn.lock linguist-generated
+
+# Mark any vendored files as having been vendored.
+vendor/* linguist-vendored
+
+sorbet/**/*.rbi -diff -merge
+sorbet/**/*.rbi linguist-generated=true
