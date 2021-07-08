@@ -3,3 +3,4 @@ node_modules
 public/packs/
 public/packs-test/
 tmp
+sorbet/**/*.rbi
