@@ -30,6 +30,9 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Install ghostscript
+        run: sudo apt-get install ghostscript
+
       - name: Install PostgreSQL client
         uses: ryankurte/action-apt@v0.2.0
         with:
