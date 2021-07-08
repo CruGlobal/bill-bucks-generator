@@ -31,7 +31,7 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
     words.each_with_index do |word, i|
       # no need to add white-space before the first word
       unless i == 0
-        previous_line = new_text.split("\n").last || ""
+        previous_line = new_text.split("\n").last || ''
         tmp_line = previous_line + separator + word
 
         # will the new word cause a wrap around

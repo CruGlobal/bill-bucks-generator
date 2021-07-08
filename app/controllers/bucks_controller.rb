@@ -53,15 +53,10 @@ class BucksController < ApplicationController
     return @image_params if @image_params
     @image_params = T.let({}, T.nilable(T::Hash[T.untyped, T.untyped]))
     @image_params =
-      params.permit(
-        :to,
-        :from,
-        :for_message,
-        :buck_type,
-        :commit,
-        :format,
-        :dept
-      ).to_h.except(:commit, :format)
+      params
+        .permit(:to, :from, :for_message, :buck_type, :commit, :format, :dept)
+        .to_h
+        .except(:commit, :format)
   end
 
   sig {void}
