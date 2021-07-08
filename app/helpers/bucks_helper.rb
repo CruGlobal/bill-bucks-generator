@@ -14,6 +14,6 @@ module BucksHelper
 
   sig {returns(T.nilable(String))}
   def current_dept
-    params[:dept]&.to_s
+    params[:dept]
   end
 end
