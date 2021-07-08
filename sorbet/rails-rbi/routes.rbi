@@ -123,6 +123,20 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def rails_conductor_inbound_email_url(*args, **kwargs); end
 
+  # Sigs for route /rails/conductor/action_mailbox/inbound_emails/sources/new(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_rails_conductor_inbound_email_source_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_rails_conductor_inbound_email_source_url(*args, **kwargs); end
+
+  # Sigs for route /rails/conductor/action_mailbox/inbound_emails/sources(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def rails_conductor_inbound_email_sources_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def rails_conductor_inbound_email_sources_url(*args, **kwargs); end
+
   # Sigs for route /rails/conductor/action_mailbox/:inbound_email_id/reroute(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def rails_conductor_inbound_email_reroute_path(*args, **kwargs); end
@@ -130,19 +144,33 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def rails_conductor_inbound_email_reroute_url(*args, **kwargs); end
 
-  # Sigs for route /rails/active_storage/blobs/:signed_id/*filename(.:format)
+  # Sigs for route /rails/active_storage/blobs/redirect/:signed_id/*filename(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def rails_service_blob_path(*args, **kwargs); end
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def rails_service_blob_url(*args, **kwargs); end
 
-  # Sigs for route /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format)
+  # Sigs for route /rails/active_storage/blobs/proxy/:signed_id/*filename(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def rails_service_blob_proxy_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def rails_service_blob_proxy_url(*args, **kwargs); end
+
+  # Sigs for route /rails/active_storage/representations/redirect/:signed_blob_id/:variation_key/*filename(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def rails_blob_representation_path(*args, **kwargs); end
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def rails_blob_representation_url(*args, **kwargs); end
+
+  # Sigs for route /rails/active_storage/representations/proxy/:signed_blob_id/:variation_key/*filename(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def rails_blob_representation_proxy_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def rails_blob_representation_proxy_url(*args, **kwargs); end
 
   # Sigs for route /rails/active_storage/disk/:encoded_key/*filename(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
