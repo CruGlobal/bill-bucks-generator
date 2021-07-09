@@ -1,3 +1,4 @@
+# typed: true
 class BillMailer < ApplicationMailer
   def bill(to_name:, to_email:, from:, for_message:, count:)
     image_params = {
