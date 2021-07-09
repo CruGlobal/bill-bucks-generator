@@ -1,1 +1,3 @@
-class ApplicationController < ActionController::Base; end
+# typed: strict
+class ApplicationController < ActionController::Base
+end

@@ -34,3 +34,5 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+sorbet/rbi/hidden-definitions/errors.txt
