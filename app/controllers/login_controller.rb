@@ -1,4 +1,4 @@
-# typed: false
+# typed: true
 class LoginController < ApplicationController
   def create
     authorize_params = OktaOauth.authorize_params(prompt: params[:prompt]&.to_s)
@@ -28,7 +28,6 @@ class LoginController < ApplicationController
   def error_response?
     return unless params[:error]
 
-    Rollbar.error(params[:error], error_description: params[:error_description])
     true
   end
 
