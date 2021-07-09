@@ -14,12 +14,10 @@ class User
     parse_attributes_from_token
   end
 
-  sig {returns(T::Boolean)}
+  sig { returns(T::Boolean) }
   def cru?
-    valid_suffixes = ["@cru.org", "@jesusfilm.org"]
-    valid_suffixes.any? do |suffix|
-      @email.ends_with?(suffix)
-    end
+    valid_suffixes = %w[@cru.org @jesusfilm.org]
+    valid_suffixes.any? { |suffix| @email.ends_with?(suffix) }
   end
 
   private
@@ -36,4 +34,3 @@ class User
     @email = jwt_json[:preferred_username]
   end
 end
-
