@@ -22,6 +22,7 @@ gem 'rexml'
 group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails'
+  gem 'dotenv-rails', '~> 2.7.6', require: 'dotenv/rails-now'
 end
 
 group :development do

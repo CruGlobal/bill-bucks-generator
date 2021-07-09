@@ -46,6 +46,34 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def irt_url(*args, **kwargs); end
 
+  # Sigs for route /login(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def login_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def login_url(*args, **kwargs); end
+
+  # Sigs for route /logout(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def logout_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def logout_url(*args, **kwargs); end
+
+  # Sigs for route /login_callback(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def login_callback_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def login_callback_url(*args, **kwargs); end
+
+  # Sigs for route /login_error(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def login_error_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def login_error_url(*args, **kwargs); end
+
   # Sigs for route /
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def root_path(*args, **kwargs); end
