@@ -1,13 +1,16 @@
 <!-- Page Header -->
 <header>
   <div class="container">
-    <h1>Make a Bill</h1>
+    <h1 style="display: inline;">Make a Bill</h1>
+    <div class="login-status">
     <% if current_user %>
-      <%= link_to 'Logout', logout_path%>
       <%= "Welcome #{current_user.name}" %>
+      <br>
+      <%= link_to 'Logout', logout_path%>
     <% else %>
       <%= link_to "Login", login_path %>
     <% end %>
+    </div>
   </div>
 </header>
 <!-- Page Body -->
