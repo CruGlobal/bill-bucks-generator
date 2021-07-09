@@ -1,3 +1,4 @@
+# typed: false
 class LoginController < ApplicationController
   def create
     authorize_params = OktaOauth.authorize_params(prompt: params[:prompt]&.to_s)

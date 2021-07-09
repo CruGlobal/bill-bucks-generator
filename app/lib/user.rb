@@ -1,3 +1,4 @@
+# typed: true
 class User
   def self.build(id_token)
     new(id_token)
