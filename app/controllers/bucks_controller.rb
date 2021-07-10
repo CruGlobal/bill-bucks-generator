@@ -28,10 +28,7 @@ class BucksController < ApplicationController
   sig { void }
   def img
     send_data build_buck.to_blob,
-              filename:
-                "#{number}_#{image_params[:to]}_from_#{
-                  image_params[:from]
-                }.png",
+              filename: build_buck.filename,
               type: 'image/png',
               disposition: 'inline'
   end
@@ -41,11 +38,6 @@ class BucksController < ApplicationController
   sig { returns(Buck) }
   def build_buck
     Buck.new(image_params)
-  end
-
-  sig { returns(Integer) }
-  def number
-    build_buck.buck_type == 'vonette' ? 5 : 1
   end
 
   sig { returns(T::Hash[T.untyped, T.untyped]) }
@@ -61,11 +53,8 @@ class BucksController < ApplicationController
 
   sig { void }
   def bill_counter
-    if session[:bill_count].nil? || new_quarter?
-      session[:bill_count] = number
-    else
-      session[:bill_count] += number
-    end
+    session[:bill_count] = 0 if session[:bill_count].nil? || new_quarter?
+    session[:bill_count] += build_buck.number
 
     session[:last_creation] = Date.today
   end

@@ -46,6 +46,20 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
     new_text
   end
 
+  sig { params(index: T.nilable(Integer)).returns(String) }
+  def filename(index = nil)
+    if index.present?
+      "#{number}_#{to}_from_#{from}_#{index}.png"
+    else
+      "#{number}_#{to}_from_#{from}.png"
+    end
+  end
+
+  sig { returns(Integer) }
+  def number
+    buck_type == 'vonette' ? 5 : 1
+  end
+
   private
 
   sig { returns(Magick::ImageList) }
