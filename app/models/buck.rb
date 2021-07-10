@@ -59,11 +59,9 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
 
   sig { params(index: T.nilable(Integer)).returns(String) }
   def filename(index = nil)
-    if index.present?
-      "#{number}_#{to}_from_#{from}_#{index}.png"
-    else
-      "#{number}_#{to}_from_#{from}.png"
-    end
+    date = Date.today.strftime('%Y%m%d')
+    date = date + index.to_s if index.present?
+    "#{number}_#{to}_from_#{from}_#{date}.png"
   end
 
   sig { returns(Integer) }
