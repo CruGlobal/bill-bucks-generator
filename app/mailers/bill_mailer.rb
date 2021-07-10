@@ -8,7 +8,7 @@ class BillMailer < ApplicationMailer
         to_email: String,
         from: String,
         for_message: String,
-        count: T.nilable(Integer),
+        count: Integer,
         from_email: T.nilable(String)
       )
       .returns(Mail::Message)
@@ -29,7 +29,11 @@ class BillMailer < ApplicationMailer
 
   private
 
-  def bucks(to_name:, from:, for_message:, count:)
+  sig do
+    params(to_name: String, from: String, for_message: String, count: Integer)
+      .returns(T::Hash[String, Buck])
+  end
+  def bucks(to_name:, from:, for_message:, count: 1)
     image_params = { to: to_name, from: from, for_message: for_message }
     fives = count / 5
     ones = count % 5

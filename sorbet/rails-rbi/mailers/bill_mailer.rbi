@@ -4,12 +4,13 @@
 class BillMailer
   sig do
     params(
-      to_name: T.untyped,
-      to_email: T.untyped,
-      from: T.untyped,
-      for_message: T.untyped,
-      count: T.untyped
+      to_name: String,
+      to_email: String,
+      from: String,
+      for_message: String,
+      count: Integer,
+      from_email: T.nilable(String)
     ).returns(ActionMailer::MessageDelivery)
   end
-  def self.bill(to_name:, to_email:, from:, for_message:, count:); end
+  def self.bill(to_name:, to_email:, from:, for_message:, count: 1, from_email: nil); end
 end
