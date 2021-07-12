@@ -6,11 +6,15 @@ class BillMailerPreview < ActionMailer::Preview
   sig { returns(ActionMailer::MessageDelivery) }
   def bill
     BillMailer.bill(
-      to_name: 'Bill',
+      buck_wad:
+        BuckWad.new(
+          to: 'Bill',
+          from: 'Vonette',
+          for_message: 'Being Awesome!',
+          count: 13
+        ),
       to_email: 'bill@cru.org',
-      from: 'Vonette',
-      for_message: 'Helping me learn to backflip!',
-      count: 7
+      from_email: 'vonette@cru.org'
     )
   end
 end
