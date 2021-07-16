@@ -27,6 +27,7 @@ header {
 
 h1 {
   margin: 0;
+  display: inline;
 }
 
 input,
@@ -74,4 +75,10 @@ footer {
 
 .love-font {
   font-family: "love", "Times New Roman", Times, serif;
+}
+
+.login-status {
+  float: right;
+  height: 3rem;
+  text-align: right;
 }
