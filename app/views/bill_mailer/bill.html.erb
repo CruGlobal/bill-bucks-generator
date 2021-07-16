@@ -1,0 +1,5 @@
+<p>Yay! Someone sent you some Bill Bucks!!!</p>
+
+<% @bucks.keys.each do |filename| %>
+<%= image_tag(attachments[filename].url, size: "300x288") %>
+<% end %>

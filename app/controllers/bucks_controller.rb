@@ -1,51 +1,86 @@
-# typed: strict
+# typed: true
 class BucksController < ApplicationController
   extend T::Sig
 
   sig { void }
   def generate
-    bill_counter if build_buck.save
+    validate_email_requirements if send_email?
+    redirect_to_new and return if flash[:error].present?
+    send_email if send_email?
+
+    bill_counter if build_wad.save
     save_from_to_session
 
-    redirect_to bucks_new_path(
-                  params:
-                    image_params.slice(
-                      :to,
-                      :from,
-                      :for_message,
-                      :buck_type,
-                      :dept
-                    )
-                )
+    redirect_to_new
   end
 
   sig { void }
   def new
-    @image_params =
-      { from: session[:previous_from] }.merge(image_params.symbolize_keys)
+    @wad = build_wad
   end
 
   sig { void }
   def img
     send_data build_buck.to_blob,
-              filename:
-                "#{number}_#{image_params[:to]}_from_#{
-                  image_params[:from]
-                }.png",
+              filename: build_buck.filename,
               type: 'image/png',
               disposition: 'inline'
   end
 
   private
 
-  sig { returns(Buck) }
-  def build_buck
-    Buck.new(image_params)
+  sig { returns(T::Boolean) }
+  def send_email?
+    params[:commit].to_s == 'Send Email'
   end
 
-  sig { returns(Integer) }
-  def number
-    build_buck.buck_type == 'vonette' ? 5 : 1
+  sig { void }
+  def redirect_to_new
+    new_params = %i[to from for_message count dept to_email]
+    redirect_to bucks_new_path(params: wad_params.slice(*new_params))
+  end
+
+  sig { void }
+  def validate_email_requirements
+    if helpers.current_user.blank?
+      flash[:error] = 'You must be logged in to send emails'
+    elsif !EmailValidator.cru?(wad_params[:to_email])
+      flash[:error] = 'You may only send emails to Cru email addresses'
+    end
+  end
+
+  sig { void }
+  def send_email
+    BillMailer.bill(buck_wad: build_wad, to_email: wad_params[:to_email].to_s)
+      .deliver_now
+    flash[:notice] = 'Email successfully sent!'
+  end
+
+  sig { returns(BuckWad) }
+  def build_wad
+    @wad ||=
+      BuckWad.new(**wad_params.slice(:to, :from, :for_message, :count, :dept))
+  end
+
+  sig { returns(Buck) }
+  def build_buck
+    @buck ||= Buck.new(image_params)
+  end
+
+  sig { returns(T::Hash[Symbol, T.untyped]) }
+  def wad_params
+    return @wad_params if @wad_params
+    @wad_params = T.let({}, T.nilable(T::Hash[Symbol, T.untyped]))
+    @wad_params =
+      params
+        .permit(:to, :from, :for_message, :count, :commit, :dept, :to_email)
+        .to_h
+        .except(:commit)
+        .symbolize_keys
+
+    # maintain support for old links (since we have asked people to send us bills in the past)
+    @wad_params[:count] = 5 if params[:buck_type].in?(%w[vonette mag])
+    @wad_params
   end
 
   sig { returns(T::Hash[T.untyped, T.untyped]) }
@@ -61,11 +96,8 @@ class BucksController < ApplicationController
 
   sig { void }
   def bill_counter
-    if session[:bill_count].nil? || new_quarter?
-      session[:bill_count] = number
-    else
-      session[:bill_count] += number
-    end
+    session[:bill_count] = 0 if session[:bill_count].nil? || new_quarter?
+    session[:bill_count] += wad_params[:count].to_i
 
     session[:last_creation] = Date.today
   end
@@ -81,6 +113,6 @@ class BucksController < ApplicationController
 
   sig { void }
   def save_from_to_session
-    session[:previous_from] = image_params[:from]
+    session[:previous_from] = wad_params[:from]
   end
 end

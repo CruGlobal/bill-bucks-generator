@@ -18,32 +18,50 @@
   <div class="container">
     <div class="row">
       <div class="col-sm">
+        <% if flash[:error] %>
+        <div class="alert alert-danger" role="alert">
+          <%= flash[:error] %>
+        </div>
+      <% end %>
+      <% if flash[:notice] %>
+        <div class="alert alert-success" role="alert">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
         <%= form_with(url: bucks_generate_path, local: true) do |f| %>
           <div class="form-group">
             <%= label_tag(:to, "To:") %>
             <br>
-            <%= text_field_tag(:to, @image_params[:to], class: "form-control") %>
+            <%= text_field_tag(:to, @wad_params[:to], class: "form-control") %>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag(:to_email, "To Email: (optional)") %>
+            <br>
+            <%= text_field_tag(:to_email, @wad_params[:to_email], class: "form-control") %>
           </div>
 
           <div class="form-group">
             <%= label_tag(:from, "From:") %>
             <br>
-            <%= text_field_tag(:from, @image_params[:from], class: "form-control") %>
+            <%= text_field_tag(:from, @wad_params[:from], class: "form-control") %>
           </div>
 
           <div class="form-group">
             <%= label_tag(:for_message, "For:") %>
             <br>
-            <%= text_area_tag(:for_message, @image_params[:for_message], maxlength: 275, size: 400, rows: 8, class: "form-control") %>
+            <%= text_area_tag(:for_message, @wad_params[:for_message], maxlength: 275, size: 400, rows: 8, class: "form-control") %>
           </div>
 
-          <%= radio_button_tag(:buck_type, single_note_name, @image_params[:buck_type] != five_note_name, class: "radio") %>
-          <%= label_tag(:buck_type_bill, "#{single_note_name.capitalize} (1)") %>
-          <%= radio_button_tag(:buck_type, five_note_name, @image_params[:buck_type] == five_note_name, class: "radio") %>
-          <%= label_tag(:buck_type_vonette, "#{five_note_name.capitalize} (5)") %>
+          <div class="form-group">
+            <%= label_tag(:count, "Count:") %>
+            <br>
+            <%= text_field_tag(:count, @wad_params[:count] || 1, type: :number, class: "form-control") %>
+          </div>
           <%= hidden_field_tag :dept, current_dept %>
           <br>
-          <%= f.submit("Generate", :class =>"btn btn-outline-primary") %>
+          <%= f.submit("Generate Images", :class =>"btn btn-outline-primary") %>
+          <%= f.submit("Send Email", :class =>"btn btn-outline-primary") %>
           <%= link_to "Clear", "?dept=#{current_dept}&to=", class: "btn btn-outline-danger"%>
           <p><%= "You have generated #{pluralize(session[:bill_count], 'bill')} this quarter." %></p>
           <p><%= link_to "How to send (video)", "/how_to_share_mac.mp4" %></p>
@@ -52,7 +70,9 @@
 
       <div class="col-md">
         <div class="img">
-          <%= image_tag(bucks_img_path(@image_params.merge(format: :png)), id: "img") %>
+          <% @wad.bucks.each do |buck| %>
+          <%= image_tag(bucks_img_path(buck.image_params.merge(format: :png)), id: "img") %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -64,7 +84,7 @@
   <div class="container">
     <div class="made-with-love">
       Made with <span class="heart-btn">❤</span> by
-      <a href="?to=Shelby+Benton&for_message=Your+hard+work&buck_type=vonette">Shelby</a>
+      <a href="?to=Shelby+Benton&for_message=Your+hard+work&count=5">Shelby</a>
       and
       <a href="?to=Spencer+Oberstadt&for_message=Being+great+at+wasting+time%21+🕺🐙">Spencer</a>
     </div>
