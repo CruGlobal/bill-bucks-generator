@@ -16,6 +16,17 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
     build_image.to_blob
   end
 
+  sig { returns(T::Hash[Symbol, T.untyped]) }
+  def image_params
+    {
+      to: to,
+      from: from,
+      for_message: for_message,
+      buck_type: buck_type,
+      dept: dept
+    }
+  end
+
   sig { params(text: T.nilable(String), width: Integer).returns(String) }
   def fit_text(text, width)
     text = text.to_s
@@ -81,7 +92,7 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
   sig { returns(Magick::ImageList) }
   def bill_or_vonette
     if dept == 'irt'
-      filename = buck_type == 'mag' ? 'mag' : 'cap'
+      filename = buck_type == 'vonette' ? 'mag' : 'cap'
     else
       filename = buck_type == 'vonette' ? 'vonette' : 'bill'
     end

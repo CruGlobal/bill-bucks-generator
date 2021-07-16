@@ -4,8 +4,9 @@ class BuckWad
 
   attr_reader :bucks
 
-  def initialize(to:, from:, for_message:, count:)
-    image_params = { to: to, from: from, for_message: for_message }
+  def initialize(to:, from:, for_message:, count:, dept: "")
+    image_params = { to: to, from: from, for_message: for_message, dept: dept }
+    count = count.to_i
     number_of_vonetts = count / 5
     number_of_bills = count % 5
 

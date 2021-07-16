@@ -1,28 +1,25 @@
-# typed: strict
+# typed: true
 class BucksController < ApplicationController
   extend T::Sig
 
   sig { void }
   def generate
-    bill_counter if build_buck.save
+    @bucks = build_wad.bucks
+    bill_counter if @bucks.all?(&:save)
     save_from_to_session
 
     redirect_to bucks_new_path(
                   params:
-                    image_params.slice(
-                      :to,
-                      :from,
-                      :for_message,
-                      :buck_type,
-                      :dept
-                    )
+                    wad_params.slice(:to, :from, :for_message, :count, :dept)
                 )
   end
 
   sig { void }
   def new
-    @image_params =
-      { from: session[:previous_from] }.merge(image_params.symbolize_keys)
+    @wad = build_wad
+    # wad_params
+    # @image_params =
+    #   { from: session[:previous_from] }.merge(image_params.symbolize_keys)
   end
 
   sig { void }
@@ -35,9 +32,26 @@ class BucksController < ApplicationController
 
   private
 
+  sig { returns(BuckWad) }
+  def build_wad
+    BuckWad.new(**wad_params.slice(:to, :from, :for_message, :count, :dept))
+  end
+
   sig { returns(Buck) }
   def build_buck
-    Buck.new(image_params)
+    @buck ||= Buck.new(image_params)
+  end
+
+  sig { returns(T::Hash[Symbol, T.untyped]) }
+  def wad_params
+    return @wad_params if @wad_params
+    @wad_params = T.let({}, T.nilable(T::Hash[Symbol, T.untyped]))
+    @wad_params =
+      params
+        .permit(:to, :from, :for_message, :count, :commit, :dept)
+        .to_h
+        .except(:commit)
+        .symbolize_keys
   end
 
   sig { returns(T::Hash[T.untyped, T.untyped]) }
@@ -54,7 +68,7 @@ class BucksController < ApplicationController
   sig { void }
   def bill_counter
     session[:bill_count] = 0 if session[:bill_count].nil? || new_quarter?
-    session[:bill_count] += build_buck.number
+    session[:bill_count] += wad_params[:count].to_i
 
     session[:last_creation] = Date.today
   end
