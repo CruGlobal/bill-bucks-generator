@@ -31,15 +31,18 @@ class BucksController < ApplicationController
 
   private
 
+  sig { returns(T::Boolean) }
   def send_email?
     params[:commit].to_s == 'Send Email'
   end
 
+  sig { void }
   def redirect_to_new
     new_params = %i[to from for_message count dept to_email]
     redirect_to bucks_new_path(params: wad_params.slice(*new_params))
   end
 
+  sig { void }
   def validate_email_requirements
     if helpers.current_user.blank?
       flash[:error] = 'You must be logged in to send emails'
@@ -48,6 +51,7 @@ class BucksController < ApplicationController
     end
   end
 
+  sig { void }
   def send_email
     BillMailer.bill(buck_wad: build_wad, to_email: wad_params[:to_email].to_s)
       .deliver_now
