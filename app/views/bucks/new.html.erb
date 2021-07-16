@@ -40,12 +40,8 @@
           <div class="form-group">
             <%= label_tag(:count, "Count:") %>
             <br>
-            <%= text_field_tag(:count, @wad_params[:count], type: :number, class: "form-control") %>
+            <%= text_field_tag(:count, @wad_params[:count] || 1, type: :number, class: "form-control") %>
           </div>
-          <!--<%= radio_button_tag(:buck_type, single_note_name, @wad_params[:buck_type] != five_note_name, class: "radio") %>
-          <%= label_tag(:buck_type_bill, "#{single_note_name.capitalize} (1)") %>
-          <%= radio_button_tag(:buck_type, five_note_name, @wad_params[:buck_type] == five_note_name, class: "radio") %>
-          <%= label_tag(:buck_type_vonette, "#{five_note_name.capitalize} (5)") %>-->
           <%= hidden_field_tag :dept, current_dept %>
           <br>
           <%= f.submit("Generate", :class =>"btn btn-outline-primary") %>
@@ -71,7 +67,7 @@
   <div class="container">
     <div class="made-with-love">
       Made with <span class="heart-btn">❤</span> by
-      <a href="?to=Shelby+Benton&for_message=Your+hard+work&buck_type=vonette">Shelby</a>
+      <a href="?to=Shelby+Benton&for_message=Your+hard+work&count=5">Shelby</a>
       and
       <a href="?to=Spencer+Oberstadt&for_message=Being+great+at+wasting+time%21+🕺🐙">Spencer</a>
     </div>

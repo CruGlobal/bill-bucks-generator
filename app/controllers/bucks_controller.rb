@@ -52,6 +52,10 @@ class BucksController < ApplicationController
         .to_h
         .except(:commit)
         .symbolize_keys
+
+    # maintain support for old links (since we have asked people to send us bills in the past)
+    @wad_params[:count] = 5 if params[:buck_type].in?(%w[vonette mag])
+    @wad_params
   end
 
   sig { returns(T::Hash[T.untyped, T.untyped]) }
