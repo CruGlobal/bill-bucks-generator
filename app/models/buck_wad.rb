@@ -10,7 +10,7 @@ class BuckWad
       to: T.nilable(String),
       from: T.nilable(String),
       for_message: T.nilable(String),
-      count: T.nilable(Integer),
+      count: T.nilable(T.any(String, Integer)),
       dept: T.nilable(String)
     ).void
   end
