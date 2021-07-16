@@ -5,21 +5,20 @@ class BucksController < ApplicationController
   sig { void }
   def generate
     @bucks = build_wad.bucks
+
+    validate_email_requirements if send_email?
+    redirect_to_new and return if flash[:error].present?
+    send_email if send_email?
+
     bill_counter if @bucks.all?(&:save)
     save_from_to_session
 
-    redirect_to bucks_new_path(
-                  params:
-                    wad_params.slice(:to, :from, :for_message, :count, :dept)
-                )
+    redirect_to_new
   end
 
   sig { void }
   def new
     @wad = build_wad
-    # wad_params
-    # @image_params =
-    #   { from: session[:previous_from] }.merge(image_params.symbolize_keys)
   end
 
   sig { void }
@@ -31,6 +30,29 @@ class BucksController < ApplicationController
   end
 
   private
+
+  def send_email?
+    params[:commit].to_s == 'Send Email'
+  end
+
+  def redirect_to_new
+    new_params = %i[to from for_message count dept to_email]
+    redirect_to bucks_new_path(params: wad_params.slice(*new_params))
+  end
+
+  def validate_email_requirements
+    if helpers.current_user.blank?
+      flash[:error] = 'You must be logged in to send emails'
+    elsif !EmailValidator.cru?(wad_params[:to_email])
+      flash[:error] = 'You may only send emails to Cru email addresses'
+    end
+  end
+
+  def send_email
+    BillMailer.bill(buck_wad: build_wad, to_email: wad_params[:to_email].to_s)
+      .deliver_now
+    flash[:notice] = 'Email successfully sent!'
+  end
 
   sig { returns(BuckWad) }
   def build_wad
@@ -48,7 +70,7 @@ class BucksController < ApplicationController
     @wad_params = T.let({}, T.nilable(T::Hash[Symbol, T.untyped]))
     @wad_params =
       params
-        .permit(:to, :from, :for_message, :count, :commit, :dept)
+        .permit(:to, :from, :for_message, :count, :commit, :dept, :to_email)
         .to_h
         .except(:commit)
         .symbolize_keys
@@ -88,6 +110,6 @@ class BucksController < ApplicationController
 
   sig { void }
   def save_from_to_session
-    session[:previous_from] = image_params[:from]
+    session[:previous_from] = wad_params[:from]
   end
 end

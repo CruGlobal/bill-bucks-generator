@@ -16,8 +16,7 @@ class User
 
   sig { returns(T::Boolean) }
   def cru?
-    valid_suffixes = %w[@cru.org @jesusfilm.org]
-    valid_suffixes.any? { |suffix| @email.ends_with?(suffix) }
+    EmailValidator.cru?(@email)
   end
 
   private
