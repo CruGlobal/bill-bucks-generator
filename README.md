@@ -1,13 +1,17 @@
 # README
 
 ### Prettier
+
 To ensure your code meets formatting requirements run:
+
 ```
 > bin/rbprettier
 ```
 
 ### Sorbet
+
 This codebase supports typing with sorbet. To make sure your code is meeting sorbet standards run:
+
 ```
 > bundle exec srb tc
 ```
