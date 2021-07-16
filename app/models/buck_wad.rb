@@ -18,6 +18,11 @@ class BuckWad
     number_of_bills.times { @bucks << bill }
   end
 
+  sig { returns(T::Boolean) }
+  def save
+    bucks.all?(&:save)
+  end
+
   sig { returns(T::Hash[String, Buck]) }
   def bucks_by_filename
     hash = {}

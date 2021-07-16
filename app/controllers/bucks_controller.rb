@@ -4,13 +4,11 @@ class BucksController < ApplicationController
 
   sig { void }
   def generate
-    @bucks = build_wad.bucks
-
     validate_email_requirements if send_email?
     redirect_to_new and return if flash[:error].present?
     send_email if send_email?
 
-    bill_counter if @bucks.all?(&:save)
+    bill_counter if build_wad.save
     save_from_to_session
 
     redirect_to_new
@@ -60,7 +58,8 @@ class BucksController < ApplicationController
 
   sig { returns(BuckWad) }
   def build_wad
-    BuckWad.new(**wad_params.slice(:to, :from, :for_message, :count, :dept))
+    @wad ||=
+      BuckWad.new(**wad_params.slice(:to, :from, :for_message, :count, :dept))
   end
 
   sig { returns(Buck) }
