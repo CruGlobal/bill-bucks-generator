@@ -3,6 +3,7 @@ class LoginController < ApplicationController
   def create
     authorize_params = OktaOauth.authorize_params(prompt: params[:prompt]&.to_s)
     session[:oauth_state] = authorize_params.state
+    session[:return_to_url] = params[:return_to_url]
     redirect_to authorize_params.redirect_url
   end
 
@@ -15,7 +16,7 @@ class LoginController < ApplicationController
     end
 
     setup_session
-    redirect_to bucks_new_url
+    redirect_to session.delete(:return_to_url).presence || bucks_new_url
   end
 
   def clear

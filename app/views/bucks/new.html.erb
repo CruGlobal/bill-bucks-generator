@@ -8,7 +8,7 @@
       <br>
       <%= link_to 'Logout', logout_path%>
     <% else %>
-      <%= link_to "Login", login_path %>
+      <%= link_to "Login", login_path(return_to_url: bucks_new_url(@wad_params)) %>
     <% end %>
     </div>
   </div>
