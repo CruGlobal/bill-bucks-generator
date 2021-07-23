@@ -1,5 +1,20 @@
 <p>Yay! Someone sent you some Bill Bucks!!!</p>
 
-<% @bucks.keys.each do |filename| %>
+<table style="max-width: 40em;">
+  <tr>
+    <td>From:</td>
+    <td><%= @buck_wad.from %></td>
+  </tr>
+  <tr>
+    <td>Email:</td>
+    <td><%= @from_email %></td>
+  </tr>
+  <tr>
+    <td>For:</td>
+    <td><%= @buck_wad.for_message %></td>
+  </tr>
+</table>
+
+<% @buck_wad.bucks_by_filename.keys.each do |filename| %>
 <%= image_tag(attachments[filename].url, size: "300x288") %>
 <% end %>
