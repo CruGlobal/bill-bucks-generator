@@ -10,7 +10,7 @@ class BillMailerPreview < ActionMailer::Preview
         BuckWad.new(
           to: 'Bill',
           from: 'Vonette',
-          for_message: 'Being Awesome!',
+          for_message: ('Being Awesome! ' * 6),
           count: 13
         ),
       to_email: 'bill@cru.org',

@@ -4,6 +4,10 @@ class BuckWad
 
   sig { returns(T::Array[Buck]) }
   attr_reader :bucks
+  sig { returns(String) }
+  attr_reader :from
+  sig { returns(String) }
+  attr_reader :for_message
 
   sig do
     params(
@@ -15,6 +19,8 @@ class BuckWad
     ).void
   end
   def initialize(to: '', from: '', for_message: '', count: 1, dept: '')
+    @from = T.let(from.to_s, String)
+    @for_message = T.let(for_message.to_s, String)
     image_params = { to: to, from: from, for_message: for_message, dept: dept }
     count = count.to_i
     number_of_vonetts = count / 5
