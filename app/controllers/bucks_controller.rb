@@ -51,8 +51,11 @@ class BucksController < ApplicationController
 
   sig { void }
   def send_email
-    BillMailer.bill(buck_wad: build_wad, to_email: wad_params[:to_email].to_s)
-      .deliver_now
+    BillMailer.bill(
+      buck_wad: build_wad,
+      to_email: wad_params[:to_email].to_s,
+      from_email: helpers.current_user.email
+    ).deliver_now
     flash[:notice] = 'Email successfully sent!'
   end
 

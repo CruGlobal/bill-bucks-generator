@@ -3,10 +3,10 @@ class BillMailer < ApplicationMailer
   extend T::Sig
 
   sig do
-    params(buck_wad: BuckWad, to_email: String, from_email: T.nilable(String))
+    params(buck_wad: BuckWad, to_email: String, from_email: String)
       .returns(Mail::Message)
   end
-  def bill(buck_wad:, to_email:, from_email: nil)
+  def bill(buck_wad:, to_email:, from_email:)
     @buck_wad = buck_wad
     bucks = buck_wad.bucks_by_filename
     bucks.each do |file_name, buck|
