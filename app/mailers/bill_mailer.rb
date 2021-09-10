@@ -13,10 +13,13 @@ class BillMailer < ApplicationMailer
       attachments.inline[file_name] = buck.to_blob
     end
     @from_email = from_email
-    mail(
-      to: to_email,
-      reply_to: from_email,
-      subject: "You've got Bills (Bucks) from #{buck_wad.from}"
-    )
+    mail(to: to_email, reply_to: from_email, subject: subject(buck_wad))
+  end
+
+  private
+
+  sig { params(buck_wad: BuckWad).returns(String) }
+  def subject(buck_wad)
+    "Enclosed: Bill Bucks from #{buck_wad.from}! 🅱️💌"
   end
 end
