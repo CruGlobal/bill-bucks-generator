@@ -167,6 +167,7 @@ GEM
     regexp_parser (1.8.1)
     rexml (3.2.5)
     rmagick (4.2.2)
+    rollbar (3.2.0)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -272,6 +273,7 @@ DEPENDENCIES
   rails (~> 6.1.0)
   rexml
   rmagick
+  rollbar
   rspec-rails
   selenium-webdriver
   sorbet
