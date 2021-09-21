@@ -13,6 +13,15 @@ class BillMailer < ApplicationMailer
       attachments.inline[file_name] = buck.to_blob
     end
     @from_email = from_email
+
+    @return_wad_params = {
+      to: buck_wad.from,
+      from: buck_wad.to,
+      count: buck_wad.count,
+      to_email: from_email,
+      dept: buck_wad.dept
+    }
+
     mail(to: to_email, reply_to: from_email, subject: subject(buck_wad))
   end
 

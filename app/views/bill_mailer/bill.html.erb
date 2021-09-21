@@ -18,3 +18,11 @@
 <% @buck_wad.bucks_by_filename.keys.each do |filename| %>
 <%= image_tag(attachments[filename].url, size: "300x288") %>
 <% end %>
+
+<hr>
+
+<p>
+  What's this?
+  See <a href="https://help.cru.org/bills">help.cru.org/bills</a> for details,
+  or <%= link_to("send some Bill Bucks back", bucks_new_url(@return_wad_params)) %>!
+</p>

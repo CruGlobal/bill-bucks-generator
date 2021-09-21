@@ -8,6 +8,12 @@ class BuckWad
   attr_reader :from
   sig { returns(String) }
   attr_reader :for_message
+  sig { returns(String) }
+  attr_reader :to
+  sig { returns(Integer) }
+  attr_reader :count
+  sig { returns(T.nilable(String)) }
+  attr_reader :dept
 
   sig do
     params(
@@ -20,9 +26,12 @@ class BuckWad
   end
   def initialize(to: '', from: '', for_message: '', count: 1, dept: '')
     @from = T.let(from.to_s, String)
+    @to = T.let(to.to_s, String)
     @for_message = T.let(for_message.to_s, String)
+    @dept = dept
     image_params = { to: to, from: from, for_message: for_message, dept: dept }
     count = count.to_i
+    @count = T.let(count, Integer)
     number_of_vonetts = count / 5
     number_of_bills = count % 5
 
