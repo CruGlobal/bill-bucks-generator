@@ -8,13 +8,13 @@ logs:
   #   tags: (optional) add tags to each logs collected
 
   - type: file
-    service: bill-buck-generator
+    service: bill-bucks-generator
     path: /var/log/nginx/access.log
     source: nginx
     sourcecategory: nginx_access
 
   - type: file
-    service: bill-buck-generator
+    service: bill-bucks-generator
     path: /var/log/error*.log
     source: nginx
     sourcecategory: nginx_error
