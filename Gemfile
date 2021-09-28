@@ -42,6 +42,10 @@ group :test do
   gem 'webdrivers' # Easy installation and use of web drivers to run system tests with browsers
 end
 
+group :production do 
+gem 'ddtrace', require: 'ddtrace/auto_instrument'
+end
+
 gem 'rmagick'
 gem 'sorbet-runtime'
 gem 'sorbet-rails'
