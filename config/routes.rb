@@ -13,5 +13,7 @@ Rails
     get '/login_callback', to: 'login#callback'
     get '/login_error', to: 'login#error'
 
+    get "monitors/lb" => "monitors#lb"
+
     root controller: :bucks, action: :new
   end
