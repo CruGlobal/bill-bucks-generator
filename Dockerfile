@@ -4,7 +4,7 @@ LABEL maintainer="cru.org <wmd@cru.org>"
 ARG RAILS_ENV=production
 
 RUN apt-get update \
-  && apt-get install --no-install-recommends --fix-missing -y -q libmagickwand-dev ghostscript \
+  && apt-get install --no-install-recommends --fix-missing -y -q libmagickwand-dev ghostscript gsfonts \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
