@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: bill_buck_generator_production
-  username: bill_buck_generator
-  password: <%= ENV['BILL_BUCK_GENERATOR_DATABASE_PASSWORD'] %>
+  host: <%= ENV['DB_PORT_5432_TCP_ADDR'] %>
+  database: <%= ENV.fetch('DB_ENV_POSTGRESQL_DB', 'bill_buck_generator_production') %>
+  username: <%= ENV.fetch('DB_ENV_POSTGRESQL_USER', 'bill_buck_generator') %>
+  password: <%= ENV['BILL_BUCK_GENERATOR_DATABASE_PASSWORD'] || ENV.fetch('DB_ENV_POSTGRESQL_PASS') %>
