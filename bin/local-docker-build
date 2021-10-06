@@ -1,2 +1,2 @@
 #!/bin/bash
-RAILS_MASTER_KEY=asdf PROJECT_NAME=bill-bucks-generator ENVIRONMENT=test DD_API_KEY=happyFriday BUILD_NUMBER=1 ./build.sh
+SECRET_KEY_BASE=asdf PROJECT_NAME=bill-bucks-generator ENVIRONMENT=test DD_API_KEY=happyFriday BUILD_NUMBER=1 ./build.sh
