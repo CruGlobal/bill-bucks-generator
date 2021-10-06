@@ -16,6 +16,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-18.04 # use 18 because version 20 didn't have helvetica font
+    env:
+      DB_ENV_POSTGRESQL_PASS: ""
 
     services:
       postgres:
