@@ -24,7 +24,9 @@ RUN bundle binstub puma
 
 COPY . ./
 
-ARG RAILS_MASTER_KEY
+ARG SMTP_ADDRESS=
+ARG SMTP_USER_NAME=
+ARG SMTP_PASSWORD=
 
 RUN bundle exec rails assets:precompile RAILS_ENV=$RAILS_ENV
 
