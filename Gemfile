@@ -42,6 +42,7 @@ group :test do
   gem 'webdrivers' # Easy installation and use of web drivers to run system tests with browsers
 end
 
+gem "ougai", "~> 1.7"
 gem 'rmagick'
 gem 'sorbet-runtime'
 gem 'sorbet-rails'

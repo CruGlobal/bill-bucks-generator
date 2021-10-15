@@ -112,6 +112,9 @@ GEM
       racc (~> 1.4)
     nokogiri (1.11.7-x86_64-linux)
       racc (~> 1.4)
+    oj (3.13.9)
+    ougai (1.9.1)
+      oj (~> 3.10)
     parlour (6.0.1)
       commander (~> 4.5)
       parser
@@ -267,6 +270,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   dalli
   dotenv-rails (~> 2.7.6)
+  ougai (~> 1.7)
   pg (>= 0.18, < 2.0)
   pry-byebug
   puma (~> 4.1)
