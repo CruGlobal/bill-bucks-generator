@@ -43,6 +43,7 @@ group :test do
 end
 
 gem 'ougai', '~> 1.7'
+gem 'amazing_print'
 gem 'rmagick'
 gem 'sorbet-runtime'
 gem 'sorbet-rails'

@@ -62,6 +62,7 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    amazing_print (1.4.0)
     ast (2.4.2)
     bindex (0.8.1)
     bootsnap (1.4.8)
@@ -266,6 +267,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  amazing_print
   bootsnap (>= 1.4.2)
   capybara (>= 2.15)
   dalli
