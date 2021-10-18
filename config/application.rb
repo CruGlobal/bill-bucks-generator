@@ -25,5 +25,13 @@ module BillBuckGenerator
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    # Enable ougai
+    if Rails.env.development? || Rails.const_defined?('Console')
+      config.logger = Log::Logger.new($stdout)
+    elsif !Rails.env.test?
+      # use default logger in test env
+      config.logger = Log::Logger.new(Rails.root.join('log', 'datadog.log'))
+    end
   end
 end
