@@ -44,6 +44,7 @@ end
 
 gem 'ougai', '~> 1.7'
 gem 'amazing_print'
+gem 'ddtrace'
 gem 'rmagick'
 gem 'sorbet-runtime'
 gem 'sorbet-rails'
