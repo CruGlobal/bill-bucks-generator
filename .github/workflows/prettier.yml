@@ -26,9 +26,9 @@ jobs:
           # This part is also where you can pass other options, for example:
           prettier_options: --write .
           only_changed: True
-        # env:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+        env:
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+          
       - name: Install yarn dependencies
         run: yarn --ignore-engines
      # - uses: bahmutov/npm-install@v1
