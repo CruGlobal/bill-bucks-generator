@@ -43,8 +43,7 @@ jobs:
       - name: Install bundle
         run: bundle install --jobs 4 --retry 3
       # install yarn dependencies
-      - name: Install yarn dependencies
-        run: yarn --ignore-engines
+      - uses: bahmutov/npm-install@v1
 
       - name: Setup database
         env:
