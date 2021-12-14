@@ -27,10 +27,10 @@ jobs:
           prettier_options: --write .
           only_changed: True
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
           
-      # - name: Install yarn dependencies
-      #   run: yarn --ignore-engines
-     - uses: bahmutov/npm-install@v1
+      - name: Install yarn dependencies
+        run: yarn --ignore-engines
+    #  - uses: bahmutov/npm-install@v1
       - name: Run prettier on ruby files
         run: yarn run prettier -c $(git ls-files | grep "\.rb$" | xargs)
