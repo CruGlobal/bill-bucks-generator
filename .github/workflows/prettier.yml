@@ -29,6 +29,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: bahmutov/npm-install@v1
+      # - uses: bahmutov/npm-install@v1
+      - name: Install yarn dependencies
+        run: yarn --ignore-engines
       - name: Run prettier on ruby files
         run: yarn run prettier -c $(git ls-files | grep "\.rb$" | xargs)
