@@ -63,6 +63,7 @@
           <%= f.submit("Generate Images", :class =>"btn btn-outline-primary") %>
           <%= f.submit("Send Email", :class =>"btn btn-outline-primary") %>
           <%= link_to "Clear", "?dept=#{current_dept}&to=", class: "btn btn-outline-danger"%>
+          <p><%= "You have generated #{pluralize(session[:bill_count], 'bill')} this quarter." %></p>
           <p><%= link_to "How to send (video)", "/how_to_share_mac.mp4" %></p>
         <% end %>
       </div>
