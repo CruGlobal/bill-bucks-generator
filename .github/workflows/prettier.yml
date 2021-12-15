@@ -19,9 +19,9 @@ jobs:
           # This is important to fetch the changes to the previous commit
           fetch-depth: 0
       
-      - uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
+      # - uses: actions/setup-node@v1
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
 
       - run: npm install
       - uses: bahmutov/npm-install@v1
