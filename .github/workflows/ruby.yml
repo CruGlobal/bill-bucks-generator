@@ -34,8 +34,8 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Install ghostscript
-        run: sudo apt-get install ghostscript
+#     - name: Install ghostscript
+#       run: sudo apt-get install ghostscript
 
       - name: Set up DB
         run: bundle exec rails db:setup
