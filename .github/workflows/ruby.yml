@@ -26,7 +26,9 @@ jobs:
           - 5432:5432
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Check out files
+        uses: actions/checkout@v2
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -35,10 +37,10 @@ jobs:
       - name: Install ghostscript
         run: sudo apt-get install ghostscript
 
-      - name: Install PostgreSQL client
-        uses: ryankurte/action-apt@v0.2.0
-        with:
-          packages: libpq-dev
+#     - name: Install PostgreSQL client
+#       uses: ryankurte/action-apt@v0.2.0
+#       with:
+#         packages: libpq-dev
 
       - name: Install bundle
         run: bundle install --jobs 4 --retry 3
