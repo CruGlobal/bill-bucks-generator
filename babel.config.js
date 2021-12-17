@@ -54,10 +54,10 @@ module.exports = function (api) {
         },
       ],
       [
-        '@babel/plugin-proposal-private-methods',
+        "@babel/plugin-proposal-private-methods",
         {
-          loose: true
-        }
+          loose: true,
+        },
       ],
       [
         "@babel/plugin-transform-runtime",
