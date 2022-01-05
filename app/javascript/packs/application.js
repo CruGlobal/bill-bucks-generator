@@ -12,4 +12,4 @@ require("@rails/ujs").start();
 const images = require.context("../images", true);
 const imagePath = (name) => images(name, true);
 
-import("styles/application.css");
+import("styles/bucks.css");
