@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - run: ls -la
+      
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -18,7 +20,9 @@ jobs:
           ref: ${{ github.head_ref }}
           # This is important to fetch the changes to the previous commit
           fetch-depth: 0
-
+      
+      - run: ls -la
+      
       # until plugin support is added to this action (https://github.com/creyD/prettier_action/issues/22) we can't prettier ruby :(
       - name: Prettify code
         uses: creyD/prettier_action@v3.1
