@@ -25,7 +25,7 @@ jobs:
       
       # until plugin support is added to this action (https://github.com/creyD/prettier_action/issues/22) we can't prettier ruby :(
       - name: Prettify code
-        uses: creyD/prettier_action@v3.1
+        uses: creyD/prettier_action@v4.2
         with:
           # This part is also where you can pass other options, for example:
           prettier_options: --write .
