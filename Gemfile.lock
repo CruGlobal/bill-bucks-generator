@@ -60,8 +60,8 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
-    addressable (2.7.0)
-      public_suffix (>= 2.0.2, < 5.0)
+    addressable (2.8.1)
+      public_suffix (>= 2.0.2, < 6.0)
     amazing_print (1.4.0)
     ast (2.4.2)
     bindex (0.8.1)
@@ -112,10 +112,10 @@ GEM
     minitest (5.16.2)
     msgpack (1.4.4)
     nio4r (2.5.8)
-    nokogiri (1.13.7)
+    nokogiri (1.13.9)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    nokogiri (1.13.7-x86_64-linux)
+    nokogiri (1.13.9-x86_64-linux)
       racc (~> 1.4)
     oj (3.13.9)
     ougai (1.9.1)
@@ -135,7 +135,7 @@ GEM
     pry-byebug (3.9.0)
       byebug (~> 11.0)
       pry (~> 0.13.0)
-    public_suffix (4.0.6)
+    public_suffix (5.0.0)
     puma (4.3.12)
       nio4r (~> 2.0)
     racc (1.6.0)
@@ -303,4 +303,4 @@ RUBY VERSION
    ruby 3.0.4p208
 
 BUNDLED WITH
-   2.2.32
+   2.3.11
