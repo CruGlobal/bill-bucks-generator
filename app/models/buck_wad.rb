@@ -32,11 +32,11 @@ class BuckWad
     image_params = { to: to, from: from, for_message: for_message, dept: dept }
     count = count.to_i
     @count = T.let(count, Integer)
-    number_of_vonetts = count / 5
+    number_of_vonettes = count / 5
     number_of_bills = count % 5
 
     @bucks = T.let([], T::Array[Buck])
-    number_of_vonetts.times do
+    number_of_vonettes.times do
       @bucks << Buck.new(image_params.merge(buck_type: :vonette))
     end
     number_of_bills.times do
