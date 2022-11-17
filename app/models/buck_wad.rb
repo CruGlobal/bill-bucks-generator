@@ -7,17 +7,17 @@ class BuckWad
   attr_reader :dept
 
   def initialize(to: '', from: '', for_message: '', count: 1, dept: '')
-    @from = T.let(from.to_s, String)
-    @to = T.let(to.to_s, String)
-    @for_message = T.let(for_message.to_s, String)
+    @from = from.to_s
+    @to = to.to_s
+    @for_message = for_message.to_s
     @dept = dept
     image_params = { to: to, from: from, for_message: for_message, dept: dept }
     count = count.to_i
-    @count = T.let(count, Integer)
+    @count = count
     number_of_vonettes = count / 5
     number_of_bills = count % 5
 
-    @bucks = T.let([], T::Array[Buck])
+    @bucks = []
     number_of_vonettes.times do
       @bucks << Buck.new(image_params.merge(buck_type: :vonette))
     end

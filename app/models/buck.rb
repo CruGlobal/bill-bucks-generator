@@ -63,7 +63,7 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
   private
 
   def build_image
-    img = T.unsafe(bill_or_vonette)
+    img = bill_or_vonette
 
     to_text = text_instance
     to_text.pointsize = TO_POINT_SIZE

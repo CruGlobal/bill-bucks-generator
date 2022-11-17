@@ -60,7 +60,6 @@ class BucksController < ApplicationController
 
   def wad_params
     return @wad_params if @wad_params
-    @wad_params = T.let({}, T.nilable(T::Hash[Symbol, T.untyped]))
     @wad_params =
       params
         .permit(:to, :from, :for_message, :count, :commit, :dept, :to_email)
@@ -75,7 +74,6 @@ class BucksController < ApplicationController
 
   def image_params
     return @image_params if @image_params
-    @image_params = T.let({}, T.nilable(T::Hash[T.untyped, T.untyped]))
     @image_params =
       params
         .permit(:to, :from, :for_message, :buck_type, :commit, :format, :dept)
