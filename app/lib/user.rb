@@ -1,21 +1,16 @@
 class User
-  extend T::Sig
-
   attr_reader :name
   attr_reader :email
 
-  sig { params(id_token: String).returns(User) }
   def self.build(id_token)
     new(id_token)
   end
 
-  sig { params(id_token: String).void }
   def initialize(id_token)
     @id_token = id_token
     parse_attributes_from_token
   end
 
-  sig { returns(T::Boolean) }
   def cru?
     EmailValidator.cru?(@email)
   end

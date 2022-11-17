@@ -1,10 +1,4 @@
 class BillMailer < ApplicationMailer
-  extend T::Sig
-
-  sig do
-    params(buck_wad: BuckWad, to_email: String, from_email: String)
-      .returns(Mail::Message)
-  end
   def bill(buck_wad:, to_email:, from_email:)
     @buck_wad = buck_wad
     bucks = buck_wad.bucks_by_filename
@@ -26,7 +20,6 @@ class BillMailer < ApplicationMailer
 
   private
 
-  sig { params(buck_wad: BuckWad).returns(String) }
   def subject(buck_wad)
     "Enclosed: Bill Bucks from #{buck_wad.from}! 🅱️💌"
   end

@@ -1,28 +1,11 @@
 class BuckWad
-  extend T::Sig
-
-  sig { returns(T::Array[Buck]) }
   attr_reader :bucks
-  sig { returns(String) }
   attr_reader :from
-  sig { returns(String) }
   attr_reader :for_message
-  sig { returns(String) }
   attr_reader :to
-  sig { returns(Integer) }
   attr_reader :count
-  sig { returns(T.nilable(String)) }
   attr_reader :dept
 
-  sig do
-    params(
-      to: T.nilable(String),
-      from: T.nilable(String),
-      for_message: T.nilable(String),
-      count: T.nilable(T.any(String, Integer)),
-      dept: T.nilable(String)
-    ).void
-  end
   def initialize(to: '', from: '', for_message: '', count: 1, dept: '')
     @from = T.let(from.to_s, String)
     @to = T.let(to.to_s, String)
@@ -44,12 +27,10 @@ class BuckWad
     add_pagination
   end
 
-  sig { returns(T::Boolean) }
   def save
     bucks.all?(&:save)
   end
 
-  sig { returns(T::Hash[String, Buck]) }
   def bucks_by_filename
     hash = {}
     @bucks.each_with_index { |buck, i| hash[buck.filename(i)] = buck }
@@ -58,7 +39,6 @@ class BuckWad
 
   private
 
-  sig { void }
   def add_pagination
     return unless @bucks.many?
 
