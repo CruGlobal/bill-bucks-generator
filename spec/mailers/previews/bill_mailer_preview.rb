@@ -1,9 +1,5 @@
-# typed: strict
 # Preview all emails at http://localhost:3000/rails/mailers/bill_mailer
 class BillMailerPreview < ActionMailer::Preview
-  extend T::Sig
-
-  sig { returns(ActionMailer::MessageDelivery) }
   def bill
     BillMailer.bill(
       buck_wad:

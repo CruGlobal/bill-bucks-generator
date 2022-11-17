@@ -1,4 +1,3 @@
-# typed: true
 module ApplicationHelper
   def current_user
     id_token = session[:okta_id_token]

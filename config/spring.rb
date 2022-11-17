@@ -1,4 +1,3 @@
-# typed: false
 Spring.watch(
   '.ruby-version',
   '.rbenv-vars',
