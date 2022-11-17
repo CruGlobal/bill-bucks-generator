@@ -1,4 +1,3 @@
-# typed: strict
 module EmailValidator
   extend T::Sig
 

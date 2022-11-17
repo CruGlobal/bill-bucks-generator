@@ -1,4 +1,3 @@
-# typed: strict
 class Buck < ApplicationRecord # extra form inputs we don't care about
   extend T::Sig
 

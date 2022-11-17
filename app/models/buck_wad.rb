@@ -1,4 +1,3 @@
-# typed: strict
 class BuckWad
   extend T::Sig
 

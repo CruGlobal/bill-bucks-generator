@@ -1,4 +1,3 @@
-# typed: strict
 module BucksHelper
   extend T::Sig
 

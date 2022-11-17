@@ -1,4 +1,3 @@
-# typed: true
 class CreateBucks < ActiveRecord::Migration[6.0]
   def change
     create_table :bucks do |t|

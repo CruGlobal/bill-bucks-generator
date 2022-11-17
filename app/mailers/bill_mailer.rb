@@ -1,4 +1,3 @@
-# typed: true
 class BillMailer < ApplicationMailer
   extend T::Sig
 

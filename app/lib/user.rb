@@ -1,4 +1,3 @@
-# typed: true
 class User
   extend T::Sig
 
