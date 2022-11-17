@@ -30,9 +30,6 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'sorbet'
-  gem 'tapioca'
-  gem 'dalli'
 end
 
 group :test do
@@ -46,6 +43,4 @@ gem 'ougai', '~> 1.7'
 gem 'amazing_print'
 gem 'ddtrace'
 gem 'rmagick'
-gem 'sorbet-runtime'
-gem 'sorbet-rails'
 gem 'rollbar'
