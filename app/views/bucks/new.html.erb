@@ -70,7 +70,13 @@
       <div class="col-md">
         <div class="img">
           <% @wad.bucks.each do |buck| %>
-          <%= image_tag(bucks_img_path(buck.image_params.merge(format: :png)), id: "img") %>
+            <% if @wad.dept == '' # department is DPS (at time of comment) %>
+              <a href="https://help.cru.org/bills/">
+                <%= image_tag(bucks_img_path(buck.image_params.merge(format: :png)), id: "img") %>
+              </a>
+            <% else %>
+              <%= image_tag(bucks_img_path(buck.image_params.merge(format: :png)), id: "img") %>
+            <% end %>
           <% end %>
         </div>
       </div>
