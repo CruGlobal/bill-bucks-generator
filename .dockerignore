@@ -6,3 +6,4 @@ vendor/ruby
 tmp
 log/*
 Dockerfile
+node_modules

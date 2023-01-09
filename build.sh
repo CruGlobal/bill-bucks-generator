@@ -1,7 +1,7 @@
 #!/bin/bash
 
 docker buildx build $DOCKER_ARGS \
-    --build-arg DD_API_KEY=$DD_API_KEY \
+    --build-arg RUBY_VERSION=$(cat .ruby-version) \
     --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE \
     .
 rc=$?
