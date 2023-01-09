@@ -33,7 +33,14 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  if ENV['AWS_EXECUTION_ENV'].present?
+    config.force_ssl = true
+    config.ssl_options = {
+      redirect: {
+        exclude: ->(request) { request.fullpath == '/monitors/lb' }
+      }
+    }
+  end
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.

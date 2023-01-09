@@ -41,6 +41,6 @@ end
 
 gem 'ougai', '~> 1.7'
 gem 'amazing_print'
-gem 'ddtrace'
+gem 'ddtrace', '~> 1.4'
 gem 'rmagick'
 gem 'rollbar'
