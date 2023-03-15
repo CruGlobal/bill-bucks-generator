@@ -15,7 +15,12 @@ class BillMailer < ApplicationMailer
       dept: buck_wad.dept
     }
 
-    mail(to: to_email, reply_to: from_email, bcc: from_email, subject: subject(buck_wad))
+    mail(
+      to: to_email,
+      reply_to: from_email,
+      bcc: from_email,
+      subject: subject(buck_wad)
+    )
   end
 
   private
