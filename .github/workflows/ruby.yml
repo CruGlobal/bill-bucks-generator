@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-18.04 # use 18 because version 20 didn't have helvetica font
+    runs-on: ubuntu-latest
 
     env:
       PGHOST: localhost
