@@ -27,7 +27,7 @@ jobs:
 
     steps:
       - name: Check out files
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out files
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -62,3 +62,6 @@ jobs:
 
       - name: Brakeman
         run: bundle exec brakeman -A -q --ensure-latest --no-pager
+
+      - name: StandardRB
+        run: bundle exec standardrb --format simple

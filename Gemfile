@@ -47,3 +47,4 @@ gem 'rollbar'
 
 gem 'brakeman'
 gem 'bundle-audit'
+gem 'standard'
