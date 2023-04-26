@@ -6,12 +6,12 @@ class BuckWad
   attr_reader :count
   attr_reader :dept
 
-  def initialize(to: '', from: '', for_message: '', count: 1, dept: '')
+  def initialize(to: "", from: "", for_message: "", count: 1, dept: "")
     @from = from.to_s
     @to = to.to_s
     @for_message = for_message.to_s
     @dept = dept
-    image_params = { to: to, from: from, for_message: for_message, dept: dept }
+    image_params = {to: to, from: from, for_message: for_message, dept: dept}
     count = count.to_i
     @count = count
     number_of_vonettes = count / 5

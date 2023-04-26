@@ -16,15 +16,15 @@ class BucksController < ApplicationController
 
   def img
     send_data build_buck.to_blob,
-              filename: build_buck.filename,
-              type: 'image/png',
-              disposition: 'inline'
+      filename: build_buck.filename,
+      type: "image/png",
+      disposition: "inline"
   end
 
   private
 
   def send_email?
-    params[:commit].to_s == 'Send Email'
+    params[:commit].to_s == "Send Email"
   end
 
   def redirect_to_new
@@ -34,9 +34,9 @@ class BucksController < ApplicationController
 
   def validate_email_requirements
     if helpers.current_user.blank?
-      flash[:error] = 'You must be logged in to send emails'
+      flash[:error] = "You must be logged in to send emails"
     elsif !EmailValidator.cru?(wad_params[:to_email])
-      flash[:error] = 'You may only send emails to Cru email addresses'
+      flash[:error] = "You may only send emails to Cru email addresses"
     end
   end
 
@@ -46,7 +46,7 @@ class BucksController < ApplicationController
       to_email: wad_params[:to_email].to_s,
       from_email: helpers.current_user.email
     ).deliver_now
-    flash[:notice] = 'Email successfully sent!'
+    flash[:notice] = "Email successfully sent!"
   end
 
   def build_wad

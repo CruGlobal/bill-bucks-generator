@@ -19,7 +19,7 @@ class User
 
   def parse_attributes_from_token
     # a JWT (token) is a three-segment string.
-    payload_segment = @id_token.split('.')[1].to_s
+    payload_segment = @id_token.split(".")[1].to_s
 
     # The middle segment is a base64 encoded json payload.
     decoded_json_text = Base64.urlsafe_decode64(payload_segment)
