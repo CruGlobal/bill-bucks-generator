@@ -6,7 +6,8 @@ class LoginController < ApplicationController
     redirect_to authorize_params.redirect_url
   end
 
-  def error; end
+  def error
+  end
 
   def callback
     if error_response? || !session_match_state?

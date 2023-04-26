@@ -25,8 +25,8 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
     text = text.to_s
     return text if text.strip.blank?
 
-    separator = ' '
-    new_text = ''
+    separator = " "
+    new_text = ""
 
     return text if text_fit?(text, width) || !text.include?(separator)
 
@@ -35,14 +35,14 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
     words.each_with_index do |word, i|
       # no need to add white-space before the first word
       unless i == 0
-        previous_line = new_text.split("\n").last || ''
+        previous_line = new_text.split("\n").last || ""
         tmp_line = previous_line + separator + word
 
         # will the new word cause a wrap around
-        if text_fit?(tmp_line, width)
-          new_text += separator
+        new_text += if text_fit?(tmp_line, width)
+          separator
         else
-          new_text += "\n"
+          "\n"
         end
       end
       new_text += word
@@ -51,13 +51,13 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
   end
 
   def filename(index = nil)
-    date = Date.today.strftime('%Y%m%d')
-    date = date + index.to_s if index.present?
+    date = Date.today.strftime("%Y%m%d")
+    date += index.to_s if index.present?
     "#{number}_#{to}_from_#{from}_#{date}.png"
   end
 
   def number
-    buck_type == 'vonette' ? 5 : 1
+    (buck_type == "vonette") ? 5 : 1
   end
 
   private
@@ -73,15 +73,15 @@ class Buck < ApplicationRecord # extra form inputs we don't care about
     wrapped_for_text = fit_text(for_message, 510)
     img.annotate(text_instance, 0, 0, 85, 350, wrapped_for_text)
 
-    img.format = 'png'
+    img.format = "png"
     img
   end
 
   def bill_or_vonette
-    if dept == 'irt'
-      filename = buck_type == 'vonette' ? 'mag' : 'cap'
+    filename = if dept == "irt"
+      (buck_type == "vonette") ? "mag" : "cap"
     else
-      filename = buck_type == 'vonette' ? 'vonette' : 'bill'
+      (buck_type == "vonette") ? "vonette" : "bill"
     end
     Magick::ImageList.new("public/#{filename}.png")
   end

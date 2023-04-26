@@ -20,7 +20,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
@@ -33,11 +33,11 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  if ENV['AWS_EXECUTION_ENV'].present?
+  if ENV["AWS_EXECUTION_ENV"].present?
     config.force_ssl = true
     config.ssl_options = {
       redirect: {
-        exclude: ->(request) { request.fullpath == '/monitors/lb' }
+        exclude: ->(request) { request.fullpath == "/monitors/lb" }
       }
     }
   end
@@ -63,16 +63,16 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.delivery_method = :smtp
-  host = 'billbuck.app'
-  config.action_mailer.default_url_options = { host: host }
+  host = "billbuck.app"
+  config.action_mailer.default_url_options = {host: host}
 
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
-    address: ENV.fetch('SMTP_ADDRESS'),
-    port: ENV.fetch('SMTP_PORT', 587),
-    user_name: ENV.fetch('SMTP_USER_NAME'),
-    password: ENV.fetch('SMTP_PASSWORD'),
-    authentication: 'plain',
+    address: ENV.fetch("SMTP_ADDRESS"),
+    port: ENV.fetch("SMTP_PORT", 587),
+    user_name: ENV.fetch("SMTP_USER_NAME"),
+    password: ENV.fetch("SMTP_PASSWORD"),
+    authentication: "plain",
     enable_starttls_auto: true
   }
 
@@ -90,8 +90,8 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV['RAILS_LOG_TO_STDOUT'].present?
-    logger = ActiveSupport::Logger.new(STDOUT)
+  if ENV["RAILS_LOG_TO_STDOUT"].present?
+    logger = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end

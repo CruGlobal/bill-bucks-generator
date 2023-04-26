@@ -1,7 +1,7 @@
-require 'ddtrace'
-require 'net/http'
+require "ddtrace"
+require "net/http"
 
-if ENV['AWS_EXECUTION_ENV'].present?
+if ENV["AWS_EXECUTION_ENV"].present?
   Datadog.configure do |c|
     # Global settings
     c.tracing.transport_options =
@@ -9,15 +9,15 @@ if ENV['AWS_EXECUTION_ENV'].present?
         # Hostname, port, and additional options. :timeout is in seconds.
         # Use ECS metadata to lookup host IP, which is where APM is running.
         t.adapter :net_http,
-                  Net::HTTP.get(
-                    URI('http://169.254.169.254/latest/meta-data/local-ipv4')
-                  ),
-                  8126,
-                  timeout: 30
+          Net::HTTP.get(
+            URI("http://169.254.169.254/latest/meta-data/local-ipv4")
+          ),
+          8126,
+          timeout: 30
       end
 
-    c.service = ENV['PROJECT_NAME']
-    c.env = ENV['ENVIRONMENT']
+    c.service = ENV["PROJECT_NAME"]
+    c.env = ENV["ENVIRONMENT"]
 
     # Tracing settings
     c.tracing.analytics.enabled = true
@@ -25,24 +25,24 @@ if ENV['AWS_EXECUTION_ENV'].present?
 
     # Instrumentation
     c.tracing.instrument :rails,
-                         service_name: ENV['PROJECT_NAME'],
-                         controller_service:
-                           "#{ENV['PROJECT_NAME']}-controller",
-                         cache_service: "#{ENV['PROJECT_NAME']}-cache",
-                         database_service: "#{ENV['PROJECT_NAME']}-db"
+      service_name: ENV["PROJECT_NAME"],
+      controller_service:
+        "#{ENV["PROJECT_NAME"]}-controller",
+      cache_service: "#{ENV["PROJECT_NAME"]}-cache",
+      database_service: "#{ENV["PROJECT_NAME"]}-db"
 
-    c.tracing.instrument :redis, service_name: "#{ENV['PROJECT_NAME']}-redis"
+    c.tracing.instrument :redis, service_name: "#{ENV["PROJECT_NAME"]}-redis"
 
     c.tracing.instrument :sidekiq,
-                         service_name: "#{ENV['PROJECT_NAME']}-sidekiq"
+      service_name: "#{ENV["PROJECT_NAME"]}-sidekiq"
 
-    c.tracing.instrument :http, service_name: "#{ENV['PROJECT_NAME']}-http"
+    c.tracing.instrument :http, service_name: "#{ENV["PROJECT_NAME"]}-http"
   end
 
   # skipping the health check: if it returns true, the trace is dropped
   Datadog::Tracing.before_flush(
     Datadog::Tracing::Pipeline::SpanFilter.new do |span|
-      span.name == 'rack.request' && span.get_tag('http.url') == '/monitors/lb'
+      span.name == "rack.request" && span.get_tag("http.url") == "/monitors/lb"
     end
   )
 end
