@@ -67,7 +67,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.10.3)
       msgpack (~> 1.2)
-    brakeman (5.4.1)
+    brakeman (6.0.0)
     builder (3.2.4)
     bundle-audit (0.1.0)
       bundler-audit
@@ -263,6 +263,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
+    uri (0.10.3)
     web-console (4.0.4)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -309,6 +310,7 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   standard
+  uri (~> 0.10.3)
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 5.4)
