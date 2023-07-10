@@ -48,3 +48,6 @@ gem "rollbar"
 gem "brakeman"
 gem "bundle-audit"
 gem "standard"
+
+# Temporary security fix until new Ruby release
+gem "uri", "~> 0.10.3"
