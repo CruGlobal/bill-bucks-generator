@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PGHOST: localhost
-      PGUSER: postgres
-      PGPASSWORD: postgres
+      DB_ENV_POSTGRESQL_DB: localhost
+      DB_ENV_POSTGRESQL_USER: postgres
+      BILL_BUCK_GENERATOR_DATABASE_PASSWORD: postgres
       RAILS_ENV: test
 
     services:
