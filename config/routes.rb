@@ -1,18 +1,18 @@
-Rails
-  .application
-  .routes
-  .draw do
-    get "bucks/img", to: "bucks#img"
-    get "bucks/new", to: "bucks#new"
-    post "bucks/generate", to: "bucks#generate"
+Rails.application.routes.draw do
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-    get "/irt" => redirect("bucks/new?dept=irt")
-    get "/login", to: "login#create"
-    get "/logout", to: "login#clear"
-    get "/login_callback", to: "login#callback"
-    get "/login_error", to: "login#error"
+  # Defines the root path route ("/")
+  root controller: :bucks, action: :new
 
-    get "monitors/lb" => "monitors#lb"
+  get "bucks/img", to: "bucks#img"
+  get "bucks/new", to: "bucks#new"
+  post "bucks/generate", to: "bucks#generate"
 
-    root controller: :bucks, action: :new
-  end
+  get "/irt" => redirect("bucks/new?dept=irt")
+  get "/login", to: "login#create"
+  get "/logout", to: "login#clear"
+  get "/login_callback", to: "login#callback"
+  get "/login_error", to: "login#error"
+
+  get "monitors/lb" => "monitors#lb"
+end

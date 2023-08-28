@@ -42,9 +42,6 @@ jobs:
           bundle exec rails db:create
           bundle exec rails db:schema:load
 
-      - name: Install yarn dependencies
-        run: yarn --ignore-engines
-
       - name: RSpec tests
         run: bundle exec rspec --color
 
@@ -67,3 +64,6 @@ jobs:
 
       - name: StandardRB
         run: bundle exec standardrb --format simple
+
+      - name: JavaScript Audit
+        run: bin/importmap audit
