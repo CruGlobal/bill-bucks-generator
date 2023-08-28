@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DB_ENV_POSTGRESQL_DB: localhost
+      DB_PORT_5432_TCP_ADDR: localhost
+      DB_ENV_POSTGRESQL_DB: postgres
       DB_ENV_POSTGRESQL_USER: postgres
       BILL_BUCK_GENERATOR_DATABASE_PASSWORD: postgres
       RAILS_ENV: test
