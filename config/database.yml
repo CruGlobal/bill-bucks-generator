@@ -62,7 +62,7 @@ test:
   <<: *default
   database: <%= ENV.fetch('DB_ENV_POSTGRESQL_DB', 'bill_buck_generator_test') %>
   username: <%= ENV.fetch('DB_ENV_POSTGRESQL_USER', 'postgres') %>
-  password: <%= ENV['BILL_BUCK_GENERATOR_DATABASE_PASSWORD'] || 'postgres') %>
+  password: <%= ENV.fetch('BILL_BUCK_GENERATOR_DATABASE_PASSWORD', 'postgres') %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
