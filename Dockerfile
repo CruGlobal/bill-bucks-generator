@@ -21,7 +21,6 @@ RUN apk --no-cache add \
     postgresql-libs \
     tzdata \
     nodejs \
-    yarn \
     imagemagick \
     imagemagick-libs \
     ghostscript \
