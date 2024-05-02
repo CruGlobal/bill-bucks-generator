@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.4"
+ruby "3.1.5"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.7"
@@ -88,6 +88,3 @@ group :development, :test do
   gem "rspec-rails"
   gem "dotenv-rails", "~> 2.7.6", require: "dotenv/rails-now"
 end
-
-# Temporary security fix until new Ruby release
-gem "uri", "~> 0.10.3"
