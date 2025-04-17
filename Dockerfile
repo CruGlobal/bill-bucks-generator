@@ -27,7 +27,7 @@ RUN apk --no-cache add \
     ghostscript-fonts
 
 # Copy dependency definitions and lock files
-COPY Gemfile Gemfile.lock ./
+COPY Gemfile Gemfile.lock .ruby-version ./
 
 # Install bundler version which created the lock file and configure it
 RUN gem install bundler -v $(awk '/^BUNDLED WITH/ { getline; print $1; exit }' Gemfile.lock)

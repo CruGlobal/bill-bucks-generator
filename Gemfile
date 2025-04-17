@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.5"
+ruby file: ".ruby-version"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.7"
@@ -43,7 +43,7 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-gem "sassc-rails"
+# gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -75,7 +75,11 @@ gem "amazing_print"
 gem "brakeman"
 gem "bootstrap", "~> 5.3.1"
 gem "bundle-audit"
-gem "ddtrace", "~> 1.4"
+gem "concurrent-ruby", "1.3.4" # remove when upgrading to Rails 7.1
+gem "datadog"
+gem "dartsass-sprockets"
+# https://github.com/sass-contrib/sass-embedded-host-ruby/issues/210
+gem "google-protobuf", force_ruby_platform: true if RUBY_PLATFORM.include?("linux-musl")
 gem "ougai", "~> 1.7"
 gem "pg", ">= 0.18", "< 2.0"
 gem "rexml"
@@ -86,5 +90,5 @@ gem "standard"
 group :development, :test do
   gem "pry-byebug"
   gem "rspec-rails"
-  gem "dotenv-rails", "~> 2.7.6", require: "dotenv/rails-now"
+  gem "dotenv-rails", require: "dotenv/load"
 end
