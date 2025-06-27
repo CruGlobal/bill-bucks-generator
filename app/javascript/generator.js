@@ -1,24 +1,28 @@
-$(() => {
-  preload();
-  console.log("dom ready");
+/* global $, Image */
 
-  $(".heart-btn").on("click", () => {
-    $("body").addClass("love-font");
-  });
+const images = {}
 
-  $(".radio").on("click", () => {
-    var bill_value = $(".radio:checked").val();
-    document.getElementById("img").src = eval(bill_value + ".src");
-  });
-});
-
-function preload() {
-  bill = new Image();
-  bill.src = "/bill.png";
-  vonette = new Image();
-  vonette.src = "/vonette.png";
-  mag = new Image();
-  mag.src = "/mag.png";
-  cap = new Image();
-  cap.src = "/cap.png";
+function preload () {
+  images.bill = new Image()
+  images.bill.src = '/bill.png'
+  images.vonette = new Image()
+  images.vonette.src = '/vonette.png'
+  images.mag = new Image()
+  images.mag.src = '/mag.png'
+  images.cap = new Image()
+  images.cap.src = '/cap.png'
 }
+
+$(() => {
+  preload()
+  console.log('dom ready')
+
+  $('.heart-btn').on('click', () => {
+    $('body').addClass('love-font')
+  })
+
+  $('.radio').on('click', () => {
+    const billValue = $('.radio:checked').val()
+    document.getElementById('img').src = images[billValue].src
+  })
+})
