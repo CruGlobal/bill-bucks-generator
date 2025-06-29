@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Bill Bucks Generator is a Rails 7.1 application that generates fun virtual "Bill Bucks" - custom currency images with personalized messages that can be sent via email. It's an internal tool for Cru that creates PNG images of fake bills with customizable "To", "From", and "For" messages.
+Bill Bucks Generator is a Rails 8.0 application that generates fun virtual "Bill Bucks" - custom currency images with personalized messages that can be sent via email. It's an internal tool for Cru that creates PNG images of fake bills with customizable "To", "From", and "For" messages.
 
 ## Common Commands
 
@@ -95,11 +95,14 @@ bin/local-docker-build     # Build Docker image locally
 
 ## Important Notes
 
-- Rails 7.1.5.1 (upgraded from 7.0.7)
+- Rails 8.0.2 (upgraded from 7.1.5.1)
 - Ruby 3.3.5 required
 - PostgreSQL database
 - Docker deployment using Alpine Linux
 - ImageMagick dependency for image generation (requires PKG_CONFIG_PATH for installation)
 - Supervisor manages processes in production
-- Puma 6.x web server (upgraded from 5.x for Rack 3 compatibility)
-- RSpec 6.x for testing (upgraded for Rails 7.1 compatibility)
+- Puma 6.x web server
+- RSpec 6.x for testing
+- Custom Log::Logger implementation in lib/log/logger.rb for Ougai-based logging
+- jbuilder 2.13+ for Rails 8 compatibility
+- debug gem 1.11+ for Rails 8 compatibility

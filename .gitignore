@@ -32,3 +32,5 @@
 
 .env.*
 .idea
+
+.claude/settings.local.json
