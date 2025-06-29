@@ -4,3 +4,5 @@
 - revert config/initializers/assets.rb
 - remove active_storage migrations
 - remove cable.yml and new_framework_defaults files
+- restore our Log::Logger config in application.rb and comment out logger lines in production.rb
+- restore our action_mailer config in development.rb and production.rb
