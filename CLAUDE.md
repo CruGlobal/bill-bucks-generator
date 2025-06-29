@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Bill Bucks Generator is a Rails 7.0.7 application that generates fun virtual "Bill Bucks" - custom currency images with personalized messages that can be sent via email. It's an internal tool for Cru that creates PNG images of fake bills with customizable "To", "From", and "For" messages.
+Bill Bucks Generator is a Rails 7.1 application that generates fun virtual "Bill Bucks" - custom currency images with personalized messages that can be sent via email. It's an internal tool for Cru that creates PNG images of fake bills with customizable "To", "From", and "For" messages.
 
 ## Common Commands
 
@@ -22,8 +22,8 @@ bundle exec rspec spec/controllers/bucks_controller_spec.rb  # Run specific test
 
 ### Code Quality & Security
 ```bash
-bundle exec standard --fix  # Auto-fix Ruby code style issues
-bundle exec brakeman       # Run security scanner
+bundle exec standardrb --fix  # Auto-fix Ruby code style issues
+bundle exec brakeman --ensure-latest -A -q --no-pager  # Run security scanner
 bundle exec bundle audit check --update  # Check for gem vulnerabilities
 ```
 
@@ -87,16 +87,19 @@ bin/local-docker-build     # Build Docker image locally
 
 ### Monitoring & Logging
 
-- Datadog APM integration
+- Datadog APM integration (v2.17.0)
 - Rollbar error tracking
-- Custom Ougai logger configuration
+- Custom Ougai logger configuration via Log::Logger
 - Health check endpoint at `/monitors/lb`
+- Application logs sent to stdout for Docker/Datadog integration
 
 ## Important Notes
 
-- Currently on Rails 7.0.7, with upgrade to 7.1 planned (see RAILS_UPGRADE_PROMPT.txt)
-- Ruby 3.2.8 required
+- Rails 7.1.5.1 (upgraded from 7.0.7)
+- Ruby 3.3.5 required
 - PostgreSQL database
 - Docker deployment using Alpine Linux
-- ImageMagick dependency for image generation
+- ImageMagick dependency for image generation (requires PKG_CONFIG_PATH for installation)
 - Supervisor manages processes in production
+- Puma 6.x web server (upgraded from 5.x for Rack 3 compatibility)
+- RSpec 6.x for testing (upgraded for Rails 7.1 compatibility)
