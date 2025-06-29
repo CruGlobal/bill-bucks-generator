@@ -6,11 +6,15 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-require_relative "../lib/log/logger"
 module BillBuckGenerator
-  class Application < Rails::Application # Initialize configuration defaults for originally generated Rails version.
+  class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
+    config.load_defaults 7.1
+
+    # Please, add to the `ignore` list any other `lib` subdirectories that do
+    # not contain `.rb` files, or that should not be reloaded or eager loaded.
+    # Common ones are `templates`, `generators`, or `middleware`, for example.
+    config.autoload_lib(ignore: %w[assets tasks])
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -19,8 +23,5 @@ module BillBuckGenerator
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-
-    # Send all logs to stdout, which docker reads and sends to datadog.
-    config.logger = Log::Logger.new($stdout) unless Rails.env.test? # we don't need a logger in test env
   end
 end

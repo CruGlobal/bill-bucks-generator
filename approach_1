@@ -1,0 +1,6 @@
+0. claude init
+1. Run the prompts in RAILS_UPGRADE_PROMPT.txt
+2. Manual fixes:
+- revert config/initializers/assets.rb
+- remove active_storage migrations
+- remove cable.yml and new_framework_defaults files

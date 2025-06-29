@@ -1,0 +1,10 @@
+Upgrade this app to rails 7.1 
+
+====
+
+Run the following commands, modifying the code until they all run successfully:
+- `bundle update datadog rollbar standard bundler-audit brakeman dotenv-rails`
+- `bundle exec bundle audit check --update`
+- `bundle exec brakeman --ensure-latest -A -q --no-pager`
+- `bundle exec rspec`
+- `bundle exec standardrb --fix`
