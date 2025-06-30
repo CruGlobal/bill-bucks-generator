@@ -10,7 +10,7 @@ require_relative "../lib/log/logger"
 module BillBuckGenerator
   class Application < Rails::Application # Initialize configuration defaults for originally generated Rails version.
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.1
+    config.load_defaults 8.0
 
     # Configuration for the application, engines, and railties goes here.
     #
