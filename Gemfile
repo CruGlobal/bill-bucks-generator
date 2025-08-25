@@ -72,6 +72,7 @@ gem "bootstrap", "~> 5.3.1"
 gem "bundle-audit"
 gem "datadog"
 gem "dartsass-sprockets"
+gem "dotenv-rails", require: "dotenv/load"
 # https://github.com/sass-contrib/sass-embedded-host-ruby/issues/210
 gem "google-protobuf", force_ruby_platform: true if RUBY_PLATFORM.include?("linux-musl")
 gem "ougai", "~> 1.7"
@@ -84,5 +85,4 @@ gem "standard"
 group :development, :test do
   gem "pry-byebug"
   gem "rspec-rails"
-  gem "dotenv-rails", require: "dotenv/load"
 end
