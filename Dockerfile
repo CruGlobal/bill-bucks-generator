@@ -33,7 +33,7 @@ COPY Gemfile Gemfile.lock .ruby-version ./
 RUN gem install bundler -v $(awk '/^BUNDLED WITH/ { getline; print $1; exit }' Gemfile.lock)
 
 # Install build-dependencies, then install gems, subsequently removing build-dependencies
-RUN apk --no-cache add --virtual build-deps build-base postgresql-dev imagemagick-dev ghostscript-dev \
+RUN apk --no-cache add --virtual build-deps build-base postgresql-dev imagemagick-dev ghostscript-dev yaml-dev \
     && bundle install --jobs 20 --retry 2 \
     && apk del build-deps
 
