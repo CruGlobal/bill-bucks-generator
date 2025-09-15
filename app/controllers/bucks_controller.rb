@@ -2,6 +2,7 @@ class BucksController < ApplicationController
   def generate
     validate_email_requirements if send_email?
     redirect_to_new and return if flash[:error].present?
+
     send_email if send_email?
 
     bill_counter if build_wad.save
@@ -60,6 +61,7 @@ class BucksController < ApplicationController
 
   def wad_params
     return @wad_params if @wad_params
+
     @wad_params =
       params
         .permit(:to, :from, :for_message, :count, :commit, :dept, :to_email)
@@ -75,6 +77,7 @@ class BucksController < ApplicationController
 
   def image_params
     return @image_params if @image_params
+
     @image_params =
       params
         .permit(:to, :from, :for_message, :buck_type, :commit, :format, :dept)
