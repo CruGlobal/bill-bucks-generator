@@ -24,7 +24,10 @@ RUN apk --no-cache add \
     imagemagick \
     imagemagick-libs \
     ghostscript \
-    ghostscript-fonts
+    ghostscript-fonts \
+    jemalloc
+
+RUN export LD_PRELOAD="/usr/lib/libjemalloc.so.2"
 
 # Copy dependency definitions and lock files
 COPY Gemfile Gemfile.lock .ruby-version ./
