@@ -27,7 +27,7 @@ RUN apk --no-cache add \
     ghostscript-fonts \
     jemalloc
 
-RUN export LD_PRELOAD="/usr/lib/libjemalloc.so.2"
+ENV LD_PRELOAD="/usr/lib/libjemalloc.so.2"
 
 # Copy dependency definitions and lock files
 COPY Gemfile Gemfile.lock .ruby-version ./
