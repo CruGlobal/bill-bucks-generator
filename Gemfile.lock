@@ -90,8 +90,6 @@ GEM
     brakeman (7.1.1)
       racc
     builder (3.3.0)
-    bundle-audit (0.1.0)
-      bundler-audit
     bundler-audit (0.9.2)
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
@@ -378,7 +376,7 @@ DEPENDENCIES
   bootsnap
   bootstrap (~> 5.3.1)
   brakeman
-  bundle-audit
+  bundler-audit
   dartsass-sprockets
   datadog
   debug
@@ -423,7 +421,6 @@ CHECKSUMS
   bootstrap (5.3.3) sha256=008a93c37c42f1490d59a67b1d13f6063951ef66bab44b43dfd3590b66f0d05c
   brakeman (7.1.1) sha256=629426b5d6496c75e3ffa2299e1ab1bb3ba721fea03d8808414c083660439498
   builder (3.3.0) sha256=497918d2f9dca528fdca4b88d84e4ef4387256d984b8154e9d5d3fe5a9c8835f
-  bundle-audit (0.1.0) sha256=c8f085920cde681ba837be69c87b08598c1a7f46f70877f1b3a1711be91a7a43
   bundler-audit (0.9.2) sha256=73051daa09865c436450a35c4d87ceef15f3f9777f4aad4fd015cc6f1f2b1048
   byebug (12.0.0) sha256=d4a150d291cca40b66ec9ca31f754e93fed8aa266a17335f71bb0afa7fca1a1e
   cgi (0.5.0) sha256=fe99f65bb2c146e294372ebb27602adbc3b4c008e9ea7038c6bd48c1ec9759da
