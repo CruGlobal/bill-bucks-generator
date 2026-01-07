@@ -60,7 +60,7 @@ end
 
 gem "amazing_print"
 gem "bootstrap", "~> 5.3.1"
-gem "bundle-audit"
+gem "bundler-audit"
 gem "datadog"
 gem "dartsass-sprockets"
 gem "dotenv-rails", require: "dotenv/load"
