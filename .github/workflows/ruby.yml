@@ -27,7 +27,7 @@ jobs:
 
     steps:
       - name: Check out files
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Update packages
         run: sudo apt-get update
@@ -55,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out files
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Update packages
         run: sudo apt-get update
