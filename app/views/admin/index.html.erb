@@ -11,6 +11,16 @@
 
 <div class="main-body">
   <div class="container">
+    <% if flash[:alert] %>
+      <div class="alert alert-danger" role="alert">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+    <% if flash[:notice] %>
+      <div class="alert alert-success" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
     <h2>Bill Bucks Balances</h2>
     <table class="table table-striped">
       <thead>
@@ -24,7 +34,7 @@
         <% @balances.each_with_index do |entry, index| %>
           <tr>
             <td><%= index + 1 %></td>
-            <td><%= entry.name.titleize %></td>
+            <td><%= entry.name %></td>
             <td><%= entry.balance %></td>
           </tr>
         <% end %>

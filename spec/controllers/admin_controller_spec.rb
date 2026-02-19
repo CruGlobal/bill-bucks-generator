@@ -32,7 +32,7 @@ RSpec.describe AdminController, type: :controller do
 
         get :index
 
-        expect(response.body).to include("Alice")
+        expect(response.body).to include("alice")
         expect(response.body).to include("6")
       end
 
