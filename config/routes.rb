@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root controller: :bucks, action: :new
 
+  get "/admin", to: "admin#index"
+
   get "bucks/img", to: "bucks#img"
   get "bucks/new", to: "bucks#new"
   post "bucks/generate", to: "bucks#generate"

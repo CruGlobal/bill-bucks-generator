@@ -1,0 +1,42 @@
+<header>
+  <div class="container">
+    <h1>Admin Dashboard</h1>
+    <div class="login-status">
+      <%= link_to "Back to Home", root_path %>
+    </div>
+  </div>
+</header>
+
+<div class="main-body">
+  <div class="container">
+    <h2>Bill Bucks Balances</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @balances.each_with_index do |entry, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= entry.name.titleize %></td>
+            <td><%= entry.balance %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<footer id="bottom-footer">
+  <div class="container">
+    <div class="made-with-love">
+      Made with <span class="heart-btn">❤</span> by
+      <a href="/?to=Shelby+Benton&for_message=Your+hard+work&count=5">Shelby</a>
+      and Spencer
+    </div>
+  </div>
+</footer>
