@@ -1,6 +1,13 @@
 class Buck < ApplicationRecord # extra form inputs we don't care about
   attr_accessor :dept
 
+  scope :balances_by_recipient, -> {
+    where.not(to: [nil, ""])
+      .select("LOWER(\"to\") AS name, SUM(CASE WHEN buck_type = 'vonette' THEN 5 ELSE 1 END) AS balance")
+      .group("LOWER(\"to\")")
+      .order("balance DESC")
+  }
+
   TO_POINT_SIZE = 22
   FOR_POINT_SIZE = 25
 

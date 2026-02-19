@@ -2,7 +2,9 @@
   <div class="container">
     <h1>Admin Dashboard</h1>
     <div class="login-status">
-      <%= link_to "Back to Home", root_path %>
+      <%= "Welcome #{current_user.name}" %>
+      <br>
+      <%= link_to "Back to Home", root_path %> | <%= link_to "Logout", logout_path %>
     </div>
   </div>
 </header>
