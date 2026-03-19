@@ -150,7 +150,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.16.0)
+    json (2.17.1.2)
     language_server-protocol (3.17.0.5)
     libdatadog (22.0.1.1.0)
     libdatadog (22.0.1.1.0-x86_64-linux)
@@ -451,7 +451,7 @@ CHECKSUMS
   io-console (0.8.1) sha256=1e15440a6b2f67b6ea496df7c474ed62c860ad11237f29b3bd187f054b925fcb
   irb (1.15.3) sha256=4349edff1efa7ff7bfd34cb9df74a133a588ba88c2718098b3b4468b81184aaa
   jbuilder (2.11.5) sha256=ea6234b334f4afc9205eaa136729da2904731ca01ff05d4db3173b70ebeba8c0
-  json (2.16.0) sha256=ca5630320bb5ca23ebfd0bac84532fab56eb357575653b815b9df42c051e1525
+  json (2.17.1.2) sha256=130dc7927f9484007107a4bcb2ebaa9523b973985f374686d5b2395d4143e2fa
   language_server-protocol (3.17.0.5) sha256=fd1e39a51a28bf3eec959379985a72e296e9f9acfce46f6a79d31ca8760803cc
   libdatadog (22.0.1.1.0) sha256=65e98a8ebe337ec8fcb5a9e507349cf14e82da9e571ba9c03942e2620ae5675f
   libdatadog (22.0.1.1.0-x86_64-linux) sha256=3f727cc5c8c3a40ae48aabee5c230af4842c145ccc495e60955405f84cd9c05a
