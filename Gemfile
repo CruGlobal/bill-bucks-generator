@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby file: ".ruby-version"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.2.3"
+gem "rails", "~> 7.2.3", ">= 7.2.3.1"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 # Use sqlite3 as the database for Active Record
@@ -61,6 +61,7 @@ end
 gem "amazing_print"
 gem "bootstrap", "~> 5.3.1"
 gem "bundler-audit"
+gem "connection_pool", "< 3" # Until Rails 8.1
 gem "datadog"
 gem "dartsass-sprockets"
 gem "dotenv-rails", require: "dotenv/load"
