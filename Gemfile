@@ -61,6 +61,7 @@ end
 gem "amazing_print"
 gem "bootstrap", "~> 5.3.1"
 gem "bundler-audit"
+gem "connection_pool", "< 3" # Until Rails 8.1
 gem "datadog"
 gem "dartsass-sprockets"
 gem "dotenv-rails", require: "dotenv/load"
