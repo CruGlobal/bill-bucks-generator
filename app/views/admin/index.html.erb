@@ -1,0 +1,54 @@
+<header>
+  <div class="container">
+    <h1>Admin Dashboard</h1>
+    <div class="login-status">
+      <%= "Welcome #{current_user.name}" %>
+      <br>
+      <%= link_to "Back to Home", root_path %> | <%= link_to "Logout", logout_path %>
+    </div>
+  </div>
+</header>
+
+<div class="main-body">
+  <div class="container">
+    <% if flash[:alert] %>
+      <div class="alert alert-danger" role="alert">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+    <% if flash[:notice] %>
+      <div class="alert alert-success" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <h2>Bill Bucks Balances</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @balances.each_with_index do |entry, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= entry.name %></td>
+            <td><%= entry.balance %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<footer id="bottom-footer">
+  <div class="container">
+    <div class="made-with-love">
+      Made with <span class="heart-btn">❤</span> by
+      <a href="/?to=Shelby+Benton&for_message=Your+hard+work&count=5">Shelby</a>
+      and Spencer
+    </div>
+  </div>
+</footer>

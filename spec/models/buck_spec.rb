@@ -52,4 +52,40 @@ RSpec.describe Buck, type: :model do
       end
     end
   end
+
+  describe ".balances_by_recipient" do
+    it "counts vonette as 5 and bill as 1" do
+      Buck.create!(to: "Alice", from: "Bob", buck_type: "vonette")
+      Buck.create!(to: "Alice", from: "Bob", buck_type: "bill")
+
+      result = Buck.balances_by_recipient.first
+      expect(result.balance).to eq(6)
+    end
+
+    it "excludes bucks with nil or empty to" do
+      Buck.new(to: "", from: "Bob", buck_type: "bill").save(validate: false)
+      Buck.create!(to: "Alice", from: "Bob", buck_type: "bill")
+
+      results = Buck.balances_by_recipient
+      expect(results.length).to eq(1)
+      expect(results.first.name).to eq("alice")
+    end
+
+    it "groups case-insensitively" do
+      Buck.create!(to: "Alice", from: "Bob", buck_type: "bill")
+      Buck.create!(to: "alice", from: "Carol", buck_type: "bill")
+
+      results = Buck.balances_by_recipient
+      expect(results.length).to eq(1)
+      expect(results.first.balance).to eq(2)
+    end
+
+    it "orders by balance descending" do
+      Buck.create!(to: "Alice", from: "Bob", buck_type: "bill")
+      Buck.create!(to: "Zara", from: "Bob", buck_type: "vonette")
+
+      results = Buck.balances_by_recipient
+      expect(results.first.name).to eq("zara")
+    end
+  end
 end
